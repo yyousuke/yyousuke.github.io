@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+<meta http-equiv="refresh" content="300" >
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="山下陽介 (Yousuke Yamashita)">
+<link rel="icon" href="/yousuke/favicon.ico" type="image/x-icon" />
+<!-- Mobile Internet Explorer allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on">
+<!-- Specify whether or not telephone numbers in the HTML content should appear as hypertext links -->
+<meta name="format-detection" content="telephone=no" />
+<!-- Changes the logical window size used when displaying a page mobile browsers -->
+<meta name = "viewport" content = "width = device-width, initial-scale=1, user-scalable=yes">
+
+<meta name="robots" content="noindex, nofollow" />
+<meta name="http-equiv" content="X-Robots-Tag : noindex, nofollow" />
+<meta name="googlebot" content="noindex, nofollow" />
+<META name="description" content="">
+<META name="keywords" content="yatex latex emacs">
+<TITLE>YaTeX(野鳥)のインストール</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" link="#0000FF" vlink="#0000FF">
+<P align="right"><A href="http://www.yatex.org/">YaTeXのダウンロード<IMG src="./yatex.gif" border="1" cellpadding="1" width="80" height="50"></A></P>
+<CENTER><H1>YaTeX(野鳥)のインストール</H1></CENTER>
+<H2><P align="right">最終更新日：2011/05/14</P></H2>
+<H3>
+<HR>
+<H2><B>I. YaTeX(野鳥)とは</B></H2>
+<H3>
+&nbsp YaTeX(Yet Another TeX mode for Emacs)とは、emacs上でTeXのソースを楽に記述することができるように開発されたLaTeXの入力支援環境です。.emacsで使用されているようなemacs-lispを用いることで、emacs自体には手を加えることなく、YaTeXの入力環境を構築することが可能です。最近のLinuxでは自動でインストール可能なディストリビューションもあり、特に設定を意識しないでもyatexが使えていることがありますが。
+</H3>
+<BR>
+
+<H2><B>II. yatexのインストール（自動で行う場合）</B></H2>
+<H3>
+<DL><DT>
+<DD>&nbsp Linuxのディストリビューションによっては、yatexをパッケージに含めている場合もあり、そこからダウンロードすることも可能です。たとえば、Vine Linuxの場合、<BR>
+<BR>
+# apt-get install yatex<BR><BR>
+でダウンロードとインストールが可能です。<BR>
+<BR>
+* インストールと設定がうまく行っていれば、.texの拡張子が付いたファイルを開くと自動的にyatexが立ち上がります。<BR>
+</H3>
+</DL>
+
+<BR>
+<H2><B>III. yatexのインストール（手動で行う場合）</B></H2>
+<H3>
+<DL><DT>
+<DD><LI>ソースのダウンロード<BR>
+&nbsp ソースは<A href="http://www.yatex.org/">YaTeXの公式ホームページ</A>からダウンロード可能です。<BR>
+<BR>
+
+<DD><LI>インストール<BR>
+&nbsp ソースを展開し、~/lib/emacs/yatex のようなディレクトリに移動します。<BR>
+<BR>
+<DD><LI>.emacsを編集<BR>
+&nbsp emacs-lispを展開したディレクトリからファイルが読み込まれるようにします。また、.texの拡張子のファイルを開いた場合に、自動的にyatexが起動するように設定します。以下の設定は、platexの場合です。<BR>
+--------------------------------------------------------------------------<BR>
+;; yatex-mode <BR>
+(setq load-path <BR>
+&nbsp &nbsp (append '("~/lib/emacs/yatex") load-path)) <BR>
+(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t) <BR>
+(setq dvi2-command "xdvi" <BR>
+&nbsp &nbsp tex-command "platex" <BR>
+&nbsp &nbsp dviprint-command-format "dvips %s | lpr" <BR>
+&nbsp &nbsp YaTeX-kanji-code 3) <BR>
+;; *.texの拡張子をもつファイルを開いた場合、自動的にyatexを起動 <BR>
+(setq auto-mode-alist <BR>
+&nbsp &nbsp (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist)) <BR>
+(setq dvi2-command "xdvi" <BR>
+&nbsp &nbsp tex-command "platex" <BR>
+&nbsp &nbsp dviprint-command-format "dvips %s | lpr" <BR>
+&nbsp &nbsp YaTeX-kanji-code 3) <BR>
+--------------------------------------------------------------------------<BR>
+
+</DL>
+</H3>
+
+
+<BR>
+<BR>
+<HR>
+<SCRIPT language="JavaScript" type="text/javascript" src="../intro/link.js"></SCRIPT>
+<HR>
+
+</BODY>
+</HTML>

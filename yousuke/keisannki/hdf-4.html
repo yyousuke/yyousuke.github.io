@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="refresh" content="300" >
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="山下陽介 (Yousuke Yamashita)">
+<link rel="icon" href="/yousuke/favicon.ico" type="image/x-icon" />
+<!-- Mobile Internet Explorer allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on">
+<!-- Specify whether or not telephone numbers in the HTML content should appear as hypertext links -->
+<meta name="format-detection" content="telephone=no" />
+<!-- Changes the logical window size used when displaying a page mobile browsers -->
+<meta name = "viewport" content = "width = device-width, initial-scale=1, user-scalable=yes">
+
+<meta name="robots" content="noindex, nofollow" />
+<meta name="http-equiv" content="X-Robots-Tag : noindex, nofollow" />
+<meta name="googlebot" content="noindex, nofollow" />
+<TITLE>HDF-4.2のインストール</TITLE>
+</HEAD>
+
+<!-- <BODY link="#CC00FF" vlink="#CC00FF"> -->
+<BODY >
+<CENTER><H1><B>HDF4.2r3のインストール (Solaris)</B></H1></CENTER>
+<H2><P align="right">最終更新日：2010/03/22</P></H2>
+<H3>&nbsp ここでは、Solaris9でHDF4.2をインストールした際の設定方法をメモしています。ここでは、ユーザのプロンプトを%でルートのプロンプトを#で表記しています。</H3><BR>
+<HR>
+<DL>
+<DT><H2><B>1　HDF4のダウンロード</B></H2>
+<DD><H3>　<A href="http://www.hdfgroup.org/products/hdf4">HDFのページ</A>からHDF4のソースコードとSZIP、ZLIB、JPEGをダウンロードします。<BR>
+
+</H3><BR><BR>
+
+<DT><H2><B>2　SZIPのインストール</B></H2>
+<DD><H3>　ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure で --prefix=インストール先　を変更してください。<BR><BR>
+
+% gunzip -c szip-2.1.tar.gz | tar xvf - <BR>
+% cd szip-2.1 <BR>
+% ./configure --prefix=/usr/local<BR>
+% make<BR><BR>
+% make checkで<BR>
+All test passed.が出ることを確認し、<BR>
+# make install<BR>
+</H3><BR><BR>
+
+<DT><H2><B>3　ZLIBのインストール</B></H2>
+<DD><H3>　ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure に --prefix=インストール先　のオプションを付けてください。<BR><BR>
+
+% gunzip -c zlib-1.2.3.tar.gz | tar xvf - <BR>
+% cd zlib-1.2.3 <BR>
+% ./configure<BR>
+% make<BR>
+# make install<BR>
+</H3><BR><BR>
+
+
+<DT><H2><B>4　JPEGのインストール</B></H2>
+<DD><H3>　ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure に --prefix=インストール先　のオプションを付けてください。<BR><BR>
+
+% gunzip -c jpegsrc.v6b.tar.gz | tar xvf - <BR>
+% cd jpeg-6b <BR>
+% ./configure<BR>
+% make<BR>
+# make install<BR>
+</H3><BR><BR>
+
+
+<DT><H2><B>5　HDF4.2r3のインストール</B></H2>
+<DD><H3>　ここでは、/usr/local/HDF4.2r3以下にインストールすることを想定しています。別の場所にインストールする場合、configure に --prefix=インストール先　のオプションを付けてください。<BR><BR>
+
+% gunzip -c HDF4.2r3.tar.gz | tar xvf - <BR>
+% cd HDF4.2r3<BR>
+<BR>
+% setenv CPPFLAGS -I/usr/local/include <BR>
+% ./configure --prefix=/usr/local/HDF4.2r3 --with-zlib=/usr/local/lib --with-jpeg=/usr/local/lib \<BR>
+--with-szlib=/usr/local/lib <BR>
+<BR>
+% make<BR><BR>
+% make check でテストが成功したことを確認し、<BR>
+# make install<BR>
+<BR>
+*HDF4.2.5でも同じ方法でインストール可能です。</B></H2>
+<BR>
+</H3>
+
+
+</DL>
+
+<BR>
+<BR>
+<HR>
+<SCRIPT language="JavaScript" type="text/javascript" src="../intro/link.js"></SCRIPT>
+<HR>
+
+</BODY>
+</HTML>

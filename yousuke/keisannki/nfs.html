@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+<meta http-equiv="refresh" content="300" >
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="山下陽介 (Yousuke Yamashita)">
+<link rel="icon" href="/yousuke/favicon.ico" type="image/x-icon" />
+<!-- Mobile Internet Explorer allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on">
+<!-- Specify whether or not telephone numbers in the HTML content should appear as hypertext links -->
+<meta name="format-detection" content="telephone=no" />
+<!-- Changes the logical window size used when displaying a page mobile browsers -->
+<meta name = "viewport" content = "width = device-width, initial-scale=1, user-scalable=yes">
+
+<meta name="robots" content="noindex, nofollow" />
+<meta name="http-equiv" content="X-Robots-Tag : noindex, nofollow" />
+<meta name="googlebot" content="noindex, nofollow" />
+<META name="description" content="NFS関連のデーモン, /etc/dfs/dfstab (Solaris), /etc/exports (Linux, Tru64 UNIX)等の設定ファイルの解説, NFSサーバ, クライアントの設定方法について解説しています.">
+<TITLE>NFSの設定 (Solaris, Linux, Tru64)</TITLE>
+</HEAD>
+
+
+<BODY link="#0000FF" vlink="#0000FF">
+<CENTER><H1><B>NFSの設定</B></H1></CENTER>
+<H3>
+<P align="right">最終更新日 2005/6/18</P><BR>
+</H3>
+<HR>
+<DL>
+<DT><H2>１、はじめに</H2>
+<DD><H3>ここではNFSに関連した次の3つの設定(NFSサーバ、NFSクライアント、
+自動マウントの設定)について説明しています。<BR>
+<BR>
+<LI>NFSサーバの設定<BR>
+NFSサーバを構築するには、ファイルのシェアの設定とNFSサービスを提供するデーモンの設定を行う必要があります。<BR>
+ファイルのシェアの設定は、Solarisなら /etc/dfs/dfstab で、Linux、Tru64では /etc/exports で行います。<BR>
+NFSに関連したデーモンには、まず、ポートマッパ(portmapper)があります。Linuxの場合、起動時にはportmapかrpc.portmapのどちらかのプロセス名になります。Solarisでは、rpcbind、Tru64ではportmapです。<BR>
+これは、要求をよこしたクライアントに対し、システム上のNFSサービスへの接続先を伝えるデーモンです。ポートマッパにアクセス制限をかけないと全く認証されていない
+クライアントに対してもNFSデーモンの情報を伝えてしまい、NFS経由でシステムに侵入される危険がありますので注意しましょう。<BR>
+NFSサービスを提供するデーモンには、nfsd、lockd、mountd、rquotad、statd があります。システムによっては、それぞれ、rpc.nfsd、rpc.lockd、
+rpc.mountd、rpc.rquotad、rpc.statdのようなプロセス名で表示されることもあります。nfsdが大部分の作業を行い、lockdとstatdがファイルロック、mountdが
+接続開始時のマウント要求、rquotadがエクスポートされたボリュームのユーザファイルクォータを提供する役割を果たします。ファイルクォータを
+使用しなければ、rquotadを起動する必要はありません。Tru64の場合にはrpc.nfsdがnfsdとnfsiodとなります。
+NFSサービスを提供するにはこれらのデーモンを起動する(あるいは、inetdやxinetdから起動可能なように設定する)必要があります。<BR>
+デーモンの起動は、(1) portmapper、(2) mountd, nfsd、(3) statd, lockd, rquotadの順で行います。通常は起動スクリプトでこの順番に起動されるように
+設定されています。
+
+
+<BR>
+<BR>
+<LI>NFSクライアントの設定<BR>
+NFSクライアントを設定する場合にもNFSサーバの場合と同様、ポートマッパを起
+動しておく必要があります。ファイルのロックを扱いたい場合にはlockd、statd
+を起動します(クライアント側、サーバ側の両方で起動している必要があります)。<BR>
+起動時にマウントされるようにするには /etc/vfstab (Solaris)、
+/etc/fstab(Linux, Tru64) を編集します。<BR>
+<BR>
+<LI>自動マウントの設定<BR>
+自動マウントを行うには設定ファイルの編集とデーモンの起動が必要です。シス
+テムによってはデフォルトで起動されるようになっています。自動マウントの設
+定ファイルは Solarisでは /etc/auto_master、/etc/auto_home、
+/etc/auto_direct です。このうち、auto_home、auto_direct は auto_master
+から読み込むように設定します。Linux では /etc/auto.master、
+/etc/auto.misc が設定ファイルになります。<BR>
+自動マウントを行うデーモンはautomountdですが、 Solaris では
+/usr/lib/autofs/automountd、Linux、Tru64 では /usr/sbin/automount にあり
+ます。
+<BR>
+<BR>
+</H3></DL>
+<BR>
+<HR><BR>
+
+<DL>
+<DT><H2>２、NFSサーバの設定</H2>
+<DD><H3>
+
+<LI>NFS関連daemon一覧<BR>
+<BR>
+<TABLE border=1>
+<TBODY>
+<TR><TD>daemon</TD><TD>Solaris</TD><TD>Tru64</TD><TD>Vine Linux</TD></TR> 
+<TR>
+ <TD>portmapper</TD><TD>/usr/sbin/rpcbind</TD><TD>/usr/sbin/portmap</TD><TD>/sbin/portmap</TD>
+</TR>
+<TR>
+ <TD>nfsd</TD><TD>/usr/lib/nfs/nfsd</TD><TD>/usr/sbin/nfsd<BR>/usr/sbin/nfsiod</TD><TD>/usr/sbin/rpc.nfsd</TD>
+</TR>
+<TR>
+ <TD>mountd</TD><TD>/usr/lib/nfs/mountd</TD><TD>/usr/sbin/mountd</TD><TD>/usr/sbin/rpc.mountd</TD>
+</TR>
+<TR>
+ <TD>statd</TD><TD>/usr/lib/nfs/statd</TD><TD>/usr/sbin/rpc.statd</TD><TD>/sbin/rpc.statd</TD>
+</TR>
+<TR>
+ <TD>lockd</TD><TD>/usr/lib/nfs/lockd</TD><TD>/usr/sbin/rpc.lockd</TD><TD>/sbin/rpc.lockd</TD>
+</TR>
+<TR>
+ <TD>rquotad</TD><TD>/usr/lib/nfs/rquotad</TD><TD>/usr/sbin/rpc.rquotad</TD><TD>/usr/sbin/rpc.rquotad</TD>
+</TR>
+</TBODY>
+</TABLE>
+<BR>
+* Solarisではこの他にnfsのlogをとるためのnfslogd (/usr/lib/nfs/nfslogd)
+があります。
+<BR>
+<BR>
+<LI>使用するポート一覧 (共通のもの)<BR>
+<TABLE border=1>
+<TBODY>
+<TR><TD>protocol</TD><TD>port</TD><TD>daemon</TD></TR> 
+<TR>
+ <TD>tcp</TD><TD>111</TD><TD>portmapper</TD>
+</TR>
+<TR>
+ <TD>udp</TD><TD>111</TD><TD>portmapper</TD>
+</TR>
+<TR>
+ <TD>tcp</TD><TD>2049</TD><TD>nfs (ver. 2, 3)</TD>
+</TR>
+<TR>
+ <TD>udp</TD><TD>2049</TD><TD>nfs (ver. 2, 3)</TD>
+</TR>
+</TBODY>
+</TABLE>
+他のdaemonの使用するポートはシステムによって違います。この情報は<BR>
+$ rpcinfo -p <BR>
+で調べることができます(Vine Linux, SUSE Linux, Solaris 8,9, Tru64で同じコマンドが使用できることを確認済み)。<BR>
+<BR>
+* ポートマッパにアクセス制限をかけていないマシンに対して<BR>
+$ rpcinfo -p ホスト名<BR>
+としてみて下さい。NFS関連のdaemon、NIS関連のdaemonがどのポートを使用しているか丸見えになると思います(決して悪用しないで下さい)。
+
+</H3></DL>
+<BR>
+<HR><BR><BR>
+
+
+<DL>
+<DT><H2>３、NFSクライアントの設定</H2>
+<DD><H3>
+
+</H3></DL>
+<BR>
+<HR><BR>
+
+
+<DL>
+<DT><H2>４、自動マウントの設定</H2>
+<DD><H3>
+
+</H3></DL>
+<BR>
+
+
+<BR>
+<HR>
+<SCRIPT language="JavaScript" type="text/javascript" src="../intro/link.js"></SCRIPT>
+<HR>
+
+</BODY>
+</HTML>
