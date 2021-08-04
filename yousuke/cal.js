@@ -25,7 +25,7 @@ document.write("<tr align=center>")
     for(i = start; i < start + 7; i++){
          if((i > 0) && (i <= numdays[month])){
             if(i == today){
-	       document.write("<td><B><FONT color=\"green\">"+ i +"</FONT></B></td>")
+	       document.write("<td><b><fons color=\"green\">"+ i +"</font></b></td>")
             }else{
                document.write("<td>"+ i +"</td>")
             }
