@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="refresh" content="300" >
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="山下陽介 (Yousuke Yamashita)" />
+<link rel="icon" href="/yousuke/favicon.ico" type="image/x-icon" />
+<!-- Mobile Internet Explorer allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on">
+<!-- Specify whether or not telephone numbers in the HTML content should appear as hypertext links -->
+<meta name="format-detection" content="telephone=no" />
+<!-- Changes the logical window size used when displaying a page mobile browsers -->
+<meta name = "viewport" content = "width = device-width, initial-scale=1, user-scalable=yes">
+
+<meta name="robots" content="nofollow" />
+<meta name="http-equiv" content="X-Robots-Tag : nofollow" />
+<meta name="googlebot" content="nofollow" />
+<meta name="description" content="Tru64 UNIX 5.1bへgnuplot 4.0をインストールした際のメモ">
+<meta name="keywords" content="Tru64 UNIX 5.1b gnuplot 4.0">
+<link href="../design_keisannki.css" rel="stylesheet" type="text/css" />
+<title>アーカイブ：gnuplot4.0のインストール(Tru64 UNIX)</title>
+</head>
+
+<body link="#0000FF" vlink="#0000FF">
+<div id="nesting">
+<a href="/">ホーム</a> &gt; <a href="/yousuke/index.html">山下のページ</a> &gt;  <a href="/yousuke/keisannki/index.html">計算機関連</a> &gt; <a href="/yousuke/keisannki/archive/index.html">アーカイブ：計算機関連</a>  &gt; gnuplotのインストール
+</div>
+<article>
+<center><h1>アーカイブ：gnuplotのインストール</h1></center>
+<br />
+<div id="text2">
+<p>
+&nbsp; ここでは、Tru64にgnuplotをインストールした際（2004/7/14）のメモをアーカイブしています。<font color="red">内容は2005/06/04に更新された時点のもの</font>です。<br />
+&nbsp; Linuxの場合、aptを使っていれば % apt-get install gnuplot でインストールできます。Solarisでは<a href="http://sunsite.tus.ac.jp/pub/sun-info/Solaris/" rel="nofollow">SunSITE</a>のページからパッケージをダウンロードし、% pkgadd -d パッケージ名 でインストールできます。
+</p>
+</div>
+<br />
+<br />
+
+<!-- gd1.4のインストール -->
+<h3><div class="headline2" id="gd14">gd1.4のインストール</div></h3>
+<div class="text1">
+&nbsp; gif、png、jpegで出力できるようにするにはgd libraryが必要になります。ただし、最近のversionではgif形式は取り除かれているのでgd1.3やgd1.4をダウンロードするようにします。<br /><br />
+<ol class="list1">
+<li>ソースパッケージを展開<br />
+% gunzip -c gd1.4.tar.gz | tar xvf - <br />
+（cオプションはgunzipの出力を標準出力にするためのオプションで、パイプを通す場合にはバッファが標準出力になる。）<br /><br />
+（tar コマンドの - の部分はバッファから取り込むという意味でパイプを通した場合には必要）</li><br /><br />
+<li>コンパイル<br />
+&nbsp; gcc 以外のコンパイラを使う場合は Makefile を書き換える必要があります。 gccがない場合にはCC=gccをCC=ccのように書き換えます。<br /><br />
+% make libgd.a<br /></li><br /><br />
+<li>インストール<br />
+&nbsp; コンパイルしたlibgd.aとヘッダファイルをインストールしたいフォルダにコピーします。/usr/local/libと/usr/local/includeにコピーしてもよいのですが、今後新しいgd library をインストールする場合に影響が出ると困るので/usr/local/gd1.4/libと/usr/local/gd1.4/includeにコピーしました。<br /><br />
+<pre>
+% cp *.h /usr/local/gd1.4/include <br />
+% cp libgd.a /usr/local/gd1.4/lib <br />
+% ranlib /usr/local/gd1.4/lib/libgd.a
+</pre>
+</li><br /><br />
+</ol>
+</div>
+<br /><br />
+
+<h3><div class="headline2" id="gnuplot">gnuplotのインストール</div></h3>
+<div class="text1">
+<ol class="list1">
+<li>ソースコードのダウンロード<br />
+&nbsp; <a href="http://www.gnuplot.info/download.html">gnuplotのホームページ</a>からソースコードをダウンロード（現在の最新版 version 4.0）し、展開します。</li><br /><br />
+<li>configureのオプション（INSTALLファイルに詳細があります）<br />
+<ul class="list2">
+  <li>X Window を使うために必要になるオプション<br />
+  --with-x<br /><br />
+  --with-PACKAGE<br /><br />
+  --x-includes=/usr/local/include/X11/<br /><br />
+  --x-libraries=/usr/lib/X11/<br /><br /></li><br />
+  <li>ライブラリ使用のために必要となるオプション<br />
+  --with-readline=gnu<br /><br />
+  --with-readline　　(コマンド履歴の表示に必要なライブラリ) <br /><br />
+  --with-gd<br /><br />
+  --with-gd=/usr/local/gd1.4/lib/libgd.a<br /><br />
+  --with-png<br /><br /></li><br />
+  <li>インストールされるディレクトリを変えたい場合<br />
+  --prefix=PREFIX ; PREFIX以下にgnuplot構成ファイルがインストールされます。デフォルトでは/usr/localになっています。<br /><br />
+  --exec-prefix=EPREFIX ; デフォルトではPREFIXになります。<br /><br />
+  --bindir=DIR ; 実行ファイルは、デフォルトではEPREFIX/binにインストールされます。<br /><br />
+  --libexec=DIR ; デフォルトではPREFIX/libexecにインストールされます。<br /><br />
+  --datadir=DIR ; デフォルトではPREFIX/shareにインストールされます。ヘルプファイルもこの中にインストールされます。<br /><br />
+  --libdir=DIR ; オブジェクトコードライブラリがDIRにインストールされます。デフォルトではPREFIX/libになります。<br /><br />
+  --includedir=DIR ; CヘッダーファイルがDIRの中にインストールされます。デフォルトではPREFIX/includeになります。<br /><br />
+  --man-dir=DIR ; マニュアルファイルがDIRにインストールされます。デフォルトでは PREFIX/manになります。<br /><br />
+</li></ul>
+</li><br /><br />
+<li>インストール<br />
+<pre>
+% ./configure --with-x --with-PACKAGE --x-includes=/usr/local/include/X11/ --x-libraries=/usr/lib/X11/　--with-readline=gnu --with-readline --with-gd --with-gd=/usr/local/gd1.4/lib/libgd.a --with-png<br />
+% make<br />
+% make install
+</pre>
+＊ --x-includes, --x-libraliesはシステムによって異なります。Solarisではそれぞれ/usr/openwin/include, /usr/openwin/libや/usr/dt/include, /usr/dt/libに、LinuxやCygwinでは /usr/X11R6/include, /usr/X11R6/libになります。
+</li><br /><br />
+<li>gnuplotについて<br />
+<ul class="list2">
+  <li>コマンド履歴<br />
+ <p>&nbsp; gnuplotを使用するとホームディレクトリに.gp_historyというファイルができます。このファイルはgnuplotのコマンド履歴を記録しておくものですが、 gnuplotを一つも起動していないときには使用しているアプリケーションがないので削除しても問題はありません。次にgnuplotを起動したとき前に使用したコマンドを使いたい場合には残しておいて下さい。</p></li><br />
+   <li>gnuplotの使用法<br />
+   <a href="http://lowrank.net/gnuplot/">gnuplot TIPS</a>
+</li></ul>
+</li><br /><br />
+</ol>
+</div>
+<br /><br />
+
+
+<br /><br />
+<small><a href="#top">[top]</a></small> <br />
+<hr width="105%" />
+</article>
+</body>
+<footer>
+<p>最終更新日：2021/08/07</p>
+<p>Copyright (C) 2004-2021, Yousuke Yamashita</p>
+<p>このページに対する問い合わせ先：<img src="/yousuke/address2.png" height="15" border="0" alt=""></p>
+</footer>
+</html>
