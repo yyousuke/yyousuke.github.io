@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="refresh" content="300" >
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="山下陽介 (Yousuke Yamashita)" />
+<link rel="icon" href="/yousuke/favicon.ico" type="image/x-icon" />
+<!-- Mobile Internet Explorer allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on">
+<!-- Specify whether or not telephone numbers in the HTML content should appear as hypertext links -->
+<meta name="format-detection" content="telephone=no" />
+<!-- Changes the logical window size used when displaying a page mobile browsers -->
+<meta name = "viewport" content = "width = device-width, initial-scale=1, user-scalable=yes">
+
+<meta name="robots" content="nofollow" />
+<meta name="http-equiv" content="X-Robots-Tag : nofollow" />
+<meta name="googlebot" content="nofollow" />
+<meta name="description" content="2004年9月9日：emacsでの日本語入力の設定（Tru64）">
+<meta name="keywords" content="openssh">
+<link href="../design_keisannki.css" rel="stylesheet" type="text/css" />
+<title>アーカイブ：emacsでの日本語入力の設定</title>
+</head>
+
+<body link="#0000FF" vlink="#0000FF">
+<div id="nesting">
+<a href="/">ホーム</a> &gt; <a href="/yousuke/index.html">山下のページ</a> &gt;  <a href="/yousuke/keisannki/index.html">計算機関連</a> &gt; <a href="/yousuke/keisannki/archive/index.html">アーカイブ：計算機関連</a>  &gt; emacsでの日本語入力の設定
+</div>
+<article>
+<center><h1  id="top">アーカイブ：emacsでの日本語入力の設定</h1></center>
+<br />
+<div id="text2">
+<p><font color="red">2004年9月9日に更新した情報のアーカイブ</font>です。</p><br />
+<p>&nbsp; ここでは、Tru64でemacs-19.34の日本語入力設定を行なった際のメモを残しています。日本語化されたemacsは存在するものの日本語入力はできない状態であったため、emacsで利用できる「たまご」でwnnサーバ（jserver）を利用する入力設定を行いました。<br />
+&nbsp; コマンド入力の説明では、%が一般ユーザの場合のプロンプト、#がrootの場合のプロンプトとして解説しています。</p>
+</div>
+<br />
+<br />
+
+<!-- 現在の設定の確認 -->
+<h3><div class="headline2" id="setting">1　現在の設定の確認</div></h3>
+<div class="text1">
+&nbsp; Tru64にインストールされているemacsを確認したところ、/usr/local/bin/emacs-19.34のみがうまく起動したので、これを改良して日本語入力をしようと試みました。<br />
+&nbsp; まず、Wnnがインストールされているかを調べ、次に日本語入力を行うクライアントwnnとwnnサーバ(jserver)が機能しているかを調べました。wnn はWnn4/ディレクトリが存在するのでVersion4がインストールされていることは分かりました。<br />
+&nbsp; 次に、wnnサーバ（jserver）が機能しているかを調べました。wnnサーバの起動は、次のコマンドで確認します。
+<pre>
+# /usr/i18n/bin/Wnn4/wnnstat</pre>
+&nbsp; 次のように表示されればjserverは起動しています。
+<pre>
+------------------------------------------------------------------------------------------------------------------------
+User name:Host name     (socket)        Env No.
+------------------------------------------------------------------------------------------------------------------------</pre>
+jserverを使っているユーザがいる場合には下の例のようになります。
+<pre>
+------------------------------------------------------------------------------------------------------------------------
+User name:Host name     (socket)        Env No.
+yousuke:unix            (0)             0 1
+------------------------------------------------------------------------------------------------------------------------</pre>
+</div>
+<br /><br />
+
+
+<!-- jserverの起動 -->
+<h3><div class="headline2" id="jserver">2　jserverの起動</div></h3>
+<div class="text1">
+&nbsp; jserverは起動していなかったので
+<pre># /usr/i18n/bin/Wnn4/jserver</pre>
+として手動でjserverを起動しました。成功すると辞書を読み込んだというメッセージが出ます。
+</div>
+<br /><br />
+
+
+<!-- wnnの設定 -->
+<h3><div class="headline2" id="wnn">3　wnnの設定</div></h3>
+<div class="text1">
+&nbsp; jserverが起動したらemacsを設定ファイルなしで起動し、wnnが使えるか調べました。/usr/local/bin/mule -&gt; /usr/local/bin/emacs-19.34 とリンクされているので、次のように確認します。
+<pre>% mule –q</pre>
+&nbsp; 今回の場合、wnnは起動しひらがなの入力は行えましたが“ファイルのI-nodeとFILE_UNIQを一致させることができません“というエラーが出て漢字に変換することができませんでした。もう一度変換しようとすると”付属語ファイルを読み込めません“というエラーが出ました。<br />
+&nbsp; 本来ならインストール時にwnntouchが実行され、辞書のヘッダを書き換えて辞書のinodeと合わせるはずですが、/usr/local/lib/wnn/ja_JP/dic/full.fzk(付属語ファイル)に対してwnntouchが実行されていなかったためこのようなエラーが出たようです。<br />
+&nbsp; 解決法として
+<pre># /usr/local/bin/Wnn4/wnntouch  /usr/local/lib/wnn/ja_JP/dic/pubdic/full.fzk</pre>
+を実行し付属語ファイルが読み込めるようにしました。
+</div>
+<br /><br />
+
+
+<!-- emacsの使用法 -->
+<h3><div class="headline2" id="jpeg">4　emacsの使用法</div></h3>
+<div class="text1">
+&nbsp; 今回はたまごでwnnを使用するという方針で設定を行いましたが、このためには各自のホームディレクトリに.emacsと.eggrcを置き、.emacsの(load "wnn-egg")でwnnと「たまご」を呼び出すように指定する必要があります。<br />
+</div>
+<br /><br />
+
+
+
+<br /><br />
+<small><a href="#top">[top]</a></small> <br />
+<hr width="105%" />
+</article>
+</body>
+<footer>
+<p>最終更新日：2021/08/08</p>
+<p>Copyright (C) 2004-2021, Yousuke Yamashita</p>
+<p>このページに対する問い合わせ先：<img src="/yousuke/address2.png" height="15" border="0" alt=""></p>
+</footer>
+</html>
