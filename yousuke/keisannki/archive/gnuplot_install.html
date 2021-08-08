@@ -44,13 +44,13 @@
 <div class="text1">
 &nbsp; gif、png、jpegで出力できるようにするにはgd libraryが必要になります。ただし、最近のversionではgif形式は取り除かれているのでgd1.3やgd1.4をダウンロードするようにします。<br /><br />
 <ol class="list1">
-<li>ソースパッケージを展開<br />
-% gunzip -c gd1.4.tar.gz | tar xvf - <br />
+<li>ソースパッケージを展開
+<pre>% gunzip -c gd1.4.tar.gz | tar xvf - </pre>
 （cオプションはgunzipの出力を標準出力にするためのオプションで、パイプを通す場合にはバッファが標準出力になる。）<br /><br />
 （tar コマンドの - の部分はバッファから取り込むという意味でパイプを通した場合には必要）</li><br /><br />
 <li>コンパイル<br />
-&nbsp; gcc 以外のコンパイラを使う場合は Makefile を書き換える必要があります。 gccがない場合にはCC=gccをCC=ccのように書き換えます。<br /><br />
-% make libgd.a<br /></li><br /><br />
+&nbsp; gcc 以外のコンパイラを使う場合は Makefile を書き換える必要があります。 gccがない場合にはCC=gccをCC=ccのように書き換えます。<br />
+<pre>% make libgd.a</pre></li><br />
 <li>インストール<br />
 &nbsp; コンパイルしたlibgd.aとヘッダファイルをインストールしたいフォルダにコピーします。/usr/local/libと/usr/local/includeにコピーしてもよいのですが、今後新しいgd library をインストールする場合に影響が出ると困るので/usr/local/gd1.4/libと/usr/local/gd1.4/includeにコピーしました。<br /><br />
 <pre>
