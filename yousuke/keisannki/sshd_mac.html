@@ -88,7 +88,12 @@ Host *
 <pre>
 ForwardX11Timeout 86400
 </pre>
-も追加しておくと回避可能です（この場合は１日）。<br />
+も追加しておくと回避可能です（この場合は１日）。<br /><br />
+macOS BigSur（ver. 11）では、クライアント側でXquartzが立ち上がらない不具合が発生することがあります。クライアント側でxcalcなどローカルでXを使用するプログラムを試し、それでも起動しない場合には、手動で起動することで解決することがあります。
+<pre>
+open /Applications/Utilities/XQuartz.app/Contents/MacOS/X11
+</pre>
+＊コマンドを起動したターミナルを閉じてしまうと、Xquartzも終了してしまいます。
 </p>
 </li></ul>
 </div>
@@ -101,7 +106,7 @@ ForwardX11Timeout 86400
 </article>
 </body>
 <footer>
-<p>最終更新日：2020/04/07</p>
-<p>Copyright (C) 2018-2020, Yousuke Yamashita</p>
+<p>最終更新日：2021/08/22</p>
+<p>Copyright (C) 2018-2021, Yousuke Yamashita</p>
 </footer>
 </html>
