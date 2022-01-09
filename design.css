@@ -189,11 +189,11 @@ footer{
 
 @media screen and (max-width: 480px) {
 body{
-	width:420px;
+	width:95%;
 }
 
 .contents{
-	width:420px;
+	width:95%;
 	}
 
 h1{
@@ -214,28 +214,38 @@ h4{
 
 .headline1 {
 	height:18px;
-	width:420px;
+	width:95%;
 	word-break: break-all;
 	word-wrap: break-word;
 }
 
 .headline2 {
 	height:18px;
-	width:420px;
+	width:95%;
 	word-break: break-all;
 	word-wrap: break-word;
 }
 
+.list1 {
+	padding-left:15px;
+	padding-right:15px;
+}
+
+.list2 {
+	padding-left:20px;
+	padding-right:20px;
+}
+
 .text1 {
 	font-size:12px;
-	width:420px;
+	width:95%;
 	word-break: break-all;
 	word-wrap: break-word;
 }
 
 .text2 {
 	font-size:12px;
-	width:420px;
+	width:95%;
 	word-break: break-all;
 	word-wrap: break-word;
 }
