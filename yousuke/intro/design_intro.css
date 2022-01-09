@@ -204,7 +204,11 @@ footer{
 	padding-right:15px;
 	}
 
-table#main{
+table#table1{
+	width:800px;
+}
+
+table#table2{
 	width:800px;
 }
 
@@ -316,7 +320,11 @@ footer{
 	font-size:10px;
 	}
 
-table#main{
+table#table1{
+	width:95%;
+}
+
+table#table2{
 	width:95%;
 }
 
