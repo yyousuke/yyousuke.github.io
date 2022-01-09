@@ -204,6 +204,26 @@ footer{
 	padding-right:15px;
 	}
 
+table#main{
+	width:800px;
+}
+
+table#sub1{
+	width:550px;
+}
+
+table#sub2{
+	width:200px;
+}
+
+img#size1{
+	width:200px;
+}
+
+img#size2{
+	width:300px;
+}
+
 @media screen and (max-width: 480px) {
 body{
 	width:95%;
@@ -294,4 +314,25 @@ pre{
 footer{
 	font-size:10px;
 	}
+
+table#main{
+	width:95%;
+}
+
+table#sub1{
+	width:65%;
+}
+
+table#sub2{
+	width:30%;
+}
+
+img#size1{
+	width:25%;
+}
+
+img#size2{
+	width:37%;
+}
+
 }
