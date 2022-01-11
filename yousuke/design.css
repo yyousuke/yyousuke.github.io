@@ -46,7 +46,7 @@ article{
 }
 
 hr{
-	width:105%;
+	width:100%;
 }
 
 .contents{
@@ -113,7 +113,7 @@ h4{
 .headline1 {
 	float:left;
 	height:21px;
-	width:470px;
+	width:500px;
 	border-left:solid 0.3em #0000ff;
 	padding-top:0.2em;
 	padding-bottom:0.6em;
@@ -130,7 +130,7 @@ h4{
 .headline2 {
 	float:left;
 	height:21px;
-	width:470px;
+	width:500px;
 	border-left:solid 0.3em #0000ff;
 	padding-left:0.5em;
 	padding-top:0.2em;
