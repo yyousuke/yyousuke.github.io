@@ -15,13 +15,13 @@ if(leapy == 0){
 
 mon = (month+1 == 1) ? "Jan" : (month+1 == 2) ? "Feb" : (month+1 == 3) ? "Mar" :
 (month+1 == 4) ? "Apr" : (month+1 == 5) ? "May" : (month+1 == 6) ?  "Jun" : (month+1 == 7) ?  "Jul" : (month+1 == 8) ?  "Aug" : (month+1 == 9) ?  "Sep" : (month+1 == 10) ?  "Oct" : (month+1 == 11) ?  "Nov" : "Dec" ;
-document.write("<table border>")
-document.write("<tr align=center><th colspan=7>"+(mon)+" "+(year)+"</th></tr>")
-document.write("<tr align=center><th><font color=\"#ff0000\">S</a></th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th><font color=\"#0000ff\">S</a></th></tr>")
+document.write("<table border=\"1\">")
+document.write("<tr align=\"center\"><th colspan=7>"+(mon)+" "+(year)+"</th></tr>")
+document.write("<tr align=\"center\"><th><font color=\"#ff0000\">S</a></th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th><font color=\"#0000ff\">S</a></th></tr>")
 
 
 for(start = 1-days; start <= 31; start +=7){
-document.write("<tr align=center>")
+document.write("<tr align=\"center\">")
     for(i = start; i < start + 7; i++){
          if((i > 0) && (i <= numdays[month])){
             if(i == today){
