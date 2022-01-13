@@ -220,14 +220,17 @@ table#sub2{
 	width:200px;
 }
 
-img#size1{
+.size1{
 	width:200px;
 }
 
-img#size2{
+.size2{
 	width:300px;
 }
 
+.size3{
+	width:600px;
+}
 
 @media screen and (max-width: 480px) {
 body{
@@ -336,11 +339,15 @@ table#sub2{
 	width:30%;
 }
 
-img#size1{
-	width:75px;
+.size1{
+	width:95%;
 }
 
-img#size2{
+.size2{
+	width:95%;
+}
+
+.size3{
 	width:95%;
 }
 
