@@ -276,6 +276,23 @@ h4{
 	word-wrap: break-word;
 }
 
+.headline-scroll {
+        height:18px;
+        width:95%;
+        padding-top:0.0em;
+        padding-bottom:0.0em;
+        padding-left:0.5em;
+        margin-left:0.0em;
+        margin-top:0.5em;
+        margin-bottom:0.5em;
+        box-sizing: border-box
+        white-space: pre;
+        white-space: pre-line;
+        white-space: nowrap; /* 折り返されないように */
+        overflow-x: auto; /* 横スクロール */
+        -webkit-overflow-scrolling: touch; /* スムーズにスクロール */
+}
+
 .list1 {
 	margin-top:2px;
 	margin-bottom:2px;
