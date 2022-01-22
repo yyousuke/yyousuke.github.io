@@ -225,6 +225,11 @@ footer{
 	padding-right:15px;
 	}
 
+.size1 {
+	width:500px;
+}
+
+
 @media screen and (max-width: 480px) {
 body{
 	width:95%;
@@ -312,7 +317,13 @@ pre{
 	white-space: -hp-pre-wrap; 
 	word-wrap: break-word;
 	}
+
 footer{
 	font-size:10px;
 	}
+
+.size1 {
+	width:95%;
+}
+
 }
