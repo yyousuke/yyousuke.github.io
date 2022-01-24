@@ -21,7 +21,7 @@ document.write("<tr align=\"center\"><th><font color=\"#ff0000\">日</a></th><th
 
 
 for(start = 1-days; start <= 31; start +=7){
-document.write("<tr align=\"center\">")
+document.write("<tr align=\"center\" class=\"nowrap\">")
     for(i = start; i < start + 7; i++){
          if((i > 0) && (i <= numdays[month])){
             if(i == today){
