@@ -21,13 +21,13 @@ document.write("<tr align=\"center\"><th><font color=\"#ff0000\">S</a></th><th>M
 
 
 for(start = 1-days; start <= 31; start +=7){
-document.write("<tr align=\"center\" class=\"nowrap\">")
+document.write("<tr align=\"center\">")
     for(i = start; i < start + 7; i++){
          if((i > 0) && (i <= numdays[month])){
             if(i == today){
-	       document.write("<td><b><font color=\"green\">"+ i +"</font></b></td>")
+	       document.write("<td class=\"nowrap\"><b><font color=\"green\">"+ i +"</font></b></td>")
             }else{
-               document.write("<td>"+ i +"</td>")
+               document.write("<td class=\"nowrap\">"+ i +"</td>")
             }
          }else{
             document.write("<td></td>")
