@@ -3,7 +3,7 @@ body{
 	background-color:#ffffff;
 	background-repeat:repeat-y;
 	background-position:left;
-	width:750px;
+	width:500px;
 	padding-top:5px;
 	margin-left:10px;
 	margin-right:10px;
@@ -51,7 +51,7 @@ hr{
 
 .contents{
 	font-family:Verdana, Arial, Helvetica, sans-serif;
-	width:750px;
+	width:500px;
 	height:auto;
 	text-align:left;
 	float:left;
@@ -113,7 +113,7 @@ h4{
 .headline1 {
 	float:left;
 	height:21px;
-	width:750px;
+	width:500px;
 	border-left:solid 0.3em #0000ff;
 	padding-top:0.2em;
 	padding-bottom:0.6em;
@@ -130,7 +130,7 @@ h4{
 .headline2 {
 	float:left;
 	height:21px;
-	width:750px;
+	width:500px;
 	border-left:solid 0.3em #0000ff;
 	padding-left:0.5em;
 	padding-top:0.2em;
@@ -168,7 +168,7 @@ h4{
 	background-color:#ffffff;
 	float:left;
 	height:auto;
-	width:750px;
+	width:500px;
 	margin-top:2px;
 	margin-bottom:2px;
 	margin-left:20px;
@@ -184,7 +184,7 @@ h4{
 	background-color:#ffffff;
 	float:left;
 	height:auto;
-	width:750px;
+	width:500px;
 	margin-top:2px;
 	margin-bottom:2px;
 	margin-left:20px;
@@ -199,7 +199,7 @@ h4{
 	text-align:left;
 	float:left;
 	height:auto;
-	width:750px;
+	width:500px;
 	margin-top:5px;
 	margin-bottom:5px;
 	padding-left:25px;
