@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="山下陽介 (Yousuke Yamashita)  国立環境研究所 (National Institute for Environmental Studies, NIES)" />
+<link rel="icon" href="/yousuke/favicon.ico" type="image/vnd.microsoft.icon" />
+<!-- Mobile Internet Explorer allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on" />
+<!-- Specify whether or not telephone numbers in the HTML content should appear as hypertext links -->
+<meta name="format-detection" content="telephone=no" />
+<!-- Changes the logical window size used when displaying a page mobile browsers -->
+<meta name = "viewport" content = "width = device-width, initial-scale=1, user-scalable=yes" />
+
+<meta name="robots" content="nofollow" />
+<meta name="http-equiv" content="X-Robots-Tag : nofollow" />
+<meta name="googlebot" content="nofollow" />
+<meta name="description" content="" />
+<meta name="keywords" content="crontab" />
+<link href="design_keisannki.css" rel="stylesheet" type="text/css" />
+<title>計算機TIPS</title>
+</head>
+
+<!--<body link="#CC00FF" vlink="#CC00FF">-->
+<body link="#0000FF" vlink="#0000FF">
+<div id="nesting">
+<a href="/~yyousuke">ホーム</a> &gt; <a href="/~yyousuke/yousuke/index.html">山下のページ</a>  &gt; <a href="/~yyousuke/yousuke/keisannki/index.html">計算機関連</a> &gt; TIPS
+</div>
+<article>
+<center><h1>計算機TIPS</h1></center>
+<br />
+<p>&nbsp; ここでは、主にLinux系の計算機におけるTIPSを載せています。まだ正式公開版ではなくメモ書き程度ですので、その点に留意して頂ければ幸いです。コマンド入力の説明では、%が一般ユーザのプロンプトを表しています。</p>
+<br /><hr />
+
+<!-- 目次 -->
+
+<h2 id="contents">目次</h2>
+<div class="contents">
+  <!-- スケジュール管理 -->
+  <ul class="list1"><li><a href="#linux_1">スケジュール管理</a>
+    <ul class="list2">
+      <li><a href="#linux_1_1">crontabに登録する</a></li>
+      <li><a href="#linux_1_2">ユーザを指定してcrontabに登録する</a></li>
+  </ul>
+  </li></ul>
+</div>
+
+<small><a href="#top">[top]</a></small> <br />
+<br />
+<hr width="105%" />
+<br />
+
+
+<!-- ここから本文 -->
+<!-- スケジュール管理 -->
+<h3><div class="headline1" id="linux_1">スケジュール管理</div></h3>
+<h4><div class="headline2" id="linux_1_1">crontabに登録する</div></h4>
+<div class="text1">
+ログインしているアカウントのcronに登録する場合
+<pre>% crontab -e</pre>
+編集画面が現れるので、次のように設定する。
+<pre>分 時 日 月 週の何日目&nbsp; コマンド名</pre>
+<ul class="list1">
+<li>毎日8時45分にget.shスクリプトを動かす
+<pre>
+45 08 * * *  get.sh > /dev/null 2>& 1
+</pre>
+＊/dev/nullに渡して通知されないようにする
+＊2は標準エラー出力を表し、標準出力の1と一緒に出力するので両方が破棄される
+</li><br />
+<li>毎月1日にget.shスクリプトを動かす
+<pre>
+45 08 1 * *  get.sh > /dev/null 2>& 1
+</pre></li>
+<li>毎週日曜にget.shスクリプトを動かす
+<pre>
+45 08 * * 0  get.sh > /dev/null 2>& 1
+</pre>
+0が日曜、1が月曜、2が火曜、3が水曜、4が木曜、5が金曜、6が土曜
+</li><br />
+<li>10分毎にスクリプトを動かす
+<pre>
+00,10,20,30,40,50  * * * *  get.sh > /dev/null 2>& 1
+</pre></li>
+</div>
+
+<h4><div class="headline2" id="linux_1_2">ユーザを指定してcrontabに登録する</div></h4>
+<div class="text1">
+/etc/crontabを編集する
+<pre>分 時 日 月 週の何日目&nbsp; ユーザ名&nbsp; コマンド名</pre>
+毎日50分に、clamupdateユーザ権限でウイルスデータベースを自動更新
+<pre>
+50  * * * *  clamupdate /usr/local/bin/freshclam --quiet 2>& 1
+</pre>
+</div>
+
+
+<small><a href="#top">[top]</a></small> <br />
+<hr width="105%" />
+</article>
+</body>
+<footer>
+<p>最終更新日：2022/05/22</p>
+<p>Copyright (C) 2018-2022, Yousuke Yamashita</p>
+</footer>
+</html>
