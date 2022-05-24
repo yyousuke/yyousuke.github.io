@@ -88,9 +88,9 @@
 <div class="text1">
 /etc/crontabを編集する
 <pre>分 時 日 月 週の何日目&nbsp; ユーザ名&nbsp; コマンド名</pre>
-毎日50分に、clamupdateユーザ権限でウイルスデータベースを自動更新
+毎日50分に、clamupdateユーザ権限でウイルスデータベースを自動更新しログ保存
 <pre>
-50  * * * *  clamupdate /usr/local/bin/freshclam --quiet 2>& 1
+50  * * * *  clamupdate /usr/local/bin/freshclam --quiet -l /var/log/clam-update.log
 </pre>
 </div>
 
