@@ -44,6 +44,15 @@
       <li><a href="#linux_1_3">crontabで月末に実行する</a></li>
   </ul>
   </li></ul>
+  <!-- emacs関連 -->
+  <ul class="list1"><li><a href="#emacs_1">emacs関連</a>
+    <ul class="list2">
+      <li><a href="#emacs_1_1">emacsでカーソル位置を保存する</a></li>
+      <li><a href="#emacs_1_2">emacsで長い行を折り返す</a></li>
+      <li><a href="#emacs_1_3">emacsで矩形選択</a></li>
+      <li><a href="#emacs_1_4">emacsで末尾のエスケープを揃える</a></li>
+  </ul>
+  </li></ul>
 </div>
 
 <small><a href="#top">[top]</a></small> <br />
@@ -64,25 +73,26 @@
 <ul class="list1">
 <li>毎日8時45分にget.shスクリプトを動かす
 <pre>
-45 08 * * *  get.sh > /dev/null 2>& 1
+45 08 * * *  get.sh &gt; /dev/null 2&gt;& 1
 </pre>
 ＊/dev/nullに渡して通知されないようにする
 ＊2は標準エラー出力を表し、標準出力の1と一緒に出力するので両方が破棄される
 </li><br />
 <li>毎月1日にget.shスクリプトを動かす
 <pre>
-45 08 1 * *  get.sh > /dev/null 2>& 1
+45 08 1 * *  get.sh &gt; /dev/null 2&gt;& 1
 </pre></li>
 <li>毎週日曜にget.shスクリプトを動かす
 <pre>
-45 08 * * 0  get.sh > /dev/null 2>& 1
+45 08 * * 0  get.sh &gt; /dev/null 2&gt;& 1
 </pre>
 0が日曜、1が月曜、2が火曜、3が水曜、4が木曜、5が金曜、6が土曜
 </li><br />
 <li>10分毎にスクリプトを動かす
 <pre>
-00,10,20,30,40,50  * * * *  get.sh > /dev/null 2>& 1
+00,10,20,30,40,50  * * * *  get.sh &gt; /dev/null 2&gt;& 1
 </pre></li>
+</ul>
 </div>
 
 <h4><div class="headline2" id="linux_1_2">ユーザを指定してcrontabに登録する</div></h4>
@@ -91,7 +101,7 @@
 <pre>分 時 日 月 週の何日目&nbsp; ユーザ名&nbsp; コマンド名</pre>
 毎日50分に、clamupdateユーザ権限でウイルスデータベースを自動更新しログ保存
 <pre>
-50  * * * *  clamupdate /usr/local/bin/freshclam --quiet -l /var/log/clam-update.log
+50  * * * *  clamupdate /usr/bin/freshclam --quiet -l /var/log/clam-update.log
 </pre>
 </div>
 
@@ -106,12 +116,54 @@ dateコマンドを使い、次の日が1日だった場合に実行する。
 </div>
 
 
+<!-- emacs関連 -->
+<h3><div class="headline1" id="emacs_1">emacs関連</div></h3>
+<h4><div class="headline2" id="emacs_1_1">emacsでカーソル位置を保存する</div></h4>
+<div class="text1">
+emacsの設定ファイル（.emacs）に追記する
+<ul class="list1">
+<li>24.5まで
+<pre>
+(require 'saveplace)
+(setq-default save-place t)
+</pre></li>
+<li>25.0以降
+<pre>
+(require 'saveplace)
+(save-place-mode 1) 
+</pre></li>
+</ul>
+</div>
+
+<h4><div class="headline2" id="emacs_1_2">emacsで長い行を折り返す</div></h4>
+<div class="text1">
+長い行を折り返して表示
+<pre>Function : toggle-truncate-lines</pre><br />
+長い行を折り返す（改行が入る）
+<pre>Function : auto-fill-mode</pre>
+</div>
+
+<h4><div class="headline2" id="emacs_1_3">emacsで矩形選択</div></h4>
+<div class="text1">
+矩形選択モードに切り替える
+<pre>Function : rectangle-mark-mode</pre><br />
+ショートカット
+<pre>C-x SPC</pre>
+</div>
+
+<h4><div class="headline2" id="emacs_1_4">emacsで末尾のエスケープを揃える</div></h4>
+<div class="text1">
+reginを指定してから以下
+<pre>Function : sh-backslash-region</pre>
+</div>
+
+
 <small><a href="#top">[top]</a></small> <br />
 <hr width="105%" />
 </article>
 </body>
 <footer>
-<p>最終更新日：2022/06/03</p>
+<p>最終更新日：2022/06/04</p>
 <p>Copyright (C) 2018-2022, Yousuke Yamashita</p>
 </footer>
 </html>
