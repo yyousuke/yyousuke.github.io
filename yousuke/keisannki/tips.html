@@ -44,6 +44,13 @@
       <li><a href="#linux_1_3">crontabで月末に実行する</a></li>
   </ul>
   </li></ul>
+  <!-- メモリ使用量 -->
+  <ul class="list1"><li><a href="#linux_2">メモリ使用量</a>
+    <ul class="list2">
+      <li><a href="#linux_2_1">プロセス毎の詳細なメモリ使用量を調べる</a></li>
+      <li><a href="#linux_2_2">実行時に確保するメモリ領域毎のサイズを表示</a></li>
+  </ul>
+  </li></ul>
   <!-- emacs関連 -->
   <ul class="list1"><li><a href="#emacs_1">emacs関連</a>
     <ul class="list2">
@@ -116,6 +123,22 @@ dateコマンドを使い、次の日が1日だった場合に実行する。
 </div>
 
 
+<!-- メモリ使用量 -->
+<h3><div class="headline1" id="emacs_2">メモリ使用量</div></h3>
+<h4><div class="headline2" id="emacs_2_1">プロセス毎の詳細なメモリ使用量を調べる</div></h4>
+<div class="text1">
+ps -efでプロセスIDを調べ、pmapコマンドを用いる
+<pre>% pmap -x プロセスID</pre>
+</div>
+
+<h4><div class="headline2" id="emacs_2_2">実行時に確保するメモリ領域毎のサイズを表示</div></h4>
+<div class="text1">
+ps -efで実行中のプロセスとして表示されるプロセスのバイナリへのパスを調べておく。
+<pre>% size 調べたいプロセスのバイナリへのパス</pre>
+
+</div>
+
+
 <!-- emacs関連 -->
 <h3><div class="headline1" id="emacs_1">emacs関連</div></h3>
 <h4><div class="headline2" id="emacs_1_1">emacsでカーソル位置を保存する</div></h4>
@@ -163,7 +186,7 @@ reginを指定してから以下
 </article>
 </body>
 <footer>
-<p>最終更新日：2022/06/04</p>
+<p>最終更新日：2022/06/05</p>
 <p>Copyright (C) 2018-2022, Yousuke Yamashita</p>
 </footer>
 </html>
