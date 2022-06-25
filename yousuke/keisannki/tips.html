@@ -60,10 +60,21 @@
       <li><a href="#emacs_1_4">emacsで末尾のエスケープを揃える</a></li>
   </ul>
   </li></ul>
+  <!-- ネットワーク関連 -->
+  <ul class="list1"><li><a href="#network_1">ネットワーク関連</a>
+    <ul class="list2">
+      <li><a href="#network_1_1">IPアドレスを確認する</a></li>
+      <li><a href="#network_1_2">ルーティングテーブルの内容を表示</a></li>
+      <li><a href="#network_1_3">通信の状態を調べる</a></li>
+      <li><a href="#network_1_4">LISTENポートをチェックする</a></li>
+      <li><a href="#network_1_5">サービス一覧を表示する</a></li>
+  </ul>
+  </li></ul>
   <!-- その他コマンド -->
   <ul class="list1"><li><a href="#com_1">その他コマンド</a>
     <ul class="list2">
       <li><a href="#com_1_1">grepで該当行の前後２行を表示する</a></li>
+      <li><a href="#com_1_2">diffを+-記号表示にする</a></li>      
   </ul>
   </li></ul>
 </div>
@@ -141,7 +152,6 @@ ps -efでプロセスIDを調べ、pmapコマンドを用いる
 <div class="text1">
 ps -efで実行中のプロセスとして表示されるプロセスのバイナリへのパスを調べておく。
 <pre>% size 調べたいプロセスのバイナリへのパス</pre>
-
 </div>
 
 
@@ -187,13 +197,82 @@ reginを指定してから以下
 </div>
 
 
+<!-- ネットワーク関連 -->
+<h3><div class="headline1" id="network_1">ネットワーク関連</div></h3>
+<h4><div class="headline2" id="network_1_1">IPアドレスを確認する</div></h4>
+<div class="text1">
+<ul class="list1">
+<li>ipコマンド（Linux）
+<pre>% ip addr</pre>
+＊標準的に入っている<br />
+他の使い方は<a href="https://atmarkit.itmedia.co.jp/ait/articles/1709/22/news019.html">【 ip 】コマンド</a>参照
+</li><br />
+<li>ifconfigコマンド（Linux/macOS）
+<pre>% ifconfig</pre>
+＊Linuxでは、net-toolsパッケージに入っている
+</li><br />
+</ul>
+</div>
+
+<h4><div class="headline2" id="network_1_2">ルーティングテーブルの内容を表示</div></h4>
+<div class="text1">
+<ul class="list1">
+<li>ipコマンド（Linux）
+<pre>% ip route</pre>
+＊IPv6のテーブルを表示したい場合はip -6 route
+</li><br />
+<li>ifconfigコマンド（Linux）
+<pre>% route</pre>
+＊IPv6のテーブルを表示したい場合はroute -6
+</li><br />
+<li>netstatコマンド（Linux/macOS）
+<pre>% netstat -rn</pre>
+</li><br />
+</ul>
+</div>
+
+<h4><div class="headline2" id="network_1_3">通信の状態を調べる</div></h4>
+<div class="text1">
+<ul class="list1">
+<li>到達確認（Linux/macOS/Windows）
+<pre>% ping IPアドレス</pre>
+＊双方向にパケットが到達することを確認<br />
+＊デフォルトゲートウェイ、DNSサーバ等のIPアドレスを入力し到達確認<br />
+＊IPアドレスの代わりにDNSアドレスも利用可能だが、DNSサーバが正常に応答している時のみ使用したほうが良い
+</li><br />
+<li>DNSサーバの応答確認（Linux/macOS）
+<pre>% nslookup IPアドレスまたはDNSアドレス</pre>
+＊IPアドレスからDNSアドレス、DNSアドレスからIPアドレスが返ってくることを確認<br />
+</li><br />
+</ul>
+</div>
+
+<h4><div class="headline2" id="network_1_4">LISTENポートをチェックする</div></h4>
+<div class="text1">
+<pre>% ss -napt</pre>
+他の使い方は<a href="https://atmarkit.itmedia.co.jp/ait/articles/1710/06/news014.html">【 ss 】コマンド</a>参照
+</div>
+
+<h4><div class="headline2" id="network_1_5">サービス一覧を表示する</div></h4>
+<div class="text1">
+<pre>% systemctl -t service</pre>
+＊/usr/lib/systemd/system/を参照している<br />
+全サービスの一覧
+<pre>% systemctl list-unit-files -t service</pre>
+</div>
+
+
 <!-- その他コマンド -->
 <h3><div class="headline1" id="com_1">その他コマンド</div></h3>
 <h4><div class="headline2" id="com_1_1">grepで該当行の前後２行を表示する</div></h4>
 <div class="text1">
-<pre>grep -A 2 -B 2 検索文字列</pre>
+<pre>% grep -A 2 -B 2 検索文字列</pre>
 </div>
 
+<h4><div class="headline2" id="com_1_2">diffを+-記号表示にする</div></h4>
+<div class="text1">
+<pre>% diff -U1 ファイル名1 ファイル名2</pre>
+</div>
 
 
 <small><a href="#top">[top]</a></small> <br />
@@ -201,7 +280,7 @@ reginを指定してから以下
 </article>
 </body>
 <footer>
-<p>最終更新日：2022/06/15</p>
+<p>最終更新日：2022/06/25</p>
 <p>Copyright (C) 2018-2022, Yousuke Yamashita</p>
 </footer>
 </html>
