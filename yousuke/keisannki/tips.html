@@ -228,7 +228,8 @@ reginを指定してから以下
 </li><br />
 <li>netstatコマンド（Linux/macOS）
 <pre>% netstat -rn</pre>
-</li><br />
+</li>
+＊Linuxでは非推奨でip routeを使う<br />
 </ul>
 </div>
 
@@ -250,7 +251,10 @@ reginを指定してから以下
 
 <h4><div class="headline2" id="network_1_4">LISTENポートをチェックする</div></h4>
 <div class="text1">
+TCPのLISTENポートをチェックする
 <pre>% ss -napt</pre>
+UDPのLISTENポートをチェックする
+<pre>% ss -napu</pre>
 他の使い方は<a href="https://atmarkit.itmedia.co.jp/ait/articles/1710/06/news014.html">【 ss 】コマンド</a>参照
 </div>
 
@@ -286,7 +290,7 @@ nkf（Network Kanji Filter）では文字コードの変換や改行コードの
 </article>
 </body>
 <footer>
-<p>最終更新日：2022/09/13</p>
+<p>最終更新日：2022/10/24</p>
 <p>Copyright (C) 2018-2022, Yousuke Yamashita</p>
 </footer>
 </html>
