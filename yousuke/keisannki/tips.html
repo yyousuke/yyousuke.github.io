@@ -29,7 +29,7 @@
 <article>
 <center><h1>計算機TIPS</h1></center>
 <br />
-<p>&nbsp; ここでは、主にLinux系の計算機におけるTIPSを載せています。まだ正式公開版ではなくメモ書き程度ですので、その点に留意して頂ければ幸いです。コマンド入力の説明では、%が一般ユーザのプロンプトを表しています。</p>
+<p>&nbsp; ここでは、主にLinux系の計算機におけるTIPSを載せています。まだ正式公開版ではなくメモ書き程度ですので、その点に留意して頂ければ幸いです。コマンド入力の説明では、%が一般ユーザのプロンプトを、#がrootのプロンプトを表しています。</p>
 <br /><hr />
 
 <!-- 目次 -->
@@ -64,10 +64,19 @@
   <ul class="list1"><li><a href="#network_1">ネットワーク関連</a>
     <ul class="list2">
       <li><a href="#network_1_1">IPアドレスを確認する</a></li>
-      <li><a href="#network_1_2">ルーティングテーブルの内容を表示</a></li>
-      <li><a href="#network_1_3">通信の状態を調べる</a></li>
-      <li><a href="#network_1_4">LISTENポートをチェックする</a></li>
-      <li><a href="#network_1_5">サービス一覧を表示する</a></li>
+      <li><a href="#network_1_2">ネットワークデバイスを表示する</a></li>
+      <li><a href="#network_1_3">ルーティングテーブルの内容を表示する</a></li>
+      <li><a href="#network_1_4">通信の状態を調べる</a></li>
+      <li><a href="#network_1_5">LISTENポートをチェックする</a></li>
+      <li><a href="#network_1_6">サービス一覧を表示する</a></li>
+  </ul>
+  </li></ul>
+  <!-- ユーザ管理 -->
+  <ul class="list1"><li><a href="#user_1">ユーザ管理</a>
+    <ul class="list2">
+      <li><a href="#user_1_1">ユーザを追加する</a></li>
+      <li><a href="#user_1_2">グループを追加する</a></li>
+      <li><a href="#user_1_3">ユーザをグループに追加する</a></li>
   </ul>
   </li></ul>
   <!-- その他コマンド -->
@@ -204,7 +213,7 @@ reginを指定してから以下
 <div class="text1">
 <ul class="list1">
 <li>ipコマンド（Linux）
-<pre>% ip addr</pre>
+<pre>% ip addr（または% ip a）</pre>
 ＊標準的に入っている<br />
 他の使い方は<a href="https://atmarkit.itmedia.co.jp/ait/articles/1709/22/news019.html">【 ip 】コマンド</a>参照
 </li><br />
@@ -215,7 +224,13 @@ reginを指定してから以下
 </ul>
 </div>
 
-<h4><div class="headline2" id="network_1_2">ルーティングテーブルの内容を表示</div></h4>
+<h4><div class="headline2" id="network_1_2">ネットワークデバイスを表示する</div></h4>
+<div class="text1">
+<pre>% ip link</pre>
+＊Linuxの場合
+</div>
+
+<h4><div class="headline2" id="network_1_3">ルーティングテーブルの内容を表示する</div></h4>
 <div class="text1">
 <ul class="list1">
 <li>ipコマンド（Linux）
@@ -233,7 +248,7 @@ reginを指定してから以下
 </ul>
 </div>
 
-<h4><div class="headline2" id="network_1_3">通信の状態を調べる</div></h4>
+<h4><div class="headline2" id="network_1_4">通信の状態を調べる</div></h4>
 <div class="text1">
 <ul class="list1">
 <li>到達確認（Linux/macOS/Windows）
@@ -249,7 +264,7 @@ reginを指定してから以下
 </ul>
 </div>
 
-<h4><div class="headline2" id="network_1_4">LISTENポートをチェックする</div></h4>
+<h4><div class="headline2" id="network_1_5">LISTENポートをチェックする</div></h4>
 <div class="text1">
 TCPのLISTENポートをチェックする
 <pre>% ss -napt</pre>
@@ -258,13 +273,33 @@ UDPのLISTENポートをチェックする
 他の使い方は<a href="https://atmarkit.itmedia.co.jp/ait/articles/1710/06/news014.html">【 ss 】コマンド</a>参照
 </div>
 
-<h4><div class="headline2" id="network_1_5">サービス一覧を表示する</div></h4>
+<h4><div class="headline2" id="network_1_6">サービス一覧を表示する</div></h4>
 <div class="text1">
 <pre>% systemctl -t service</pre>
 ＊/usr/lib/systemd/system/を参照している<br />
 全サービスの一覧
 <pre>% systemctl list-unit-files -t service</pre>
 </div>
+
+
+
+<!-- ユーザ管理 -->
+<h3><div class="headline1" id="user_1">ユーザ管理</div></h3>
+<h4><div class="headline2" id="user_1_1">ユーザを追加する</div></h4>
+<div class="text1">
+<pre>% adduser ユーザ名</pre>
+</div>
+
+<h4><div class="headline2" id="user_1_2">グループを追加する</div></h4>
+<div class="text1">
+<pre>% groupadd グループ名</pre>
+</div>
+
+<h4><div class="headline2" id="user_1_3">ユーザをグループに追加する</div></h4>
+<div class="text1">
+<pre>% gpasswd -a ユーザ名 グループ名</pre>
+</div>
+
 
 
 <!-- その他コマンド -->
@@ -290,7 +325,7 @@ nkf（Network Kanji Filter）では文字コードの変換や改行コードの
 </article>
 </body>
 <footer>
-<p>最終更新日：2022/10/24</p>
+<p>最終更新日：2022/10/25</p>
 <p>Copyright (C) 2018-2022, Yousuke Yamashita</p>
 </footer>
 </html>
