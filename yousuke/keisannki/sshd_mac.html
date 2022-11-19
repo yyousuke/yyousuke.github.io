@@ -26,7 +26,7 @@
 <a href="/~yyousuke">ホーム</a> &gt; <a href="/~yyousuke/yousuke/index.html">山下のページ</a>  &gt; <a href="/~yyousuke/yousuke/keisannki/index.html">計算機関連</a> &gt; OpenSSH
 </div>
 <article>
-<center><h1>MacOSでOpenSSH</h1></center>
+<h1>MacOSでOpenSSH</h1>
 <br />
 <p>&nbsp; ここでは、MacOS Mojave (ver.10.14) / Catalina (ver.10.15) にSSH接続し、X11プロトコルを使用するアプリケーションでSSHを介してXを飛ばせるようにした際の設定方法を紹介しています。SSHサーバにするには共有設定が、Xを飛ばすにはXquartzのインストールが必要でした。コマンド入力の説明では、%が一般ユーザのプロンプトを表しています。</p>
 <br /><hr />
@@ -81,8 +81,8 @@ X11Forwarding yes
 /etc/ssh/ssh_configの最後、または、~/.ssh/configの最初に
 <pre>
 Host *
-    ForwardX11 yes
-    ForwardX11Trusted yes
+&nbsp; &nbsp; ForwardX11 yes
+&nbsp; &nbsp; ForwardX11Trusted yes
 </pre>
 を追加しておきます。一定時間経過後にX Forwardingが無効になってしまう場合、
 <pre>
@@ -106,7 +106,7 @@ open /Applications/Utilities/XQuartz.app/Contents/MacOS/X11
 </article>
 </body>
 <footer>
-<p>最終更新日：2022/02/12</p>
+<p>最終更新日：2022/11/19</p>
 <p>Copyright (C) 2018-2022, Yousuke Yamashita</p>
 </footer>
 </html>

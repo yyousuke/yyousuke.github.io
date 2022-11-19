@@ -26,10 +26,10 @@
 <a href="/">ホーム</a> &gt; <a href="/yousuke/index.html">山下のページ</a> &gt;  <a href="/yousuke/keisannki/index.html">計算機関連</a> &gt; <a href="/yousuke/keisannki/archive/index.html">アーカイブ：計算機関連</a>  &gt; Ghost Scriptのインストール
 </div>
 <article>
-<center><h1  id="top">アーカイブ：Ghost Script のインストール</h1></center>
+<h1  id="top">アーカイブ：Ghost Script のインストール</h1>
 <br />
 <div id="text2">
-<p><font color="red">2005年12月5日に更新した情報のアーカイブ</font>です。</p><br />
+<p><span style="COLOR:red">2005年12月5日に更新した情報のアーカイブ</span>です。</p><br />
 <p>&nbsp; ここでは、AFPL Ghost Script 8.53 のソースからのコンパイルとインストール
 方法、CIDフォントを用いた日本語化について解説しています。Solaris, Vine Linux, Tru64で同じ方法が使用可能なことを確認しています。なお、8.50, 8.51も以下と同様の方法でインストールが可能です。<br />
 &nbsp; コマンド入力の説明では、%が一般ユーザの場合のプロンプト、#がrootの場合のプロンプトとして解説しています。</p>
@@ -81,8 +81,8 @@ libpng と zlib もGhost Script のソースコードを展開したディレク
 <div class="text1">
 &nbsp; Ghost Scriptのソースコードを展開したディレクトリに移動し、
 <pre>
-% ./configure (Makefileを作成)<BR>
-% make (コンパイル)<BR>
+% ./configure (Makefileを作成)<br />
+% make (コンパイル)<br />
 % make check (コンパイルのチェック)</pre>
 &nbsp; デフォルトでは /usr/local 以下にインストールされるので root になってから
 <pre>
@@ -114,17 +114,17 @@ fonts/ フォルダが作成されるので
 &nbsp; Ghost Script 8.51 は日本語を表示できるように作られていますので日本語フォントをインストールして読み込めるようにするだけで表示が可能です。<br />
 &nbsp; ここではCIDフォントの使用法について解説します。手元にCIDフォントを用意しておいて下さい。CIDフォントがない場合にはフリーの<a href="ftp://ftp.oreilly.com/pub/examples/nutshell/cjkv/adobe/samples/" rel="nofollow">和田研フォント</a>などをダウンロードします。<br />
 <ul class="list1">
-<li> フォントのパスを指定<BR>
+<li> フォントのパスを指定<br />
 フォントを /usr/local/share/ghostscript/Resource/CIDFont に置き、/usr/local/share/ghostscript/8.53/lib/gs_res.ps を変更します。
 <pre>
 ------------------------------------------------------------------------
-/FontResourceDir (<font color="red">Font</font>) .resource_dir_name 
-<font color="red"> ↓</font>
-/FontResourceDir (<font color="red">/usr/local/share/ghostscript/Resource/CIDFont/</font>)
+/FontResourceDir (<span style="COLOR:red">Font</span>) .resource_dir_name 
+<span style="COLOR:red"> ↓</span>
+/FontResourceDir (<span style="COLOR:red">/usr/local/share/ghostscript/Resource/CIDFont/</span>)
 .resource_dir_name <br />
 /GenericResourceDir () .resource_dir_name 
-<font color="red">↓</font>
-/GenericResourceDir (<font color="red">/usr/local/share/ghostscript/Resource/</font>)
+<span style="COLOR:red">↓</span>
+/GenericResourceDir (<span style="COLOR:red">/usr/local/share/ghostscript/Resource/</span>)
 .resource_dir_name 
 ------------------------------------------------------------------------</pre>
 </li><br />
@@ -147,7 +147,7 @@ fonts/ フォルダが作成されるので
 </article>
 </body>
 <footer>
-<p>最終更新日：2022/02/12</p>
+<p>最終更新日：2022/11/19</p>
 <p>Copyright (C) 2005-2022, Yousuke Yamashita</p>
 <p>このページに対する問い合わせ先：<img src="/yousuke/address2.png" height="15" border="0" alt=""></p>
 </footer>

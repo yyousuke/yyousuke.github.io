@@ -48,6 +48,7 @@ h1{
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:32px;
 	font-weight:bold;
+	text-align:center;
 	color:#000000;
 	background-color:#ffffff;
 	padding-top:10px;
@@ -230,6 +231,14 @@ table#sub2{
 
 .size3{
 	width:600px;
+}
+
+.bgcol1{
+	background-color: #FFFFCC;
+}
+
+.bgcol2{
+	background-color: #CCFFFF;
 }
 
 @media screen and (max-width: 480px) {

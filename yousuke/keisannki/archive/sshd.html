@@ -26,10 +26,10 @@
 <a href="/">ホーム</a> &gt; <a href="/yousuke/index.html">山下のページ</a> &gt;  <a href="/yousuke/keisannki/index.html">計算機関連</a> &gt; <a href="/yousuke/keisannki/archive/index.html">アーカイブ：計算機関連</a>  &gt; Opensshのインストール
 </div>
 <article>
-<center><h1  id="top">アーカイブ：Opensshのインストール（Solaris）</h1></center>
+<h1  id="top">アーカイブ：Opensshのインストール（Solaris）</h1>
 <br />
 <div id="text2">
-<p><font color="red">2008年8月2日に更新した情報のアーカイブ</font>です。</p><br />
+<p><span style="COLOR:red">2008年8月2日に更新した情報のアーカイブ</span>です。</p><br />
 <p>&nbsp; ここでは、Solaris 8, 9, 10にopensshを導入しXを飛ばせるようにした際の設定方法とインストール時のエラーに対する対処方法を紹介しています。X Forwardingに関する設定は、openssh-4.9以前と5.0以降で大きく変わりましたので、5.0以降の導入を考えている場合は<a href="#5.0">5.0以降のX Forwardingの設定</a>もご参照下さい。<br />
 &nbsp; なお、5.0以降で必要な設定に関しては赤字で表示しています。コマンド入力の説明では、%が一般ユーザの場合のプロンプト、#がrootの場合のプロンプトとして解説しています。</p>
 </div>
@@ -78,7 +78,7 @@
 X11Forwarding yes
 -----------------------------------------------------------------------</pre>
 のように変更します。</li><br />
-<li><font color="red"><a name="5.0">openssh-5.0以降のX Forwardingの設定</a><br />
+<li><span style="COLOR:red"><a name="5.0">openssh-5.0以降のX Forwardingの設定</a><br />
 &nbsp; opensshの4.9から5.0へのバージョンアップの際に「IPv4とIPv6のアドレスファミリの bind が成功していない場合にもポートを listen していたのをやめて, X11転送のハイジャックを行えなくした.」2)というセキュリティ上の変更が行われました。この変更の影響で、5.0以降のsshdを用いた場合、上記の設定のみではX Forwardingに失敗します。4.9以前のバージョンでは、この項目を無視していただいて構いませんが、セキュリティ向上のため、最新版へのアップグレードをお薦めします。<br />
 5.0以降の場合、/usr/local/etc/sshd_configで以下の行を次のように変更します。<br />
 <pre>
@@ -87,7 +87,7 @@ AddressFamily inet # ipv4を使用
 X11Forwarding yes # X11転送を有効に
 GatewayPorts yes
 -----------------------------------------------------------------------</pre>
-</font></li><br />
+</span></li><br />
 
 <li>セキュリティの設定(root loginの禁止)<br />
 &nbsp; デフォルトの設定ではsshでroot loginが可能です。rootパスワードを総当たりで調べるといったクラックを許す可能性がありますので、root loginを禁止しておいた方が無難です。<br />
@@ -226,14 +226,13 @@ X11Forwarding yes (X11転送を有効にする)
 -----------------------------------------------------------------------</pre>
 のように、TcpForwarfingとX11Forwardingがyesに設定されていることを確認します。<br />
 <br />
-<font color="red">* openssh-5.0以降では、上記の設定に加え、以下の設定も必要です。<br />
+<span style="COLOR:red">* openssh-5.0以降では、上記の設定に加え、以下の設定も必要です。</span><br />
 <pre>
 -----------------------------------------------------------------------
 AddressFamily inet
 GatewayPorts yes
 -----------------------------------------------------------------------</pre>
 AddressFamilyがinet、GatewayPortsがyesになっていることを確認します。<br />
-</font>
 </li><br />
 
 <li>DISPLAY環境変数の確認<br />
@@ -254,12 +253,12 @@ ForwardX11 yesが有効になっていなければ、次の行を追加します
 ForwardX11 yes
 -----------------------------------------------------------------------</pre>
 <br />
-<font color="red">* サーバ側のsshdがopenssh-5.0以降の場合、次の設定も必要です。<br />
+<span style="COLOR:red">* サーバ側のsshdがopenssh-5.0以降の場合、次の設定も必要です。</span><br />
 <pre>
 -----------------------------------------------------------------------
 ForwardX11Trusted yes
 -----------------------------------------------------------------------</pre>
-</font></li><br />
+</li><br />
 </ol><br />
 </li><br />
 <br />
@@ -338,7 +337,7 @@ ForwardX11Trusted yes
 </article>
 </body>
 <footer>
-<p>最終更新日：2022/02/12</p>
+<p>最終更新日：2022/11/19</p>
 <p>Copyright (C) 2008-2022, Yousuke Yamashita</p>
 <p>このページに対する問い合わせ先：<img src="/yousuke/address2.png" height="15" border="0" alt=""></p>
 </footer>
