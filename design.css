@@ -9,6 +9,9 @@ body{
 	margin-right:10px;
 }
 
+a:link { color: #0000ff; }
+a:visited { color: #0000ff; }
+
 div#nesting{
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:14px;
@@ -30,7 +33,7 @@ article{
 	float:left;
 	height:auto;
 	width:650px;
-	margin-top:2px;
+	margin-top:-2px;
 	margin-bottom:5px;
 	padding-left:15px;
 	padding-right:15px;
@@ -204,6 +207,7 @@ article{
 
 .contents{
 	width:95%;
+	font-size:16px;
 	}
 
 h1{
