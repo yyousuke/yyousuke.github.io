@@ -9,8 +9,8 @@ body{
 	margin-right:10px;
 }
 
-a:link { color: #cc00ff; }
-a:visited { color: #cc00ff; }
+a:link { color: #0000ff; }
+a:visited { color: #0000ff; }
 
 div#nesting{
 	font-family:Verdana, Arial, Helvetica, sans-serif;
