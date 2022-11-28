@@ -150,8 +150,8 @@ h4{
 .list1 {
 	margin-top:2px;
 	margin-bottom:2px;
-	padding-left:25px;
-	padding-right:25px;
+	padding-left:30px;
+	padding-right:30px;
 	padding-top:0.2em;
 	padding-bottom:0.2em;
 	line-height:160%;
@@ -160,8 +160,8 @@ h4{
 .list2 {
 	margin-top:2px;
 	margin-bottom:2px;
-	padding-left:35px;
-	padding-right:35px;
+	padding-left:40px;
+	padding-right:40px;
 }
 
 .text1 {
@@ -214,6 +214,7 @@ pre{
 	font-weight:normal;
 	white-space: pre-wrap;
 	margin-top:5px;
+	margin-left:15px;
 	margin-bottom:10px;
 	padding-top:10px;
 	padding-bottom:10px;
