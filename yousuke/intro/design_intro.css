@@ -296,7 +296,7 @@ h4{
         margin-left:0.0em;
         margin-top:0.5em;
         margin-bottom:0.5em;
-        box-sizing: border-box
+        box-sizing: border-box;
         white-space: pre;
         white-space: pre-line;
         white-space: nowrap; /* 折り返されないように */
