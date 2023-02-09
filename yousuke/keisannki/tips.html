@@ -84,6 +84,12 @@
       <li><a href="#system_1_1">ログ通知</a></li>
   </ul>
   </li></ul>
+  <!-- SSH関連 -->
+  <ul class="list1"><li><a href="#ssh_1">SSH関連</a>
+    <ul class="list2">
+      <li><a href="#ssh_1_1">ホスト公開鍵の更新</a></li>
+  </ul>
+  </li></ul>
   <!-- その他コマンド -->
   <ul class="list1"><li><a href="#com_1">その他コマンド</a>
     <ul class="list2">
@@ -328,6 +334,16 @@ MailTo = 配信先のメールアドレス
 </div>
 
 
+<!-- SSH関連 -->
+<h3><div class="headline1" id="ssh_1">SSH関連</div></h3>
+<h4><div class="headline2" id="ssh_1_1">ホスト公開鍵の更新</div></h4>
+<div class="text1">
+SSHホストが更新された際、ホスト公開鍵が以前のものと異なるため警告が出てログインできなくなる。
+<pre>% ssh-keygen -R ホスト名</pre>
+でリセット可能<br />
+ $HOME/.ssh/known_hostsを編集して該当するホストを削除しても同じ
+</div>
+
 
 <!-- その他コマンド -->
 <h3><div class="headline1" id="com_1">その他コマンド</div></h3>
@@ -353,12 +369,13 @@ teeコマンドでは、パイプで渡された内容をファイルに書き�
 <pre>% make | tee ファイル名</pre>
 </div>
 
+
 <small><a href="#top">[top]</a></small> <br />
 <hr />
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/02/06</p>
+<p>最終更新日：2023/02/09</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita</p>
 </footer>
 </html>
