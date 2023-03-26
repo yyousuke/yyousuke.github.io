@@ -160,6 +160,8 @@ dateコマンドを使い、次の日が1日だった場合に実行する。
 <pre>
 55　23　28-31 * * /usr/bin/test $( date -d '+1 day' +%d ) -eq 1 && 実行したいコマンド
 </pre>
+＊「+%d」は月の中の何日目かを表す値（01-31）<br />
+<a href="https://www.server-memo.net/tips/command/date/date.html">dateコマンドで日付や時刻を表示したり設定する方法 </a>
 </div>
 
 
@@ -385,7 +387,7 @@ apg（Automated Password Generator）コマンドでは、複雑なパスワー�
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/03/13</p>
+<p>最終更新日：2023/03/26</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita</p>
 </footer>
 </html>
