@@ -98,6 +98,7 @@
       <li><a href="#bash_1_1">配列の作成</a></li>
       <li><a href="#bash_1_2">配列の値の変更、配列への追加</a></li>
       <li><a href="#bash_1_3">配列の要素数を表示する</a></li>
+      <li><a href="#bash_1_4">コマンドの結果を配列に入力する</a></li>
   </ul>
   </li></ul>
   <!-- その他コマンド -->
@@ -406,6 +407,17 @@ var1 var2 var3 var4
 </pre>
 </div>
 
+<h4><div class="headline2" id="bash_1_4">コマンドの結果を配列に入力する</div></h4>
+<div class="text1">
+次のようにバックスラッシュで囲む。
+<pre>
+% array=`command options`
+</pre>
+次のように記述することも可能。
+<pre>
+% array=$(command options)
+</pre>
+</div>
 
 <!-- その他コマンド -->
 <h3><div class="headline1" id="com_1">その他コマンド</div></h3>
@@ -446,7 +458,7 @@ apg（Automated Password Generator）コマンドでは、複雑なパスワー�
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/05/17</p>
+<p>最終更新日：2023/05/18</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
