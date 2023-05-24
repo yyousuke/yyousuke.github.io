@@ -24,7 +24,7 @@
 </head>
 
 <body>
-最終更新日：2023/05/23
+最終更新日：2023/05/24
 <div id="nesting">
 <a href="/~yyousuke">ホーム</a> &gt; <a href="/~yyousuke/yousuke/index.html">山下のページ</a>  &gt; <a href="/~yyousuke/yousuke/keisannki/index.html">計算機関連</a> &gt; TIPS
 </div>
@@ -60,6 +60,13 @@
       <li><a href="#emacs_1_2">emacsで長い行を折り返す</a></li>
       <li><a href="#emacs_1_3">emacsで矩形選択</a></li>
       <li><a href="#emacs_1_4">emacsで末尾のエスケープを揃える</a></li>
+  </ul>
+  </li></ul>
+  <!-- vi関連 -->
+  <ul class="list1"><li><a href="#vi_1">vi関連</a>
+    <ul class="list2">
+      <li><a href="#vi_1_1">viの基本的な操作</a></li>
+      <li><a href="#vi_1_2">viの設定変更</a></li>
   </ul>
   </li></ul>
   <!-- ネットワーク関連 -->
@@ -236,6 +243,142 @@ reginを指定してから以下
 </div>
 
 
+<!-- vi関連 -->
+<h3><div class="headline1" id="vi_1">vi関連</div></h3>
+<h4><div class="headline2" id="vi_1_1">viの基本的な操作</div></h4>
+<div class="text1">
+起動する場合、端末を開き
+<pre>% vi</pre>
+コマンド入力モードの基本的な操作一覧
+<ul class="list1">
+<li>viの終了
+<pre>
+:q &nbsp; 保存しないで終了
+:q! &nbsp; 強制終了
+ZZ &nbsp; 保存して終了
+</pre>
+（挿入モードになっている場合、ESCでコマンド入力モードに切り替える）</li><br />
+<li>カーソルの移動（隣接する場所）
+<pre>
+h, j, k, l &nbsp; 左、下、上、右
+</pre>
+＊隣接するhjklキーに人差指から小指までを置いて操作
+</li><br />
+<li>カーソルの移動（離れた場所）
+<pre>
+0 &nbsp; 行頭に移動
+$ &nbsp; 行末に移動
+[[ &nbsp; 文頭に移動
+]] &nbsp; 文末に移動
+50G &nbsp; 50行目に移動
+:50 &nbsp; 50行目に移動
+10| &nbsp; 現在の行の10文字目に移動
+E &nbsp; 単語の末尾に移動
+B &nbsp; 単語の先頭に移動
+fT &nbsp; 現在の行のカーソルより後ろにある文字Tに移動
+FT &nbsp; 現在の行のカーソルより前にある文字Tに移動
+</pre>
+</li>
+<li>挿入
+<pre>
+i &nbsp; カーソルのある位置に挿入
+I &nbsp; 文頭に挿入（カーソルが行の途中にある場合に便利）
+a &nbsp; カーソルの後ろに挿入（行末にカーソルがあり、後ろに追加する場合に必要）
+A &nbsp; 文末に挿入（カーソルが行の途中にある場合に便利）
+o &nbsp; カーソルの下に新しい行を挿入し、その行を編集
+</pre>
+</li>
+<li>やり直し（アンドゥ）
+<pre>
+u &nbsp; 直前の動作を取り消
+</pre>
+</li>
+<li>削除
+<pre>
+x &nbsp; 1文字削除
+3x &nbsp; 3文字削除
+dd &nbsp; 1行削除（d1dの省略型） 
+d5d &nbsp; 5行削除
+dw &nbsp; 1単語削除（d1wの省略型）
+d$ &nbsp; 行末まで削除
+d]] &nbsp; 文末まで削除
+:10,20d &nbsp; 10から20行目までを削除
+</pre>
+</li>
+<li>コピー
+<pre>
+yy &nbsp; 1行コピー（y1yの省略型）
+y3y &nbsp; 3行コピー
+yw &nbsp; 1単語コピー（y1wの省略型）
+y$ &nbsp; 行末までコピー
+y]] &nbsp; 文末までコピー
+:10,20y &nbsp; 10から20行目までをコピー
+</pre>
+</li>
+<li>貼り付け
+<pre>
+p &nbsp; 直前のコピー、削除でバッファに入った内容を貼り付け
+</pre>
+</li>
+<li>行の連結
+<pre>
+J &nbsp; 現在カーソルがある行に次の行を連結する
+</pre>
+＊一度改行したら、この方法でしか戻せない
+</li><br />
+<li>検索
+<pre>
+:/word &nbsp; 文字列wordを順方向に検索
+:?word &nbsp; 文字列wordを逆方向に検索
+</pre>
+</li>
+<li>置換
+<pre>
+r &nbsp; カーソルの文字をrの次にタイプする文字に置き換え（挿入モードに移ることなく文章を編集できる）
+:%s/word1/word2/g &nbsp; 文章中のword1を全てword2に
+:%s/word1/word2/ &nbsp; 行の先頭にあるword1をword2に
+:%s/word1/word2/c &nbsp; 置換の前に確認する場合
+:10,50s/word1/word2/g &nbsp; 10から50行目のword1を全てword2に
+</pre>
+</li>
+<li>ファイル操作
+<pre>
+:10,30w newfile &nbsp; 10-30行目をnewfileに書き込み
+:.,$w &lt;&lt; file &nbsp; 現在の行から文末までをfileに追加書き込み
+</pre>
+</li>
+</ul>
+</div>
+
+<h4><div class="headline2" id="vi_1_2">viの設定変更</div></h4>
+<div class="text1">
+コマンド入力モードで操作する。ホームディレクトリの.exrcに記載すると、毎回反映される。
+<ul class="list1">
+<li>括弧の対応を表示する
+<pre>set showmatch</pre>
+</li>
+<li>大文字／小文字を区別しない
+<pre>set ignorecase</pre>
+</li>
+<li>自動インデント機能を有効にする
+<pre>set autoindent</pre>
+</li>
+<li>カーソルがある行・列を表示する
+<pre>set ruler</pre>
+</li>
+<li>挿入モードの時に画面の下に表示が出るようにする
+<pre>set showmode</pre>
+</li>
+<li>ソースコードの文法を解釈して表示する
+<pre>syntax on</pre>
+</li>
+<li>バックアップファイルを作らない
+<pre>set nobackup</pre>
+</li>
+</ul>
+</div>
+
+
 <!-- ネットワーク関連 -->
 <h3><div class="headline1" id="network_1">ネットワーク関連</div></h3>
 <h4><div class="headline2" id="network_1_1">IPアドレスを確認する</div></h4>
@@ -311,7 +454,6 @@ UDPのLISTENポートをチェックする
 </div>
 
 
-
 <!-- ユーザ管理 -->
 <h3><div class="headline1" id="user_1">ユーザ管理</div></h3>
 <h4><div class="headline2" id="user_1_1">ユーザを追加する</div></h4>
@@ -364,7 +506,7 @@ SSHホストが更新された際、ホスト公開鍵が以前のものと異�
 </div>
 
 
-  <!-- bash関連 -->
+<!-- bash関連 -->
  <h3><div class="headline1" id="bash_1">bash関連</div></h3>
 <h4><div class="headline2" id="bash_1_1">配列の作成</div></h4>
 <div class="text1">
