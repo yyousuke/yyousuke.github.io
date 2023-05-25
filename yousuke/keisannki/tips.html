@@ -594,6 +594,10 @@ done
 <pre>
 % array=$(command1 options| command2 options)
 </pre>
+標準エラー出力も標準出力に。
+<pre>
+% array=$(command1 options| command2 options 2&gt;&amp;1)
+</pre>
 </div>
 
 <h4><div class="headline2" id="bash_1_6">リダイレクト</div></h4>
