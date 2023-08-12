@@ -540,6 +540,23 @@ SSHホストが更新された際、ホスト公開鍵が以前のものと異�
 <pre>% ssh 接続先ホスト名の略称等</pre>
 </div>
 
+<h4><div class="headline2" id="ssh_1_6">カスケード接続</div></h4>
+<div class="text1">
+&sim;/.ssh/configに記述する
+<pre>Host 最初の接続先ホスト名の略称等
+&nbsp; &nbsp; Hostname IPアドレスまたはドメイン名
+&nbsp; &nbsp; user ログインユーザ名
+&nbsp; &nbsp; IdentityFile ~/.ssh/秘密鍵のファイル名
+&nbsp;
+Host 接続先ホスト名の略称等
+&nbsp; &nbsp; Hostname IPアドレスまたはドメイン名
+&nbsp; &nbsp; user ログインユーザ名
+&nbsp; &nbsp; ProxyCommand ssh -W %h:%p 最初の接続先ホスト名の略称等
+&nbsp; &nbsp; IdentityFile ~/.ssh/秘密鍵のファイル名
+</pre>
+次のコマンドで秘密鍵を指定したログインが可能
+<pre>% ssh 接続先ホスト名の略称等</pre>
+</div>
 
 <!-- bash関連 -->
  <h3><div class="headline1" id="bash_1">bash関連</div></h3>
@@ -733,7 +750,7 @@ apg（Automated Password Generator）コマンドでは、複雑なパスワー�
 </article>
 </body>
 <footer>
-<p>&nbsp;</p>
+<p>最終更新日：2023/08/12</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
