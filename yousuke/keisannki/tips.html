@@ -24,7 +24,6 @@
 </head>
 
 <body>
-最終更新日：2023/06/01
 <div id="nesting">
 <a href="/~yyousuke">ホーム</a> &gt; <a href="/~yyousuke/yousuke/index.html">山下のページ</a>  &gt; <a href="/~yyousuke/yousuke/keisannki/index.html">計算機関連</a> &gt; TIPS
 </div>
@@ -101,7 +100,10 @@
       <li><a href="#ssh_1_2">SSH秘密鍵と公開鍵の新規生成</a></li>
       <li><a href="#ssh_1_3">ユーザー名を指定してログイン</a></li>
       <li><a href="#ssh_1_4">秘密鍵を指定してログイン</a></li>
-      <li><a href="#ssh_1_5">configファイルを使ってログイン</a></li>
+      <li><a href="#ssh_1_5">X11転送を有効</a></li>
+      <li><a href="#ssh_1_6">configファイルを使ってログイン</a></li>
+      <li><a href="#ssh_1_7">カスケード接続</a></li>
+      <li><a href="#ssh_1_8">ポートフォワード</a></li>
   </ul>
   </li></ul>
   <!-- bash関連 -->
@@ -528,7 +530,12 @@ SSHホストが更新された際、ホスト公開鍵が以前のものと異�
 ＊秘密鍵のパスフレーズを入力する
 </div>
 
-<h4><div class="headline2" id="ssh_1_5">configファイルを使ってログイン</div></h4>
+<h4><div class="headline2" id="ssh_1_5">X11転送を有効</div></h4>
+<div class="text1">
+<pre>% ssh -X hostname</pre>
+</div>
+
+<h4><div class="headline2" id="ssh_1_6">configファイルを使ってログイン</div></h4>
 <div class="text1">
 &sim;/.ssh/configに記述する
 <pre>Host 接続先ホスト名の略称等
@@ -540,23 +547,31 @@ SSHホストが更新された際、ホスト公開鍵が以前のものと異�
 <pre>% ssh 接続先ホスト名の略称等</pre>
 </div>
 
-<h4><div class="headline2" id="ssh_1_6">カスケード接続</div></h4>
+<h4><div class="headline2" id="ssh_1_7">カスケード接続</div></h4>
 <div class="text1">
 &sim;/.ssh/configに記述する
 <pre>Host 最初の接続先ホスト名の略称等
 &nbsp; &nbsp; Hostname IPアドレスまたはドメイン名
 &nbsp; &nbsp; user ログインユーザ名
-&nbsp; &nbsp; IdentityFile ~/.ssh/秘密鍵のファイル名
+&nbsp; &nbsp; IdentityFile &sim;/.ssh/秘密鍵のファイル名
 &nbsp;
 Host 接続先ホスト名の略称等
 &nbsp; &nbsp; Hostname IPアドレスまたはドメイン名
 &nbsp; &nbsp; user ログインユーザ名
 &nbsp; &nbsp; ProxyCommand ssh -W %h:%p 最初の接続先ホスト名の略称等
-&nbsp; &nbsp; IdentityFile ~/.ssh/秘密鍵のファイル名
+&nbsp; &nbsp; IdentityFile &sim;/.ssh/秘密鍵のファイル名
 </pre>
-次のコマンドで秘密鍵を指定したログインが可能
+次のコマンドで秘密鍵を指定したカスケード接続が可能（秘密鍵のパスフレーズを2回入力する）
 <pre>% ssh 接続先ホスト名の略称等</pre>
 </div>
+
+<h4><div class="headline2" id="ssh_1_8">ポートフォワード</div></h4>
+<div class="text1">
+sshログイン先の8000番ポートをローカルの8000番に転送する場合（-Rオプション）
+<pre>ssh 接続先 -R8000:localhost:8000 -f -N -C</pre>
+＊sshをバックグラウンドで実行（-f）、リモートでコマンドを実行しない（-N）、圧縮を有効（-C）
+</div>
+
 
 <!-- bash関連 -->
  <h3><div class="headline1" id="bash_1">bash関連</div></h3>
@@ -750,7 +765,7 @@ apg（Automated Password Generator）コマンドでは、複雑なパスワー�
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/08/12</p>
+<p>最終更新日：2023/08/13</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
