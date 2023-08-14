@@ -532,7 +532,11 @@ SSHホストが更新された際、ホスト公開鍵が以前のものと異�
 
 <h4><div class="headline2" id="ssh_1_5">X11転送を有効</div></h4>
 <div class="text1">
+sshコマンドに-Xオプションを与える（ForwardX11有効）
 <pre>% ssh -X hostname</pre>
+＊接続先でForwardX11が無効にされている場合は利用できない<br />
+emacsなど一部のアプリケーションはForwardX11Trustedも有効にしていないと動作しない。その場合には-Yオプションを付ける
+<pre>% ssh -Y hostname</pre>
 </div>
 
 <h4><div class="headline2" id="ssh_1_6">configファイルを使ってログイン</div></h4>
@@ -550,15 +554,15 @@ SSHホストが更新された際、ホスト公開鍵が以前のものと異�
 <h4><div class="headline2" id="ssh_1_7">カスケード接続</div></h4>
 <div class="text1">
 &sim;/.ssh/configに記述する
-<pre>Host 最初の接続先ホスト名の略称等
-&nbsp; &nbsp; Hostname IPアドレスまたはドメイン名
-&nbsp; &nbsp; user ログインユーザ名
+<pre>Host 踏み台サーバの略称等
+&nbsp; &nbsp; Hostname 踏み台サーバのIPアドレスまたはドメイン名
+&nbsp; &nbsp; user 踏み台サーバのログインユーザ名
 &nbsp; &nbsp; IdentityFile &sim;/.ssh/秘密鍵のファイル名
 &nbsp;
 Host 接続先ホスト名の略称等
 &nbsp; &nbsp; Hostname IPアドレスまたはドメイン名
 &nbsp; &nbsp; user ログインユーザ名
-&nbsp; &nbsp; ProxyCommand ssh -W %h:%p 最初の接続先ホスト名の略称等
+&nbsp; &nbsp; ProxyCommand ssh -W %h:%p 踏み台サーバの略称等
 &nbsp; &nbsp; IdentityFile &sim;/.ssh/秘密鍵のファイル名
 </pre>
 次のコマンドで秘密鍵を指定したカスケード接続が可能（秘密鍵のパスフレーズを2回入力する）
@@ -567,9 +571,22 @@ Host 接続先ホスト名の略称等
 
 <h4><div class="headline2" id="ssh_1_8">ポートフォワード</div></h4>
 <div class="text1">
-sshログイン先の8000番ポートをローカルの8000番に転送する場合（-Rオプション）
+<ul class="list1">
+<li>sshコマンドに-Rオプションを付ける場合<br />
+例：sshログイン先の8000番ポートをローカルの8000番に転送
 <pre>ssh 接続先 -R8000:localhost:8000 -f -N -C</pre>
-＊sshをバックグラウンドで実行（-f）、リモートでコマンドを実行しない（-N）、圧縮を有効（-C）
+＊sshをバックグラウンドで実行（-f）、リモートでコマンドを実行しない（-N）、圧縮を有効（-C）</li><br />
+<li>&sim;/.ssh/configに記述する場合
+<pre>Host 接続先ホスト名の略称等
+&nbsp; &nbsp; Hostname IPアドレスまたはドメイン名
+&nbsp; &nbsp; user ログインユーザ名
+&nbsp; &nbsp; IdentityFile ~/.ssh/秘密鍵のファイル名
+&nbsp; &nbsp; LocalForward 8000 localhost:8000
+</pre>
+次のコマンドで秘密鍵を指定したポートフォワードが可能
+<pre>% ssh -f -N -C 接続先ホスト名の略称等</pre>
+</li><br />
+</ul>
 </div>
 
 
