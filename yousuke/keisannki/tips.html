@@ -573,15 +573,15 @@ Host 接続先ホスト名の略称等
 <div class="text1">
 <ul class="list1">
 <li>sshコマンドに-Rオプションを付ける場合<br />
-例：sshログイン先の8000番ポートをローカルの8000番に転送
-<pre>ssh 接続先 -R8000:localhost:8000 -f -N -C</pre>
+例：sshログイン先の8000番ポートをローカルの8001番に転送
+<pre>ssh 接続先 -R8000:localhost:8001 -f -N -C</pre>
 ＊sshをバックグラウンドで実行（-f）、リモートでコマンドを実行しない（-N）、圧縮を有効（-C）</li><br />
 <li>&sim;/.ssh/configに記述する場合
 <pre>Host 接続先ホスト名の略称等
 &nbsp; &nbsp; Hostname IPアドレスまたはドメイン名
 &nbsp; &nbsp; user ログインユーザ名
 &nbsp; &nbsp; IdentityFile ~/.ssh/秘密鍵のファイル名
-&nbsp; &nbsp; LocalForward 8000 localhost:8000
+&nbsp; &nbsp; LocalForward 8000 localhost:8001
 </pre>
 次のコマンドで秘密鍵を指定したポートフォワードが可能
 <pre>% ssh -f -N -C 接続先ホスト名の略称等</pre>
@@ -782,7 +782,7 @@ apg（Automated Password Generator）コマンドでは、複雑なパスワー�
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/08/13</p>
+<p>最終更新日：2023/08/20</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
