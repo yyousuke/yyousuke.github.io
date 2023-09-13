@@ -534,7 +534,7 @@ SSHホストが更新された際、ホスト公開鍵が以前のものと異�
 <div class="text1">
 sshコマンドに-Xオプションを与える（ForwardX11有効）
 <pre>% ssh -X hostname</pre>
-＊接続先ホストのsshd設定（/etc/ssh/sshd_config）でForwardX11が無効にされている場合は利用できない<br />
+＊接続先ホストのsshd設定（/etc/ssh/sshd_config等）でForwardX11が無効にされている場合は利用できない<br />
 emacsなど一部のアプリケーションはForwardX11Trustedも有効にしていないと動作しない。その場合には-Yオプションを付ける
 <pre>% ssh -Y hostname</pre>
 </div>
