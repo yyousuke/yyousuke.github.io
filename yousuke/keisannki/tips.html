@@ -509,14 +509,15 @@ MailTo = 配信先のメールアドレス
 SSHホストが更新された際、ホスト公開鍵が以前のものと異なるため警告が出てログインできなくなる。
 <pre>% ssh-keygen -R ホスト名</pre>
 でリセット可能<br />
- $HOME/.ssh/known_hostsを編集して該当するホストを削除しても同じ
+ $HOME/.ssh/known_hostsを編集して該当するホストの行を削除しても同じ
 </div>
 
 <h4><div class="headline2" id="ssh_1_2">SSH秘密鍵と公開鍵の新規生成</div></h4>
 <div class="text1">
 <pre>% ssh-keygen</pre>
 ＊デフォルトは暗号化形式rsa、ビット数は2048bit<br />
-詳細なオプションは<a href="https://atmarkit.itmedia.co.jp/ait/articles/1908/02/news015.html">コマンド――SSHの公開鍵と秘密鍵を作成する</a>参照
+詳細なオプションは<a href="https://atmarkit.itmedia.co.jp/ait/articles/1908/02/news015.html">コマンド――SSHの公開鍵と秘密鍵を作成する</a>参照<br />
+＊公開鍵は見せても良いが、秘密鍵は所有者のみが管理する
 </div>
 
 <h4><div class="headline2" id="ssh_1_3">ユーザー名を指定してログイン</div></h4>
@@ -796,7 +797,7 @@ apg（Automated Password Generator）コマンドでは、複雑なパスワー�
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/09/13</p>
+<p>最終更新日：2023/09/15</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
