@@ -754,6 +754,13 @@ test.txtに内容が入る
 <pre>
 n=3
 nn=$(printf "%05d" ${n})
+出力：00003
+</pre>
+小数点以下１位まで表示する
+<pre>
+n=3
+nn=$(printf "%5.1f" ${n})
+出力：3.0
 </pre>
 </div>
 
@@ -797,7 +804,7 @@ apg（Automated Password Generator）コマンドでは、複雑なパスワー�
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/09/15</p>
+<p>最終更新日：2023/09/16</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
