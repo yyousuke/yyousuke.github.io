@@ -402,7 +402,14 @@ echo 5.3 | awk '{printf "%9.3f¥n", $1}'
 出力：
 &nbsp; &nbsp; 5.300
 </pre>
-小数点以下3桁、9文字分で表示する（右詰めで左側に空白）
+小数点以下3桁、9文字分で表示する（右詰めで左側に空白）<br />
+左詰めにする場合
+<pre>
+echo 5.3 | awk '{printf "%-9.3f¥n", $1}'
+出力：
+&nbsp; &nbsp; 5.300
+</pre>
+小数点以下3桁、9文字分で表示する
 </div>
 
 
@@ -824,7 +831,7 @@ apg（Automated Password Generator）コマンドでは、複雑なパスワー�
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/09/26</p>
+<p>最終更新日：2023/09/29</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
