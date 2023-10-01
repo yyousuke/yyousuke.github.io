@@ -394,7 +394,13 @@ r &nbsp; カーソルの文字をrの次にタイプする文字に置き換え�
 
 <!-- awk関連 -->
 <h3><div class="headline1" id="awk_1">awk関連</div></h3>
-<h4><div class="headline2" id="awk_1_1">書式を指定する</div></h4>
+<h4><div class="headline2" id="awk_1_1">列を取り出す</div></h4>
+<div class="text1">
+ファイルから1列目、2列目を取り出す
+<pre>awk '{print $1, $2}' ファイル名</pre>
+</div>
+
+<h4><div class="headline2" id="awk_1_2">書式を指定する</div></h4>
 <div class="text1">
 printfを用いる
 <ul class="list1">
@@ -841,7 +847,7 @@ apg（Automated Password Generator）コマンドでは、複雑なパスワー�
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/09/30</p>
+<p>最終更新日：2023/10/01</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
