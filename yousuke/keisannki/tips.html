@@ -72,8 +72,9 @@
   <ul class="list1"><li><a href="#awk_1">awk関連</a>
     <ul class="list2">
       <li><a href="#awk_1_1">列を取り出す</a></li>
-      <li><a href="#awk_1_2">書式を指定する</a></li>
-      <li><a href="#awk_1_3">区切り文字を指定する</a></li>
+      <li><a href="#awk_1_2">演算を行う</a></li>
+      <li><a href="#awk_1_3">書式を指定する</a></li>
+      <li><a href="#awk_1_4">区切り文字を指定する</a></li>
   </ul>
   </li></ul>  
   <!-- ネットワーク関連 -->
@@ -418,7 +419,15 @@ printを使う
 </ul>
 </div>
 
-<h4><div class="headline2" id="awk_1_2">書式を指定する</div></h4>
+<h4><div class="headline2" id="awk_1_2">演算を行う</div></h4>
+<div class="text1">
+入力した値を100倍する
+<pre>echo 15 | awk '{print $1*100}'
+出力：1500
+</pre>
+</div>
+
+<h4><div class="headline2" id="awk_1_3">書式を指定する</div></h4>
 <div class="text1">
 printfを用いる
 <ul class="list1">
@@ -487,15 +496,15 @@ echo 5.3 | awk '{printf "%-9.3f¥n", $1}'
 </ul>
 </div>
 
-<h4><div class="headline2" id="awk_1_3">区切り文字を指定する</div></h4>
+<h4><div class="headline2" id="awk_1_4">区切り文字を指定する</div></h4>
 <div class="text1">
 デフォルトの区切り文字は空白かタブだが、オプション-Fを用いると変更可能
 <ul class="list1">
 <li>区切り文字をカンマ（,）とする
-<pre>awk -F',' '{print $1, $2}' ファイル名</pre>
+<pre>awk -F ',' '{print $1, $2}' ファイル名</pre>
 </li>
 <li>区切り文字をハイフン（-）とする
-<pre>awk -F'-' '{print $1, $2}' ファイル名</pre>
+<pre>awk -F '-' '{print $1, $2}' ファイル名</pre>
 </ul>
 </div>
 
@@ -919,7 +928,7 @@ apg（Automated Password Generator）コマンドでは、複雑なパスワー�
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/10/01</p>
+<p>最終更新日：2023/10/03</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
