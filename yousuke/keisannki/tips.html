@@ -435,6 +435,12 @@ tan(1)を求める
 <pre> awk 'BEGIN {print exp(1)}'
 出力：2.71828
 </pre>
+ファイル１行目の積算値を求める
+<pre>awk 'BEGIN{}{sum=sum+$1}END{print sum}' ファイル名
+</pre>
+ファイル１行目の平均値を求める
+<pre>awk 'BEGIN{}{n++ ; sum=sum+$1}END{print sum/n}' ファイル名
+</pre>
 </div>
 
 <h4><div class="headline2" id="awk_1_3">書式を指定する</div></h4>
@@ -944,7 +950,7 @@ apg（Automated Password Generator）コマンドでは、複雑なパスワー�
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/11/01</p>
+<p>最終更新日：2023/11/02</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
