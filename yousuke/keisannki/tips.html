@@ -527,6 +527,26 @@ echo 5.3 | awk '{printf "%-9.3f¥n", $1}'
 
 
 
+<!--sed関連 -->
+<h3><div class="headline1" id="sed_1">sed関連</div></h3>
+<h4><div class="headline2" id="sed_1_1">文字列の置換</div></h4>
+<div class="text1">
+コマンドの出力やファイルなどの文字列をsedコマンドで置換できる。
+<ul class="list1">
+<li>ファイルの文字列を置換する（行の先頭のみ）
+<pre>cat ファイル名 | sed -e 's/元の文字列/置換する文字列/' </pre>
+</li><br />
+<li>ファイルの文字列をすべて置換する
+<pre>cat ファイル名 | sed -e 's/元の文字列/置換する文字列/g' </pre>
+</li><br />
+<li>行番号を1から10行と指定してファイルの文字列を置換する
+<pre>cat ファイル名 | sed -e '1,10s/元の文字列/置換する文字列/' </pre>
+</li>
+</ul>
+</div>
+
+
+
 <!-- ネットワーク関連 -->
 <h3><div class="headline1" id="network_1">ネットワーク関連</div></h3>
 <h4><div class="headline2" id="network_1_1">IPアドレスを確認する</div></h4>
@@ -957,7 +977,7 @@ nohupコマンドを使うと、ログアウト後も処理を継続できる。
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/11/07</p>
+<p>最終更新日：2023/12/27</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
