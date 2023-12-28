@@ -137,7 +137,9 @@
       <li><a href="#com_1_3">nkfでUTF-8とLF形式にする</a></li>
       <li><a href="#com_1_4">teeでmakeログを作成しながら画面表示</a></li>
       <li><a href="#com_1_5">apgでパスワード自動生成</a></li>
-      <li><a href="#com_1_6">apgでパスワード自動生成</a></li>
+      <li><a href="#com_1_6">nohupでログアウト後も処理を継続</a></li>
+      <li><a href="#com_1_7">findでファイル処理</a></li>
+      <li><a href="#com_1_8">sedで文字列の置換</a></li>
   </ul>
   </li></ul>
 </div>
@@ -522,26 +524,6 @@ echo 5.3 | awk '{printf "%-9.3f¥n", $1}'
 </li>
 <li>区切り文字をハイフン（-）とする
 <pre>awk -F '-' '{print $1, $2}' ファイル名</pre>
-</ul>
-</div>
-
-
-
-<!--sed関連 -->
-<h3><div class="headline1" id="sed_1">sed関連</div></h3>
-<h4><div class="headline2" id="sed_1_1">文字列の置換</div></h4>
-<div class="text1">
-コマンドの出力やファイルなどの文字列をsedコマンドで置換できる。
-<ul class="list1">
-<li>ファイルの文字列を置換する（行の先頭のみ）
-<pre>cat ファイル名 | sed -e 's/元の文字列/置換する文字列/' </pre>
-</li><br />
-<li>ファイルの文字列をすべて置換する
-<pre>cat ファイル名 | sed -e 's/元の文字列/置換する文字列/g' </pre>
-</li><br />
-<li>行番号を1から10行と指定してファイルの文字列を置換する
-<pre>cat ファイル名 | sed -e '1,10s/元の文字列/置換する文字列/' </pre>
-</li>
 </ul>
 </div>
 
@@ -971,13 +953,49 @@ nohupコマンドを使うと、ログアウト後も処理を継続できる。
 <pre>% nohup コマンド &amp;</pre>
 </div>
 
+<h4><div class="headline2" id="com_1_7">findでファイル処理</div></h4>
+<div class="text1">
+findコマンドでは、条件に一致するファイル/ディレクトリの検索やそれらに対しコマンドを実行することなどが可能で、応用できる範囲は広い。
+<ul class="list1">
+<li>テキストファイル（*.txt）を検索する
+<pre>% find . -name '*.txt' </pre>
+</li>
+<li>検索したファイルに読み込み許可を与える
+<pre>% find . -name '*.txt' -exec chmod +r {} ¥;</pre>
+</li>
+<li>指定ディレクトリ以下のディレクトリのパーミッションを755にする（所有者以外に読み込みと実行を許可）
+<pre>% find ディレクトリのパス -type d -exec chmod 755 {} ¥;</pre>
+</li>
+<li>指定ディレクトリ以下のファイルに読み込み許可を与える
+<pre>% find ディレクトリのパス -type f -exec chmod +r {} ¥;</pre>
+</li>
+<br />
+</ul>
+</div>
+
+<h4><div class="headline2" id="com_1_8">sedで文字列の置換</div></h4>
+<div class="text1">
+コマンドの出力やファイルなどの文字列をsedコマンドで置換できる。
+<ul class="list1">
+<li>ファイルの文字列を置換する（行の先頭のみ）
+<pre>cat ファイル名 | sed -e 's/元の文字列/置換する文字列/' </pre>
+</li><br />
+<li>ファイルの文字列をすべて置換する
+<pre>cat ファイル名 | sed -e 's/元の文字列/置換する文字列/g' </pre>
+</li><br />
+<li>行番号を1から10行と指定してファイルの文字列を置換する
+<pre>cat ファイル名 | sed -e '1,10s/元の文字列/置換する文字列/' </pre>
+</li>
+</ul>
+</div>
+
 
 <small><a href="#top">[top]</a></small> <br />
 <hr />
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/12/27</p>
+<p>最終更新日：2023/12/28</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
