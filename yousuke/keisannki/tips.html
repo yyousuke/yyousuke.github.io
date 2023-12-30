@@ -969,6 +969,13 @@ findコマンドでは、条件に一致するファイル/ディレクトリの
 <li>指定ディレクトリ以下のファイルに読み込み許可を与える
 <pre>% find ディレクトリのパス -type f -exec chmod +r {} ¥;</pre>
 </li>
+<li>1時間以内に変更されたファイルを表示する
+<pre>% find ディレクトリのパス -mtime -1h</pre>
+＊1週間なら1w、1日なら1d、30分なら30m、10秒なら10sとなる
+</li><br />
+<li>1日以内にアクセスされたファイルを表示する
+<pre>% find ディレクトリのパス -atime -1d</pre>
+</li><br />
 <br />
 </ul>
 </div>
@@ -995,7 +1002,7 @@ findコマンドでは、条件に一致するファイル/ディレクトリの
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/12/28</p>
+<p>最終更新日：2023/12/30</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
