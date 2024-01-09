@@ -1,6 +1,3 @@
 User-Agent: *
 Allow: /
-Disallow: /cgi-bin
-Disallow: /archive/image
-Disallow: /archive/topics
-Disallow: /archive/keisannki
+Disallow: /keisannki/archive
