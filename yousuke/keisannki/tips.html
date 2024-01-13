@@ -983,6 +983,9 @@ findコマンドでは、条件に一致するファイル/ディレクトリの
 <li>ユーザ1の7日間更新されなかったファイルを表示する
 <pre>% find ディレクトリのパス ¥( -user ユーザ1 -mtime +7d ¥)</pre>
 </li>
+<li>30日更新されなかったファイルを削除する
+<pre>% find ディレクトリのパス -mtime +30d -exec rm {} ¥;</pre>
+</li>
 <br />
 <br />
 </ul>
@@ -1023,7 +1026,7 @@ trコマンドを使うと、簡単に小文字を大文字に変換できる。
 </article>
 </body>
 <footer>
-<p>最終更新日：2024/01/10</p>
+<p>最終更新日：2024/01/13</p>
 <p>Copyright (C) 2018-2024, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
