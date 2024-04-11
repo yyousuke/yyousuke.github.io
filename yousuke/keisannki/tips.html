@@ -92,10 +92,11 @@
   <ul class="list1"><li><a href="#user_1">ユーザ管理</a>
     <ul class="list2">
       <li><a href="#user_1_1">ユーザを追加する</a></li>
-      <li><a href="#user_1_2">グループを追加する</a></li>
-      <li><a href="#user_1_3">ユーザをグループに追加する</a></li>
-      <li><a href="#user_1_4">ユーザの所属するグループを変更する</a></li>
+      <li><a href="#user_1_2">ユーザを削除する</a></li>
+      <li><a href="#user_1_3">グループを追加する</a></li>
+      <li><a href="#user_1_4">ユーザをグループに追加する</a></li>
       <li><a href="#user_1_5">ユーザをグループから削除する</a></li>
+      <li><a href="#user_1_6">ユーザの所属するグループを変更する</a></li>
   </ul>
   </li></ul>
   <!-- システム管理 -->
@@ -618,28 +619,31 @@ UDPのLISTENポートをチェックする
 <pre># adduser -G wheel ユーザ名 </pre>
 </div>
 
-<h4><div class="headline2" id="user_1_2">グループを追加する</div></h4>
+<h4><div class="headline2" id="user_1_2">ユーザを削除する</div></h4>
+
+<h4><div class="headline2" id="user_1_3">グループを追加する</div></h4>
 <div class="text1">
 <pre># groupadd グループ名</pre>
 グループID（GID）を指定する場合
 <pre># groupadd グループ名 -g GID</pre>
 </div>
 
-<h4><div class="headline2" id="user_1_3">ユーザをグループに追加する</div></h4>
+<h4><div class="headline2" id="user_1_4">ユーザをグループに追加する</div></h4>
 <div class="text1">
 <pre># gpasswd -a ユーザ名 グループ名</pre>
 </div>
 
-<h4><div class="headline2" id="user_1_4">ユーザをグループから削除する</div></h4>
+<h4><div class="headline2" id="user_1_5">ユーザをグループから削除する</div></h4>
 <div class="text1">
 <pre># gpasswd -d ユーザ名 グループ名</pre>
 </div>
 
-<h4><div class="headline2" id="user_1_5">ユーザの所属するグループを変更する</div></h4>
+<h4><div class="headline2" id="user_1_6">ユーザの所属するグループを変更する</div></h4>
 <div class="text1">
 usermodを使い、含めたいグループを並べる
 <pre># usermod -G グループ1,グループ2, グループ3 ユーザ名</pre>
 </div>
+
 
 <!-- システム管理 -->
 <h3><div class="headline1" id="system_1">システム管理</div></h3>
@@ -1038,7 +1042,7 @@ trコマンドを使うと、簡単に小文字を大文字に変換できる。
 </article>
 </body>
 <footer>
-<p>最終更新日：2024/04/08</p>
+<p>最終更新日：2024/04/11</p>
 <p>Copyright (C) 2018-2024, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
