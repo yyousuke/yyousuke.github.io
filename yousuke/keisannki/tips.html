@@ -570,8 +570,14 @@ echo 5.3 | awk '{printf "%-9.3f¥n", $1}'
 </li><br />
 <li>netstatコマンド（Linux/macOS）
 <pre>% netstat -rn</pre>
-</li>
 ＊Linuxでは非推奨でip routeを使う<br />
+</li><br />
+<li>メインテーブルを表示
+<pre>ip route show table main</pre>
+</li>
+<li>ローカルテーブルを表示
+<pre>ip route show table local</pre>
+</li>
 </ul>
 </div>
 
@@ -1054,7 +1060,7 @@ trコマンドを使うと、簡単に小文字を大文字に変換できる。
 </article>
 </body>
 <footer>
-<p>最終更新日：2024/04/18</p>
+<p>最終更新日：2024/04/19</p>
 <p>Copyright (C) 2018-2024, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
