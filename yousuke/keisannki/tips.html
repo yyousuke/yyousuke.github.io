@@ -167,24 +167,24 @@
 <ul class="list1">
 <li>毎日8時45分にget.shスクリプトを動かす
 <pre>
-45 08 * * *  get.sh &gt; /dev/null 2&gt;& 1
+45 08 * * *  get.sh &gt; /dev/null 2 &gt;&amp; 1
 </pre>
 ＊/dev/nullに渡して通知されないようにする
 ＊2は標準エラー出力を表し、標準出力の1と一緒に出力するので両方が破棄される
 </li><br />
 <li>毎月1日にget.shスクリプトを動かす
 <pre>
-45 08 1 * *  get.sh &gt; /dev/null 2&gt;& 1
+45 08 1 * *  get.sh &gt; /dev/null 2 &gt;&amp; 1
 </pre></li>
 <li>毎週日曜にget.shスクリプトを動かす
 <pre>
-45 08 * * 0  get.sh &gt; /dev/null 2&gt;& 1
+45 08 * * 0  get.sh &gt; /dev/null 2 &gt;&amp; 1
 </pre>
 0が日曜、1が月曜、2が火曜、3が水曜、4が木曜、5が金曜、6が土曜
 </li><br />
 <li>10分毎にスクリプトを動かす
 <pre>
-00,10,20,30,40,50  * * * *  get.sh &gt; /dev/null 2&gt;& 1
+00,10,20,30,40,50  * * * *  get.sh &gt; /dev/null 2 &gt;&amp; 1
 </pre></li>
 </ul>
 </div>
@@ -205,7 +205,7 @@
 <pre>分 時 日 月 週の何日目&nbsp; ユーザ名&nbsp; コマンド名</pre>
 dateコマンドを使い、次の日が1日だった場合に実行する。
 <pre>
-55　23　28-31 * * /usr/bin/test $( date -d '+1 day' +%d ) -eq 1 && 実行したいコマンド
+55　23　28-31 * * /usr/bin/test $( date -d '+1 day' +%d ) -eq 1 &amp;&amp; 実行したいコマンド
 </pre>
 ＊「+%d」は月の中の何日目かを表す値（01-31）<br />
 <a href="https://www.server-memo.net/tips/command/date/date.html">dateコマンドで日付や時刻を表示したり設定する方法 </a>
@@ -457,38 +457,38 @@ printfを用いる
 <ul class="list1">
 <li>整数を出力する（小数点以下切り捨て）
 <pre>
-echo 5.5 | awk '{printf "%d¥n", $1}'
+echo 5.5 | awk '{printf &quot;%d¥n&quot;, $1}'
 出力：
 5
 </pre>
 </li>
 <li>符号を付けて整数を出力する
 <pre>
-echo 5 | awk '{printf "%+d¥n", $1}'
+echo 5 | awk '{printf &quot;%+d¥n&quot;, $1}'
 出力：
 +5
-echo -5 | awk '{printf "%+d¥n", $1}'
+echo -5 | awk '{printf &quot;%+d¥n&quot;, $1}'
 出力：
 -5
 </pre>
 </li>
 <li>6桁の整数を出力する（右詰めで左側に空白）
 <pre>
-echo 5 | awk '{printf "%6d¥n", $1}'
+echo 5 | awk '{printf &quot;%6d¥n&quot;, $1}'
 出力：
 &nbsp; &nbsp; 5
 </pre>
 </li>
 <li>6桁の整数を出力する（右詰めで0埋め）
 <pre>
-echo 5 | awk '{printf "%06d¥n", $1}'
+echo 5 | awk '{printf &quot;%06d¥n&quot;, $1}'
 出力：
 000005
 </pre>
 </li><br />
 <li>小数点第２位まで出力する
 <pre>
-echo 5.3 | awk '{printf "%.2f¥n", $1}'
+echo 5.3 | awk '{printf &quot;%.2f¥n&quot;, $1}'
 出力：
 5.30
 </pre>
@@ -1060,7 +1060,7 @@ trコマンドを使うと、簡単に小文字を大文字に変換できる。
 </article>
 </body>
 <footer>
-<p>最終更新日：2024/04/19</p>
+<p>最終更新日：2024/04/20</p>
 <p>Copyright (C) 2018-2024, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
