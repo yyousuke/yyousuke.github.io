@@ -495,24 +495,24 @@ echo 5.3 | awk '{printf &quot;%.2f¥n&quot;, $1}'
 </li>
 <li>符号を付けて出力する
 <pre>
-echo 5.3 | awk '{printf "%+.2f¥n", $1}'
+echo 5.3 | awk '{printf &quot;%+.2f¥n&quot;, $1}'
 出力：
 +5.30
-echo -5.3 | awk '{printf "%+.2f¥n", $1}'
+echo -5.3 | awk '{printf &quot;%+.2f¥n&quot;, $1}'
 出力：
 -5.30
 </pre>
 </li>
 <li>小数点以下3桁、9文字分で表示する（右詰めで左側に空白）
 <pre>
-echo 5.3 | awk '{printf "%9.3f¥n", $1}'
+echo 5.3 | awk '{printf &quot;%9.3f¥n&quot;, $1}'
 出力：
 &nbsp; &nbsp; 5.300
 </pre>
 </li>
 <li>左詰めにする場合
 <pre>
-echo 5.3 | awk '{printf "%-9.3f¥n", $1}'
+echo 5.3 | awk '{printf &quot;%-9.3f¥n&quot;, $1}'
 出力：
 5.300 &nbsp; &nbsp;
 </pre>
@@ -573,10 +573,10 @@ echo 5.3 | awk '{printf "%-9.3f¥n", $1}'
 ＊Linuxでは非推奨でip routeを使う<br />
 </li><br />
 <li>メインテーブルを表示
-<pre>ip route show table main</pre>
+<pre>% ip route show table main</pre>
 </li>
 <li>ローカルテーブルを表示
-<pre>ip route show table local</pre>
+<pre>% ip route show table local</pre>
 </li>
 </ul>
 </div>
@@ -1060,7 +1060,7 @@ trコマンドを使うと、簡単に小文字を大文字に変換できる。
 </article>
 </body>
 <footer>
-<p>最終更新日：2024/04/20</p>
+<p>最終更新日：2024/04/21</p>
 <p>Copyright (C) 2018-2024, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
