@@ -443,10 +443,10 @@ tan(1)を求める
 <pre> awk 'BEGIN {print exp(1)}'
 出力：2.71828
 </pre>
-ファイル１行目の積算値を求める
+ファイル１列目の積算値を求める
 <pre>awk 'BEGIN{}{sum=sum+$1}END{print sum}' ファイル名
 </pre>
-ファイル１行目の平均値を求める
+ファイル１列目の平均値を求める
 <pre>awk 'BEGIN{}{n++ ; sum=sum+$1}END{print sum/n}' ファイル名
 </pre>
 </div>
@@ -588,7 +588,8 @@ echo 5.3 | awk '{printf &quot;%-9.3f¥n&quot;, $1}'
 <pre>% ping IPアドレス</pre>
 ＊双方向にパケットが到達することを確認<br />
 ＊デフォルトゲートウェイ、DNSサーバ等のIPアドレスを入力し到達確認<br />
-＊IPアドレスの代わりにDNSアドレスも利用可能だが、DNSサーバが正常に応答している時のみ使用したほうが良い
+＊IPアドレスの代わりにDNSアドレスも利用可能だが、DNSサーバが正常に応答している時のみ使用したほうが良い<br />
+＊ファイアウォールや相手側の設定で、pingに応答しないようにしていることがある
 </li><br />
 <li>DNSサーバの応答確認（Linux/macOS）
 <pre>% nslookup IPアドレスまたはDNSアドレス</pre>
@@ -937,13 +938,13 @@ test.txtに内容が入る
 整数を5文字になるまで0埋めする
 <pre>
 n=3
-nn=$(printf "%05d" ${n})
+nn=$(printf &quot;%05d&quot; ${n})
 出力：00003
 </pre>
 小数点以下１位まで表示する
 <pre>
 n=3
-nn=$(printf "%5.1f" ${n})
+nn=$(printf &quot;%5.1f&quot; ${n})
 出力：3.0
 </pre>
 </div>
