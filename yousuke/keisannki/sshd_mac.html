@@ -19,7 +19,7 @@
 <meta name="googlebot" content="nofollow" />
 <meta name="description" content="MacOS Mojave/CatalinaにSSH接続し、Xを飛ばせるようにした際の設定方法を紹介しています。">
 <link href="design_keisannki.css" rel="stylesheet" type="text/css" />
-<title>MacOS MojaveへのSSH接続</title>
+<title>MacOSへのSSH接続</title>
 </head>
 
 <!--<body link="#CC00FF" vlink="#CC00FF">-->
@@ -30,7 +30,8 @@
 <article>
 <h1>MacOSでOpenSSH</h1>
 <br />
-<p>&nbsp; ここでは、MacOS Mojave (ver.10.14) / Catalina (ver.10.15) にSSH接続し、X11プロトコルを使用するアプリケーションでSSHを介してXを飛ばせるようにした際の設定方法を紹介しています。SSHサーバにするには共有設定が、Xを飛ばすにはXquartzのインストールが必要でした。コマンド入力の説明では、%が一般ユーザのプロンプトを表しています。</p>
+<p>&nbsp; ここでは、MacOS Mojave (10.14) / Catalina (10.15) にSSH接続し、X11プロトコルを使用するアプリケーションでSSHを介してXを飛ばせるようにした際の設定方法を紹介しています。最新版のSonoma (14)でも同じ方法が使用可能です。<br />
+&nbsp; SSHサーバにするには共有設定が、Xを飛ばすにはXquartzのインストールが必要でした。コマンド入力の説明では、%が一般ユーザのプロンプトを表しています。</p>
 <br /><hr />
 
 
@@ -91,7 +92,7 @@ Host *
 ForwardX11Timeout 86400
 </pre>
 も追加しておくと回避可能です（この場合は１日）。<br /><br />
-macOS BigSur（ver. 11）では、Xquartzが立ち上がらない不具合が発生することがあります。まずは、ローカルでxcalcなどXを使用するプログラムを試し、Xquartzの起動に問題があることを確認します。自動で起動しない場合には、次のように手動でXquartzを起動してみます。
+＊Xquartzが立ち上がらない不具合が発生することがあります。まずは、ローカルでxcalcなどXを使用するプログラムを試し、Xquartzの起動を確認します。自動で起動しない場合には、次のように手動でXquartzを起動してみます。
 <pre>
 open /Applications/Utilities/XQuartz.app/Contents/MacOS/X11
 </pre>
@@ -108,7 +109,7 @@ open /Applications/Utilities/XQuartz.app/Contents/MacOS/X11
 </article>
 </body>
 <footer>
-<p>最終更新日：2023/04/29</p>
+<p>最終更新日：2024/05/07</p>
 <p>Copyright (C) 2018-2023, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
