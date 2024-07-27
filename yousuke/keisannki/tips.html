@@ -682,10 +682,30 @@ usermodを使い、含めたいグループを並べる
 
 <!-- システム管理 -->
 <h3><div class="headline1" id="system_1">システム管理</div></h3>
-<h4><div class="headline2" id="system_1_1">ログ通知</div></h4>
+<h4><div class="headline2" id="system_1_1">ディスク使用量</div></h4>
+<div class="text1">
+dfコマンドを使う
+<pre>df -k</pre>
+</div>
+
+<h4><div class="headline2" id="system_1_2">温度監視</div></h4>
+<div class="text1">
+sensorsコマンドをインストールする
+<ul class="list1">
+<li>RedHat系
+<pre># dnf -y install lm_sensores</pre></li>
+<li>Ubuntu
+<pre># apt install lm_sensores</pre></li>
+</u>
+確認
+<pre>sensors</pre>
+</div>
+
+<h4><div class="headline2" id="system_1_3">ログ通知</div></h4>
 <div class="text1">
 Logwatchをインストールする（RedHat系8以降）
 <pre># dnf -y install logwatch</pre>
+<br />
 通知先のメールアドレスを設定する<br />
  /usr/share/logwatch/default.conf/logwatch.confを編集
 <pre>
