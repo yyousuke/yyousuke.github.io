@@ -113,7 +113,9 @@
   <!-- システム管理 -->
   <ul class="list1"><li><a href="#system_1">システム管理</a>
     <ul class="list2">
-      <li><a href="#system_1_1">ログ通知</a></li>
+      <li><a href="#system_1_1">ディスク使用量</a></li>
+      <li><a href="#system_1_2">温度監視</a></li>
+      <li><a href="#system_1_3">ログ通知</a></li>      
   </ul>
   </li></ul>
   <!-- SSH関連 -->
@@ -648,7 +650,7 @@ ARP（Address Resolution Protocol）テーブルにある現在のエントリ�
 ユーザ作成と同時にwheelグループに追加する場合
 <pre># adduser -G wheel ユーザ名 </pre>
 ユーザ作成と同時にsudoグループに追加する場合（Ubuntu）
-<pre># adduser -G sudoユーザ名 </pre>
+<pre># adduser -G sudo ユーザ名 </pre>
 </div>
 
 <h4><div class="headline2" id="user_1_2">ユーザを削除する</div></h4>
@@ -685,7 +687,7 @@ usermodを使い、含めたいグループを並べる
 <h4><div class="headline2" id="system_1_1">ディスク使用量</div></h4>
 <div class="text1">
 dfコマンドを使う
-<pre>df -k</pre>
+<pre>% df -k</pre>
 </div>
 
 <h4><div class="headline2" id="system_1_2">温度監視</div></h4>
@@ -696,24 +698,72 @@ sensorsコマンドをインストールする
 <pre># dnf -y install lm_sensores</pre></li>
 <li>Ubuntu
 <pre># apt install lm_sensores</pre></li>
-</u>
+</ul>
 確認
-<pre>sensors</pre>
+<pre>% sensors</pre>
 </div>
 
 <h4><div class="headline2" id="system_1_3">ログ通知</div></h4>
 <div class="text1">
-Logwatchをインストールする（RedHat系8以降）
+<ul class="list1">
+<li>Logwatchをインストールする
+<ul class="list2">
+<li>RedHat系8以降
 <pre># dnf -y install logwatch</pre>
-<br />
-通知先のメールアドレスを設定する<br />
- /usr/share/logwatch/default.conf/logwatch.confを編集
+</li>
+<li>Ubuntu
+<pre># apt install logwatch</pre>
+</li>
+<li>OpenSUSE
+<pre># yast</pre>
+パッケージでlogwatchを検索する
+</li><br />
+</ul>
+</li>
+<li>Logwatch用の一時ディレクトリの作成
+<pre># mkdir /var/cache/logwatch</pre>
+</li><br />
+<li>メールでの通知を行う設定<br />
+まずは、デフォルトのlogwatch.conf設定ファイルを /etc/logwatch/conf/logwatch.confにコピー<br />
+<pre># cp /usr/share/logwatch/default.conf/logwatch.conf /etc/logwatch/conf/</pre>
+コピーしたlogwatch.confを編集し、標準出力の代わりにメールを送信するように変更する
 <pre>
-# MailTo = root
-MailTo = 配信先のメールアドレス
+# Output = stdout
+Output = mail
 </pre>
-外部メールへの送信も行う場合は以下も必要
+</li><br />
+<li>外部メールへの転送も行う場合には、postfixをインストールしておく
+<ul class="list2">
+<li>RedHat系8以降
 <pre># dnf -y install postfix</pre>
+</li>
+<li>Ubuntu
+<pre># apt install postfix</pre>
+</li>
+<li>OpenSUSE
+<pre># yast</pre>
+パッケージでpostfixを検索する
+</li><br />
+</ul>
+</li>
+<li>ログメールを送信するホスト名の設定（必要な場合）<br />
+メール転送の際にDNSサーバに問い合わせを行っており、存在しないホスト名では送信が拒否されてしまう。その場合は、/etc/postfix/main.cfでmyhostnameを設定する
+<pre>myhostname = 存在するホスト名.所属するドメイン名</pre>
+IPアドレスのみでホスト名がない場合には、次のように設定すると回避できる
+<pre>myhostname = localhost</pre>
+</li><br />
+<li>通知先のメールアドレスを設定する（外部メールへの転送も行う場合）<br />
+/etc/aliasesに下記を追加
+<pre>root: メールアドレス</pre>
+＊rootに来たメールを指定したメールアドレスに転送する<br />
+<br />
+エイリアスの変更を反映する
+<pre># newaliases</pre>
+</li><br />
+<li>動作確認を行う
+<pre># logwatch</pre>
+指定したメールアドレスにlogwatchメールが届けば成功
+</li><br />
 </div>
 
 
@@ -1097,7 +1147,7 @@ trコマンドを使うと、簡単に小文字を大文字に変換できる。
 </article>
 </body>
 <footer>
-<p>最終更新日：2024/05/08</p>
+<p>最終更新日：2024/07/28</p>
 <p>Copyright (C) 2018-2024, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
