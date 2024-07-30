@@ -95,8 +95,7 @@
       <li><a href="#network_1_3">ルーティングテーブルの内容を表示する</a></li>
       <li><a href="#network_1_4">通信の状態を調べる</a></li>
       <li><a href="#network_1_5">LISTENポートをチェックする</a></li>
-      <li><a href="#network_1_6">サービス一覧を表示する</a></li>
-      <li><a href="#network_1_7">ARPテーブルを表示する</a></li>
+      <li><a href="#network_1_6">ARPテーブルを表示する</a></li>
   </ul>
   </li></ul>
   <!-- ユーザ管理 -->
@@ -115,8 +114,12 @@
     <ul class="list2">
       <li><a href="#system_1_1">ディスク使用量</a></li>
       <li><a href="#system_1_2">温度監視</a></li>
-      <li><a href="#system_1_3">ログ通知</a></li>      
-      <li><a href="#system_1_4">サービスの管理</a></li>      
+      <li><a href="#system_1_3">ログ通知</a></li>
+      <li><a href="#system_1_4">サービス一覧を表示する</a></li>
+      <li><a href="#system_1_5">サービスの管理</a></li>
+      <li><a href="#system_1_6">サービスログの確認</a></li>
+      <li><a href="#system_1_7">ランレベルの確認</a></li>
+      <li><a href="#system_1_8">ランレベルの変更</a></li>
   </ul>
   </li></ul>
   <!-- SSH関連 -->
@@ -625,15 +628,7 @@ UDPのLISTENポートをチェックする
 他の使い方は<a href="https://atmarkit.itmedia.co.jp/ait/articles/1710/06/news014.html">【 ss 】コマンド</a>参照
 </div>
 
-<h4><div class="headline2" id="network_1_6">サービス一覧を表示する</div></h4>
-<div class="text1">
-<pre>% systemctl -t service</pre>
-＊/usr/lib/systemd/system/を参照している<br />
-全サービスの一覧
-<pre>% systemctl list-unit-files -t service</pre>
-</div>
-
-<h4><div class="headline2" id="network_1_7">ARPテーブルを表示する</div></h4>
+<h4><div class="headline2" id="network_1_6">ARPテーブルを表示する</div></h4>
 <div class="text1">
 ARP（Address Resolution Protocol）テーブルにある現在のエントリを一覧表示
 <pre>% ip neigh</pre>
@@ -767,9 +762,93 @@ IPアドレスのみでホスト名がない場合には、次のように設定
 </li><br />
 </div>
 
-<h4><div class="headline2" id="system_1_4">サービスの管理</div></h4>
+<h4><div class="headline2" id="system_1_4">サービス一覧を表示する</div></h4>
 <div class="text1">
 systemctlコマンドを用いる
+<pre>% systemctl -t service</pre>
+＊/etc/systemd/system/か/usr/lib/systemd/system/を参照している<br />
+全サービスの一覧
+<pre>% systemctl list-unit-files -t service</pre>
+</div>
+
+<h4><div class="headline2" id="system_1_5">サービスの管理</div></h4>
+<div class="text1">
+systemctlコマンドを次のように使用する
+<ul class="list1">
+<li>サービス起動
+<pre># systemctl start サービス名</pre>
+</li>
+<li>サービス停止
+<pre># systemctl stop サービス名</pre>
+</li>
+<li>サービス再起動
+<pre># systemctl restart サービス名</pre>
+</li>
+<li>サービスリロード
+<pre># systemctl reload サービス名</pre>
+</li>
+<li>サービスのステータス表示
+<pre>% systemctl status サービス名</pre>
+</li>
+<li>サービス自動起動有効
+<pre># systemctl enable サービス名</pre>
+</li>
+<li>サービス自動起動無効
+<pre># systemctl disable サービス名</pre>
+</li>
+<li>サービス起動と自動起動有効を同時に
+<pre># systemctl enable -now サービス名</pre>
+</li>
+<li>サービス自動起動設定確認
+<pre>% systemctl is-enabled サービス名</pre>
+</li>
+<li>設定ファイルの再読込
+<pre># systemctl daemon-reload サービス名</pre>
+</li>
+</ul>
+</div>
+
+<h4><div class="headline2" id="system_1_6">サービスログの確認</div></h4>
+<div class="text1">
+journalctlコマンドを用いる（/var/log/journal/を参照している）
+<pre># journalctl -f -u サービス名</pre>
+＊/usr/lib/systemd/system/を参照している<br />
+</div>
+
+<h4><div class="headline2" id="system_1_7">ランレベルの確認</div></h4>
+<div class="text1">
+systemctlコマンドを用いる（/usr/lib/systemd/system/*targetを参照している）
+<pre>% systemctl get-default</pre>
+＊multi-user.target: 従来のrunlevel 3（テキストログイン）
+＊graphical.target: 従来のrunlevel 5（グラフィカルログイン）
+</div>
+
+<h4><div class="headline2" id="system_1_8">ランレベルの変更</div></h4>
+<div class="text1">
+systemctlコマンドを用いる
+<pre># systemctl set-default graphical.target</pre>
+＊グラフィカルログインに変更する（/etc/systemd/system/default.targetのシンボリックリンクを変更する）<br />
+<br />
+手動での変更方法
+<ul class="list1">
+<li>システム停止（従来のランレベル0）
+<pre># systemctl isolate poweroff.target</pre>
+</li>
+<li>シングルユーザーモード（従来のランレベル1）
+<pre># systemctl isolate rescue.target</pre>
+</li>
+<li>テキストログイン（従来のランレベル3）
+<pre># systemctl isolate rmulti-user.target</pre>
+</li>
+<li>グラフィカルログイン（従来のランレベル5）
+<pre># systemctl isolate graphical.target</pre>
+</li>
+<li>OSの再起動（従来のランレベル6）
+<pre># systemctl isolate reboot.target</pre>
+</li>
+<li>緊急モード
+<pre># systemctl isolate emergency.target</pre>
+</li>
 </div>
 
 
@@ -1153,7 +1232,7 @@ trコマンドを使うと、簡単に小文字を大文字に変換できる。
 </article>
 </body>
 <footer>
-<p>最終更新日：2024/07/28</p>
+<p>最終更新日：2024/07/29</p>
 <p>Copyright (C) 2018-2024, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
