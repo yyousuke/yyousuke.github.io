@@ -2,3 +2,4 @@ User-Agent: *
 Allow: /
 Disallow: /yousuke/keisannki/archive
 Disallow: /js
+Disallow: /img
