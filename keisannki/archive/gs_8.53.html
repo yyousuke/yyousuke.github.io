@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="山下陽介 (Yousuke Yamashita)  国立環境研究所 (National Institute for Environmental Studies, NIES)" />
+<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-180x180.png" />
+<link rel="icon" type="image/png" href="/icon-192x192.png" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<!-- Mobile Internet Explorer allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on">
+<!-- Specify whether or not telephone numbers in the HTML content should appear as hypertext links -->
+<meta name="format-detection" content="telephone=no" />
+<!-- Changes the logical window size used when displaying a page mobile browsers -->
+<meta name = "viewport" content = "width = device-width, initial-scale=1, user-scalable=yes">
+
+<meta name="robots" content="nofollow" />
+<meta name="http-equiv" content="X-Robots-Tag : nofollow" />
+<meta name="googlebot" content="nofollow" />
+<meta name="description" content="2005年12月5日：Solaris, Vine Linux, Tru64 UNIXにおける ghostscript 8.53 のコンパイル, インストールとCIDフォントを用いた日本語化">
+<meta name="keywords" content="ghostscript">
+<link href="../design_keisannki.css" rel="stylesheet" type="text/css" />
+<title>アーカイブ：Ghost Scriptのインストール</title>
+</head>
+
+<body>
+<div id="nesting">
+<a href="/">ホーム</a> &gt; <a href="/yousuke/index.html">山下のページ</a> &gt;  <a href="/yousuke/keisannki/index.html">計算機関連</a> &gt; <a href="/yousuke/keisannki/archive/index.html">アーカイブ：計算機関連</a>  &gt; Ghost Scriptのインストール
+</div>
+<article>
+<h1  id="top">アーカイブ：Ghost Script のインストール</h1>
+<br />
+<div id="text2">
+<p><span style="COLOR:red">2005年12月5日に更新した情報のアーカイブ</span>です。</p><br />
+<p>&nbsp; ここでは、AFPL Ghost Script 8.53 のソースからのコンパイルとインストール
+方法、CIDフォントを用いた日本語化について解説しています。Solaris, Vine Linux, Tru64で同じ方法が使用可能なことを確認しています。なお、8.50, 8.51も以下と同様の方法でインストールが可能です。<br />
+&nbsp; コマンド入力の説明では、%が一般ユーザの場合のプロンプト、#がrootの場合のプロンプトとして解説しています。</p>
+</div>
+<br />
+<br />
+
+<!-- ソースコード のダウンロード -->
+<h3><div class="headline2" id="download">ソースコード のダウンロード</div></h3>
+<div class="text1">
+&nbsp; <a href="http://www.cs.wisc.edu/~ghost/doc/AFPL/get853.htm" target="_blank" rel="nofollow">Ghost Scriptのページ</a>からGhost Scriptのソースコード (ghostscript-8.53.tar.bz2)とコンパイルの際に必要な jpeg6b (jpegsrc.v6b.tar.gz), libpng (libpng-1.2.8.tar.gz), zlib (zlib-1.2.2.tar.gz) をダウンロードします。また、使用するフォントもダウンロードしておきます。<br />
+<ul class="list1">
+<li><a href="http://prdownloads.sourceforge.net/gs-fonts/ghostscript-fonts-std-8.11.tar.gz">ghostscript-fonts-std-8.11.tar.gz</a></li>
+<li><a href="http://www.mirror.ac.uk/mirror/mirror.cs.wisc.edu/pub/mirrors/ghost/fonts/ghostscript-fonts-other-6.0.tar.gz">ghostscript-fonts-other-6.0.tar.gz</a></li>
+</ul>
+</div>
+<br /><br />
+
+
+<!-- Ghost Scriptとjpeg6b, libpng, zlib の配置 -->
+<h3><div class="headline2" id="decompress">Ghost Scriptとjpeg6b, libpng, zlib の配置</div></h3>
+<div class="text1">
+&nbsp; ダウンロードしたGhost Scriptのソースコードを展開します。
+<pre>
+% bunzip2 -c ghostscript-8.53.tar.bz2 | tar xvf - </pre>
+（bunzip2 に-c オプションを付けることで標準出力に出力し、それをバッファに入れてバッファの中身をtarで展開）<br /><br />
+＊ GNU tar があれば、
+<pre>
+% gtar xjvf ghostscript-8.53.tar.bz2 </pre>
+でも展開できます。Linux の場合は tar コマンドが GNU tar になっています。<br /><br />
+&nbsp; 次に、jpeg6bのソースコードを展開し、Ghost Scriptのソースコードを展開したディレクトリに移動します。この際、フォルダ名を jpeg/ としておく必要があります。
+<pre>
+% gunzip -c jpegsrc.v6b.tar.gz | tar xvf - </pre>
+（GNU tar では % tar xzvf jpegsrc.v6b.tar.gz）<br />
+<pre>
+% mv jpeg6b Ghostscriptのディレクトリ/jpeg </pre>
+libpng と zlib もGhost Script のソースコードを展開したディレクトリの下に展開します。それぞれ、libpng/ 、zlib/ のフォルダ名に変更します。Ghost Scriptのコンパイルの為だけに使用するのであれば個別にコンパイルする必要はありません。
+<pre>
+% gunzip -c libpng-1.2.8.tar.gz | tar xvf - 
+% mv libpng-1.2.8 Ghostscriptのディレクトリ/libpng
+% gunzip -c zlib-1.2.2.tar.gz | tar xvf - 
+% mv zlib-1.2.2 Ghostscriptのディレクトリ/zlib </pre>
+</div>
+<br /><br />
+
+
+<!-- Ghost Scriptのコンパイルとインストール -->
+<h3><div class="headline2" id="install">Ghost Scriptのコンパイルとインストール</div></h3>
+<div class="text1">
+&nbsp; Ghost Scriptのソースコードを展開したディレクトリに移動し、
+<pre>
+% ./configure (Makefileを作成)<br />
+% make (コンパイル)<br />
+% make check (コンパイルのチェック)</pre>
+&nbsp; デフォルトでは /usr/local 以下にインストールされるので root になってから
+<pre>
+# make install </pre>
+でインストールします。
+</div>
+<br /><br />
+
+
+<!-- フォントの展開 -->
+<h3><div class="headline2" id="font">フォントの展開</div></h3>
+<div class="text1">
+&nbsp; ここまでの状態では何もフォントがないのでGhost Script のフォントを展開します。ここではデフォルトの場合を考えますが、フォントを展開し、/usr/local/share/ghostscript 以下に移動します。
+<pre>
+% gunzip -c ghostscript-fonts-std-8.11.tar.gz | tar xvf - 
+% gunzip -c ghostscript-fonts-other-6.0.tar.gz | tar xvf - </pre>
+fonts/ フォルダが作成されるので
+<pre>
+% mv fonts /usr/local/share/ghostscript</pre>
+とします。<br />
+＊Ghost Scriptのフォントはバージョンが違っても共通して使用できます。既に以前のバージョンのフォントがあり、特にバージョンアップの予定がなければこの項目の作業は必要ありません。
+</div>
+<br /><br />
+
+
+<!-- Ghost Scriptの日本語化 -->
+<h3><div class="headline2" id="jpfont">Ghost Scriptの日本語化</div></h3>
+<div class="text1">
+&nbsp; Ghost Script 8.51 は日本語を表示できるように作られていますので日本語フォントをインストールして読み込めるようにするだけで表示が可能です。<br />
+&nbsp; ここではCIDフォントの使用法について解説します。手元にCIDフォントを用意しておいて下さい。CIDフォントがない場合にはフリーの<a href="ftp://ftp.oreilly.com/pub/examples/nutshell/cjkv/adobe/samples/" rel="nofollow">和田研フォント</a>などをダウンロードします。<br />
+<ul class="list1">
+<li> フォントのパスを指定<br />
+フォントを /usr/local/share/ghostscript/Resource/CIDFont に置き、/usr/local/share/ghostscript/8.53/lib/gs_res.ps を変更します。
+<pre>
+------------------------------------------------------------------------
+/FontResourceDir (<span style="COLOR:red">Font</span>) .resource_dir_name 
+<span style="COLOR:red"> ↓</span>
+/FontResourceDir (<span style="COLOR:red">/usr/local/share/ghostscript/Resource/CIDFont/</span>)
+.resource_dir_name <br />
+/GenericResourceDir () .resource_dir_name 
+<span style="COLOR:red">↓</span>
+/GenericResourceDir (<span style="COLOR:red">/usr/local/share/ghostscript/Resource/</span>)
+.resource_dir_name 
+------------------------------------------------------------------------</pre>
+</li><br />
+<li> 代用フォントの使用<br />
+&nbsp; psファイルの中では Ryumin-Light, GothicBBB-Medium という日本語フォントが使われますが、このフォントを持っていない場合には別のフォントで代用します。WadaMin-Regular, Wadamin-Bold で代用するには/usr/local/share/ghostscript/8.53/lib/cidfmap に
+<pre>
+------------------------------------------------------------------------
+/Ryumin-Light     /WadaMin-Regular ; 
+/GothicBBB-Medium /WadaMin-Bold ; 
+------------------------------------------------------------------------</pre>
+のように記述します。
+</li><br />
+</ul>
+</div>
+<br /><br />
+
+<br /><br />
+<small><a href="#top">[top]</a></small> <br />
+<hr />
+</article>
+</body>
+<footer>
+<p>最終更新日：2024/10/18</p>
+<p>Copyright (C) 2005-2024, Yousuke Yamashita</p>
+</footer>
+</html>

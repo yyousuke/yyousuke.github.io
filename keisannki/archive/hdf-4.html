@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="山下陽介 (Yousuke Yamashita)  国立環境研究所 (National Institute for Environmental Studies, NIES)" />
+<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-180x180.png" />
+<link rel="icon" type="image/png" href="/icon-192x192.png" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<!-- Mobile Internet Explorer allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on">
+<!-- Specify whether or not telephone numbers in the HTML content should appear as hypertext links -->
+<meta name="format-detection" content="telephone=no" />
+<!-- Changes the logical window size used when displaying a page mobile browsers -->
+<meta name = "viewport" content = "width = device-width, initial-scale=1, user-scalable=yes">
+
+<meta name="robots" content="nofollow" />
+<meta name="http-equiv" content="X-Robots-Tag : nofollow" />
+<meta name="googlebot" content="nofollow" />
+<meta name="description" content="2010年3月22日：Solaris9でHDF4.2をインストールした際の設定方法">
+<meta name="keywords" content="openssh">
+<link href="../design_keisannki.css" rel="stylesheet" type="text/css" />
+<title>アーカイブ：HDF-4.2のインストール</title>
+</head>
+
+<body>
+<div id="nesting">
+<a href="/">ホーム</a> &gt; <a href="/yousuke/index.html">山下のページ</a> &gt;  <a href="/yousuke/keisannki/index.html">計算機関連</a> &gt; <a href="/yousuke/keisannki/archive/index.html">アーカイブ：計算機関連</a>  &gt; Opensshのインストール
+</div>
+<article>
+<h1  id="top">アーカイブ：HDF4.2r3のインストール（Solaris）</h1>
+<br />
+<div id="text2">
+<p><span style="COLOR:red">2010年3月22日に更新した情報のアーカイブ</span>です。</p><br />
+<p>&nbsp; ここでは、Solaris9でHDF4.2をインストールした際の設定方法をメモしています。<br />
+&nbsp; コマンド入力の説明では、%が一般ユーザの場合のプロンプト、#がrootの場合のプロンプトとして解説しています。</p>
+</div>
+<br />
+<br />
+
+<!-- HDF4のダウンロード -->
+<h3><div class="headline2" id="download">1　HDF4のダウンロード</div></h3>
+<div class="text1">
+&nbsp; <a href="http://www.hdfgroup.org/products/hdf4">HDFのページ</a>からHDF4のソースコードとSZIP、ZLIB、JPEGをダウンロードします。
+</div>
+<br /><br />
+
+
+<!-- SZIPのインストール -->
+<h3><div class="headline2" id="szip">2　SZIPのインストール</div></h3>
+<div class="text1">
+&nbsp; ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure で --prefix=インストール先　を変更してください。<br />
+<pre>
+% gunzip -c szip-2.1.tar.gz | tar xvf - 
+% cd szip-2.1 
+% ./configure --prefix=/usr/local
+% make <br />
+% make checkで
+All test passed.が出ることを確認し、
+# make install</pre>
+</div>
+<br /><br />
+
+
+<!-- ZLIBのインストール -->
+<h3><div class="headline2" id="zlib">3　ZLIBのインストール</div></h3>
+<div class="text1">
+&nbsp; ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure に --prefix=インストール先　のオプションを付けてください。<br />
+<pre>
+% gunzip -c zlib-1.2.3.tar.gz | tar xvf - 
+% cd zlib-1.2.3 
+% ./configure
+% make
+# make install</pre>
+</div>
+<br /><br />
+
+
+<!-- JPEGのインストール -->
+<h3><div class="headline2" id="jpeg">4　JPEGのインストール</div></h3>
+<div class="text1">
+&nbsp; ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure に --prefix=インストール先　のオプションを付けてください。<br />
+<pre>
+% gunzip -c jpegsrc.v6b.tar.gz | tar xvf -
+% cd jpeg-6b
+% ./configure
+% make
+# make install</pre>
+</div>
+<br /><br />
+
+
+<!-- HDF4.2r3のインストール -->
+<h3><div class="headline2" id="hdf4">5　HDF4.2r3のインストール</div></h3>
+<div class="text1">
+&nbsp; ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure に --prefix=インストール先　のオプションを付けてください。<br />
+<pre>
+% gunzip -c HDF4.2r3.tar.gz | tar xvf -
+% cd HDF4.2r3<br />
+% setenv CPPFLAGS -I/usr/local/include
+% ./configure --prefix=/usr/local/HDF4.2r3 --with-zlib=/usr/local/lib --with-jpeg=/usr/local/lib \
+--with-szlib=/usr/local/lib <br />
+% make<br />
+% make check でテストが成功したことを確認し、
+# make install</pre>
+＊ HDF4.2.5でも同じ方法でインストール可能です。
+</div>
+<br /><br />
+
+
+
+<br /><br />
+<small><a href="#top">[top]</a></small> <br />
+<hr />
+</article>
+</body>
+<footer>
+<p>最終更新日：2024/10/18</p>
+<p>Copyright (C) 2005-2024, Yousuke Yamashita</p>
+</footer>
+</html>

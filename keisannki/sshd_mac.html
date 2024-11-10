@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="山下陽介 (Yousuke Yamashita)  国立環境研究所 (National Institute for Environmental Studies, NIES)" />
+<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-180x180.png" />
+<link rel="icon" type="image/png" href="/icon-192x192.png" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<!-- Mobile Internet Explorer allows us to activate ClearType technology for smoothing fonts for easy reading -->
+<meta http-equiv="cleartype" content="on" />
+<!-- Specify whether or not telephone numbers in the HTML content should appear as hypertext links -->
+<meta name="format-detection" content="telephone=no" />
+<!-- Changes the logical window size used when displaying a page mobile browsers -->
+<meta name = "viewport" content = "width = device-width, initial-scale=1, user-scalable=yes" />
+
+<meta name="robots" content="nofollow" />
+<meta name="http-equiv" content="X-Robots-Tag : nofollow" />
+<meta name="googlebot" content="nofollow" />
+<meta name="description" content="MacOS Mojave/CatalinaにSSH接続し、Xを飛ばせるようにした際の設定方法を紹介しています。">
+<link href="design_keisannki.css" rel="stylesheet" type="text/css" />
+<title>MacOSへのSSH接続</title>
+</head>
+
+<!--<body link="#CC00FF" vlink="#CC00FF">-->
+<body>
+<div id="nesting">
+<a href="/">ホーム</a> &gt; <a href="/keisannki/index.html">計算機関連</a> &gt; OpenSSH
+</div>
+<article>
+<h1>MacOSでOpenSSH</h1>
+<br />
+<p>&nbsp; ここでは、MacOS Mojave (10.14) / Catalina (10.15) にSSH接続し、X11プロトコルを使用するアプリケーションでSSHを介してXを飛ばせるようにした際の設定方法を紹介しています。最新版のSonoma (14)でも同じ方法が使用可能です。<br />
+&nbsp; SSHサーバにするには共有設定が、Xを飛ばすにはXquartzのインストールが必要でした。コマンド入力の説明では、%が一般ユーザのプロンプトを表しています。</p>
+<br /><hr />
+
+
+<h3><div class="headline2" id="ssh">SSHの許可</div></h3>
+<div class="text1">
+<p>
+&nbsp; [システム環境設定]ー[共有]から、リモートログインにチェックを入れます。<br />
+ログインする際のコマンドが表示されるので、メモしておきます。<br />
+</p>
+</div>
+<br />
+
+<h3><div class="headline2" id="xquartz">Xquartzのインストール</div></h3>
+<div class="text1">
+サーバ側、クライアント側のどちらにもインストールします
+<p>
+&nbsp; Xquartzをダウンロードします。<br />
+<a href="https://www.xquartz.org">https://www.xquartz.org</a><br />
+<br />
+ダウンロードしたdmgファイルを開くとpkgファイルが出てくるので、pkgファイルをインストールします。<br />
+&nbsp; この際に、/etc/ssh/sshd_config、/etc/ssh/ssh_configが変更され、次の行が挿入されます。<br />
+</p>
+<pre>
+# XAuthLocation added by XQuartz (http://xquartz.macosforge.org)
+XAuthLocation /opt/X11/bin/xauth
+</pre>
+</div>
+<br />
+
+<h3><div class="headline2" id="xforward">X Forwardingの設定</div></h3>
+<div class="text1">
+
+<ul class="list1">
+<li><h4>サーバ側の設定</h4><br />
+<p>
+&nbsp; デフォルトではX Forwardingができないようになっているので、X Forwardingの設定が必要になります。<br />
+/etc/ssh/sshd_configで
+<pre>
+#X11Forwarding no
+</pre>
+という行を探し、
+<pre>
+#X11Forwarding no
+X11Forwarding yes
+</pre>
+のように変更します。<br />
+</p></li><br />
+<li><h4>クライアント側の設定</h4><br />
+<p>
+/etc/ssh/ssh_configの最後、または、~/.ssh/configの最初に
+<pre>
+Host *
+&nbsp; &nbsp; ForwardX11 yes
+&nbsp; &nbsp; ForwardX11Trusted yes
+</pre>
+を追加しておきます。一定時間経過後にX Forwardingが無効になってしまう場合、
+<pre>
+ForwardX11Timeout 86400
+</pre>
+も追加しておくと回避可能です（この場合は１日）。<br /><br />
+＊Xquartzが立ち上がらない不具合が発生することがあります。まずは、ローカルでxcalcなどXを使用するプログラムを試し、Xquartzの起動を確認します。自動で起動しない場合には、次のように手動でXquartzを起動してみます。
+<pre>
+open /Applications/Utilities/XQuartz.app/Contents/MacOS/X11
+</pre>
+＊コマンドを起動したターミナルを閉じてしまうと、Xquartzも終了してしまいます。
+</p>
+</li></ul>
+</div>
+
+
+<br />
+<br />
+<small><a href="#top">[top]</a></small> <br />
+<hr />
+</article>
+</body>
+<footer>
+<p>最終更新日：2024/11/04</p>
+<p>Copyright (C) 2018-2024, Yousuke Yamashita, CC BY 4.0</p>
+</footer>
+</html>
