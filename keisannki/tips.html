@@ -61,6 +61,7 @@
     <ul class="list2">
       <li><a href="#linux_2_1">プロセス毎の詳細なメモリ使用量を調べる</a></li>
       <li><a href="#linux_2_2">実行時に確保するメモリ領域毎のサイズを表示</a></li>
+      <li><a href="#linux_2_3">実行時にリンクされるライブラリを調べる</a></li>
   </ul>
   </li></ul>
   <!-- emacs関連 -->
@@ -262,6 +263,12 @@ ps -efでプロセスIDを調べ、pmapコマンドを用いる
 <div class="text1">
 ps -efで実行中のプロセスとして表示されるプロセスのバイナリへのパスを調べておく。
 <pre>% size 調べたいプロセスのバイナリへのパス</pre>
+</div>
+
+<h4><div class="headline2" id="linux_2_3">実行時にリンクされるライブラリを調べる</div></h4>
+<div class="text1">
+lddを使うと実行時にリンクされるライブラリ（動的ライブラリ）を表示できる。
+<pre>% ldd 調べたいバイナリへのパス</pre>
 </div>
 
 
