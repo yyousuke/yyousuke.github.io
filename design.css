@@ -148,22 +148,6 @@ h4{
 	padding-right:15px;
 }
 
-.text1e {
-        font-family:Verdana, Arial, Helvetica, sans-serif;
-        font-size:16px;
-        font-weight:normal;
-        text-align:left;
-        background-color:#ffffff;
-        float:left;
-        height:auto;
-        width:500px;
-        margin-top:2px;
-        margin-bottom:2px;
-        margin-left:20px;
-        padding-left:5px;
-        padding-right:15px;
-}
-
 .text2 {
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:14px;
@@ -279,16 +263,6 @@ h4{
 	width:95%;
 	word-break: break-all;
 	word-wrap: break-word;
-}
-
-.text1e {
-        font-size:10px;
-        width:95%;
-        background-color:#ffffff;
-        margin-left:10px;
-        padding-left:5px;
-        word-break: break-all;
-        word-wrap: break-word;
 }
 
 .text2 {
