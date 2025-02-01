@@ -1258,19 +1258,19 @@ convertコマンドを用いると、別の画像ファイルの形式に変換�
 
 <h4><div class="headline2" id="com_1_3">nkfでUTF-8とLF形式にする</div></h4>
 <div class="text1">
-nkf（Network Kanji Filter）では文字コードの変換や改行コードの変換を行うことができる。次のように文字コードをUTF-8、改行コードをLF（¥n）に変換し、元のファイルを上書きする。
+nkf（Network Kanji Filter）では文字コードの変換や改行コードの変換を行うことができる。次のように文字コードをUTF-8、改行コードをLF（¥n）に変換し、元のファイルを上書きする
 <pre>% nkf -w -Lu --overwrite ファイル名</pre>
 </div>
 
 <h4><div class="headline2" id="com_1_4">teeでmakeログを作成しながら画面表示</div></h4>
 <div class="text1">
-teeコマンドでは、パイプで渡された内容をファイルに書き出しながら画面にも表示することができる。makeの際にログファイルを残しながら表示するのに便利。
+teeコマンドでは、パイプで渡された内容をファイルに書き出しながら画面にも表示することができる。makeの際にログファイルを残しながら表示するのに便利
 <pre>% make | tee ファイル名</pre>
 </div>
 
 <h4><div class="headline2" id="com_1_5">apgでパスワード自動生成</div></h4>
 <div class="text1">
-apg（Automated Password Generator）コマンドでは、複雑なパスワードを自動生成することができる。
+apg（Automated Password Generator）コマンドでは、複雑なパスワードを自動生成することができる
 <pre>% apg</pre>
 デフォルトでは6種類の候補を表示する（-a0オプションがデフォルトで、発音できそうなものが選ばれる）。<br />
 <pre>% apg -a1</pre>
@@ -1279,13 +1279,13 @@ apg（Automated Password Generator）コマンドでは、複雑なパスワー�
 
 <h4><div class="headline2" id="com_1_6">nohupでログアウト後も処理を継続</div></h4>
 <div class="text1">
-nohupコマンドを使うと、ログアウト後も処理を継続できる。次のようにバックグランドでコマンドを実行する。プロセスが終了するかkillされるか、システムがシャットダウンされるまで継続する。
+nohupコマンドを使うと、ログアウト後も処理を継続できる。次のようにバックグランドでコマンドを実行する。プロセスが終了するかkillされるか、システムがシャットダウンされるまで継続する
 <pre>% nohup コマンド &amp;</pre>
 </div>
 
 <h4><div class="headline2" id="com_1_7">findでファイル処理</div></h4>
 <div class="text1">
-findコマンドでは、条件に一致するファイル/ディレクトリの検索やそれらに対しコマンドを実行することなどが可能で、応用できる範囲は広い。
+findコマンドでは、条件に一致するファイル/ディレクトリの検索やそれらに対しコマンドを実行することなどが可能で、応用できる範囲は広い
 <ul class="list1">
 <li>テキストファイル（*.txt）を検索する
 <pre>% find . -name '*.txt' </pre>
@@ -1322,7 +1322,7 @@ findコマンドでは、条件に一致するファイル/ディレクトリの
 
 <h4><div class="headline2" id="com_1_8">sedで文字列の置換</div></h4>
 <div class="text1">
-コマンドの出力やファイルなどの文字列をsedコマンドで置換できる。
+コマンドの出力やファイルなどの文字列をsedコマンドで置換できる
 <ul class="list1">
 <li>ファイルの文字列を置換する（行の先頭のみ）
 <pre>cat ファイル名 | sed -e 's/元の文字列/置換する文字列/' </pre>
@@ -1346,13 +1346,15 @@ findコマンドでは、条件に一致するファイル/ディレクトリの
 
 <h4><div class="headline2" id="com_1_9">trで大文字と小文字の置換</div></h4>
 <div class="text1">
-trコマンドを使うと、簡単に小文字を大文字に変換できる。
-<pre>tr \[a-z\] \[A-Z\]</pre>
+trコマンドを使うと、簡単に小文字を大文字に変換できる
+<pre>echo "文字列" | tr \[a-z\] \[A-Z\]</pre>
+大文字を小文字に変換することも可能
+<pre>echo "文字列" | tr \[A-Z\] \[a-z\]</pre>
 </div>
 
 <h4><div class="headline2" id="com_1_10">コマンドマニュアルの表示</div></h4>
 <div class="text1">
-マニュアルがインストールされていれば、manコマンドで表示できる。
+マニュアルがインストールされていれば、manコマンドで表示できる
 <pre>man コマンド名</pre>
 コマンド自身にマニュアル表示のオプションが入っている場合
 <pre>コマンド名 --help</pre>
@@ -1365,7 +1367,7 @@ trコマンドを使うと、簡単に小文字を大文字に変換できる。
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/01/04</p>
+<p>最終更新日：2025/02/01</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
