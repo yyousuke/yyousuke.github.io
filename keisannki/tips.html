@@ -937,7 +937,9 @@ SSHホストが更新された際、ホスト公開鍵が以前のものと異�
 <pre>% ssh-keygen</pre>
 ＊デフォルトは暗号化形式rsa、ビット数は2048bit<br />
 詳細なオプションは<a href="https://atmarkit.itmedia.co.jp/ait/articles/1908/02/news015.html">コマンド――SSHの公開鍵と秘密鍵を作成する</a>参照<br />
-＊公開鍵は見せても良いが、秘密鍵は所有者のみが管理する
+＊公開鍵は見せても良いが、秘密鍵は所有者のみが管理する<br /><br />
+楕円曲線を利用したアルゴリズムで鍵を作成する
+<pre>% ssh-keygen -t ed25519</pre>
 </div>
 
 <h4><div class="headline2" id="ssh_1_3">ユーザー名を指定してログイン</div></h4>
@@ -993,9 +995,9 @@ Host 接続先ホスト名の略称等
 <h4><div class="headline2" id="ssh_1_8">ポートフォワード</div></h4>
 <div class="text1">
 <ul class="list1">
-<li>sshコマンドに-Rオプションを付ける場合<br />
-例：sshログイン先の8000番ポートをローカルの8001番に転送
-<pre>ssh 接続先 -R8000:localhost:8001 -f -N -C</pre>
+<li>sshコマンドに-Lオプションを付ける場合<br />
+例：ローカルの8001番をsshログイン先の8000番ポートに転送
+<pre>ssh 接続先 -L8001:localhost:8000 -f -N -C</pre>
 ＊sshをバックグラウンドで実行（-f）、リモートでコマンドを実行しない（-N）、圧縮を有効（-C）</li><br />
 <li>&sim;/.ssh/configに記述する場合
 <pre>Host 接続先ホスト名の略称等
@@ -1004,9 +1006,15 @@ Host 接続先ホスト名の略称等
 &nbsp; &nbsp; IdentityFile ~/.ssh/秘密鍵のファイル名
 &nbsp; &nbsp; LocalForward 8000 localhost:8001
 </pre>
+＊ローカルの8000番ポートをログイン先の8001番ポートに転送する<br />
 次のコマンドで秘密鍵を指定したポートフォワードが可能
 <pre>% ssh -f -N -C 接続先ホスト名の略称等</pre>
 </li><br />
+<li>別のホストに転送することも可能<br />
+例：ローカルの8001番をsshログイン先からアクセス可能なプライベートネットワークに転送
+<pre>ssh 接続先 -L8001:192.168.10.2:8000 -f -N -C</pre>
+＊プライベートネットワーク上にある192.168.10.2のポート8000番に転送する<br />
+＊sshログイン先からプライベートネットワーク上の192.168.10.2までは暗号化されないので注意</li><br />
 </ul>
 </div>
 
@@ -1367,7 +1375,7 @@ trコマンドを使うと、簡単に小文字を大文字に変換できる
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/02/02</p>
+<p>最終更新日：2025/02/05</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
