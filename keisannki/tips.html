@@ -185,7 +185,8 @@
       <li><a href="#com_1_7">findでファイル処理</a></li>
       <li><a href="#com_1_8">sedで文字列の置換</a></li>
       <li><a href="#com_1_9">trで大文字と小文字の置換</a></li>
-      <li><a href="#com_1_10">コマンドマニュアルの表示</a></li>      
+      <li><a href="#com_1_10">パス名からファイル名を取得</a></li>      
+      <li><a href="#com_1_11">コマンドマニュアルの表示</a></li>   
   </ul>
   </li></ul>
 </div>
@@ -1369,7 +1370,16 @@ trコマンドを使うと、簡単に小文字を大文字に変換できる
 <pre>% echo "文字列" | tr \[A-Z\] \[a-z\]</pre>
 </div>
 
-<h4><div class="headline2" id="com_1_10">コマンドマニュアルの表示</div></h4>
+<h4><div class="headline2" id="com_1_10">パス名からファイル名を取得</div></h4>
+<div class="text1">
+basenameコマンドを使うことで、パス名からファイル名を取得できる
+<pre>% basename パス名</pre>
+他のコマンドで取得したパス名を使うこともできる
+<pre>% basename `pwd`</pre>
+＊現在の絶対パスからディレクトリ名を取得
+</div>
+
+<h4><div class="headline2" id="com_1_11">コマンドマニュアルの表示</div></h4>
 <div class="text1">
 マニュアルがインストールされていれば、manコマンドで表示できる
 <pre>% man コマンド名</pre>
@@ -1384,7 +1394,7 @@ trコマンドを使うと、簡単に小文字を大文字に変換できる
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/02/06</p>
+<p>最終更新日：2025/02/16</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
