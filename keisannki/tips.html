@@ -902,6 +902,10 @@ systemctlコマンドを用いる
 </li><br />
 <li> パーティションの作成
 <pre>% parted</pre>
+pでパーティションテーブルを表示する。qで終了<br />
+新しいパーティションテーブルを作成するには
+<pre>mklabel gpt
+mkpart</pre>
 </li><br />
 </ol>
 ディスクをマウントする際は下記の手順
@@ -1420,7 +1424,7 @@ basenameコマンドを使うことで、パス名からファイル名を取得
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/02/20</p>
+<p>最終更新日：2025/02/22</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
