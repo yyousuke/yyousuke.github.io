@@ -922,6 +922,45 @@ mkpart</pre>
 </ol>
 </div>
 
+<h4><div class="headline2" id="system_1_10">ファイアウォール</div></h4>
+<div class="text1">
+ubuntuの場合ufw、Red Hat系ではfirewall-cmd
+<ul class="list1">
+<li>ubuntuのufw
+<ul class="list2">
+<li>状態の確認
+<pre># systemctl status ufw</pre>
+＊「Active: active (exited)」 なら起動している
+</li><br />
+<li>状態の確認
+<pre># ufw status</pre>
+＊「状態: 非アクティブ」なら起動しているが非アクティブ<br />
+＊「状態: アクティブ」なら起動していてアクティブ
+</li><br />
+<li>アクティブな場合に、詳細な状態の確認
+<pre># ufw status verbose
+ロギング: on (low)
+Default: deny (incoming), allow (outgoing), disabled (routed)
+
+新しいプロファイル: skip
+
+To Action From
+-- ------ ----
+22/tcp ALLOW IN Anywhere
+22/tcp (v6) ALLOW IN Anywhere (v6)
+</pre>
+＊デフォルトで外からの接続を拒否し、内からの全ての接続を許可し、外からのssh接続のみ許可した場合
+</ul>
+</li><br />
+</ul>
+</div>
+
+<h4><div class="headline2" id="system_1_11">パッケージ管理</div></h4>
+<div class="text1">
+
+</div>
+
+
 <!-- OSアップデート -->
 <h3><div class="headline1" id="os_1">OSアップデート</div></h3>
 <h4><div class="headline2" id="os_1_1">OpenSUSEのOSアップデート</div></h4>
@@ -1425,7 +1464,7 @@ basenameコマンドを使うことで、パス名からファイル名を取得
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/02/24</p>
+<p>最終更新日：2025/03/17</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
