@@ -204,390 +204,376 @@
 <!-- スケジュール管理 -->
 <h3><div class="headline1" id="linux_1">スケジュール管理</div></h3>
 <h4><div class="headline2" id="linux_1_1">crontabに登録する</div></h4>
-<div class="text1">
-ログインしているアカウントのcronに登録する場合
-<pre>% crontab -e</pre>
-編集画面が現れるので、次のように設定する。
-<pre>分 時 日 月 週の何日目&nbsp; コマンド名</pre>
-<ul class="list1">
-<li>毎日8時45分にget.shスクリプトを動かす
-<pre>
-45 08 * * *  get.sh &gt; /dev/null 2 &gt;&amp; 1
-</pre>
-＊/dev/nullに渡して通知されないようにする
-＊2は標準エラー出力を表し、標準出力の1と一緒に出力するので両方が破棄される
-</li><br />
-<li>毎月1日にget.shスクリプトを動かす
-<pre>
-45 08 1 * *  get.sh &gt; /dev/null 2 &gt;&amp; 1
-</pre></li>
-<li>毎週日曜にget.shスクリプトを動かす
-<pre>
-45 08 * * 0  get.sh &gt; /dev/null 2 &gt;&amp; 1
-</pre>
-0が日曜、1が月曜、2が火曜、3が水曜、4が木曜、5が金曜、6が土曜
-</li><br />
-<li>10分毎にスクリプトを動かす
-<pre>
-00,10,20,30,40,50  * * * *  get.sh &gt; /dev/null 2 &gt;&amp; 1
-</pre>
-または
-<pre>
-*/10  * * * *  get.sh &gt; /dev/null 2 &gt;&amp; 1
-</pre>
-</li>
-</ul>
-</div>
+	<div class="text1">
+		ログインしているアカウントのcronに登録する場合
+		<pre>% crontab -e</pre>
+		編集画面が現れるので、次のように設定する。
+		<pre>分 時 日 月 週の何日目&nbsp; コマンド名</pre>
+		<ul class="list1">
+			<li>毎日8時45分にget.shスクリプトを動かす
+				<pre>45 08 * * *  get.sh &gt; /dev/null 2 &gt;&amp; 1</pre>
+				＊/dev/nullに渡して通知されないようにする
+				＊2は標準エラー出力を表し、標準出力の1と一緒に出力するので両方が破棄される
+			</li><br />
+			<li>毎月1日にget.shスクリプトを動かす
+				<pre>45 08 1 * *  get.sh &gt; /dev/null 2 &gt;&amp; 1</pre>
+			</li>
+			<li>毎週日曜にget.shスクリプトを動かす
+				<pre>45 08 * * 0  get.sh &gt; /dev/null 2 &gt;&amp; 1</pre>
+				0が日曜、1が月曜、2が火曜、3が水曜、4が木曜、5が金曜、6が土曜
+			</li><br />
+			<li>10分毎にスクリプトを動かす
+				<pre>00,10,20,30,40,50  * * * *  get.sh &gt; /dev/null 2 &gt;&amp; 1</pre>
+				または
+				<pre>*/10  * * * *  get.sh &gt; /dev/null 2 &gt;&amp; 1</pre>
+			</li>
+		</ul>
+	</div>
 
 <h4><div class="headline2" id="linux_1_2">ユーザを指定してcrontabに登録する</div></h4>
-<div class="text1">
-/etc/crontabを編集する
-<pre>分 時 日 月 週の何日目&nbsp; ユーザ名&nbsp; コマンド名</pre>
-毎日50分に、clamupdateユーザ権限でウイルスデータベースを自動更新しログ保存
-<pre>
-50  * * * *  clamupdate /usr/bin/freshclam --quiet -l /var/log/clam-update.log
-</pre>
-</div>
+	<div class="text1">
+		/etc/crontabを編集する
+		<pre>分 時 日 月 週の何日目&nbsp; ユーザ名&nbsp; コマンド名</pre>
+		毎日50分に、clamupdateユーザ権限でウイルスデータベースを自動更新しログ保存
+		<pre>50  * * * *  clamupdate /usr/bin/freshclam --quiet -l /var/log/clam-update.log</pre>
+	</div>
 
 <h4><div class="headline2" id="linux_1_3">crontabで月末に実行する</div></h4>
-<div class="text1">
-/etc/crontabを編集する
-<pre>分 時 日 月 週の何日目&nbsp; ユーザ名&nbsp; コマンド名</pre>
-dateコマンドを使い、次の日が1日だった場合に実行する。
-<pre>
-55　23　28-31 * * /usr/bin/test $( date -d '+1 day' +%d ) -eq 1 &amp;&amp; 実行したいコマンド
-</pre>
-＊「+%d」は月の中の何日目かを表す値（01-31）<br />
-<a href="https://www.server-memo.net/tips/command/date/date.html">dateコマンドで日付や時刻を表示したり設定する方法 </a>
-</div>
+	<div class="text1">
+		/etc/crontabを編集する
+		<pre>分 時 日 月 週の何日目&nbsp; ユーザ名&nbsp; コマンド名</pre>
+		dateコマンドを使い、次の日が1日だった場合に実行する。
+		<pre>55　23　28-31 * * /usr/bin/test $( date -d '+1 day' +%d ) -eq 1 &amp;&amp; 実行したいコマンド</pre>
+		＊「+%d」は月の中の何日目かを表す値（01-31）<br />
+		<a href="https://www.server-memo.net/tips/command/date/date.html">dateコマンドで日付や時刻を表示したり設定する方法 </a>
+	</div>
 
 
 <!-- デバッグ関連 -->
 <h3><div class="headline1" id="linux_2">デバッグ関連</div></h3>
 <h4><div class="headline2" id="linux_2_1">プロセス毎の詳細なメモリ使用量を調べる</div></h4>
-<div class="text1">
-ps -efでプロセスIDを調べ、pmapコマンドを用いる
-<pre>% pmap -x プロセスID</pre>
-</div>
+	<div class="text1">
+		ps -efでプロセスIDを調べ、pmapコマンドを用いる
+		<pre>% pmap -x プロセスID</pre>
+	</div>
 
 <h4><div class="headline2" id="linux_2_2">実行時に確保するメモリ領域毎のサイズを表示</div></h4>
-<div class="text1">
-ps -efで実行中のプロセスとして表示されるプロセスのバイナリへのパスを調べておく。
-<pre>% size 調べたいプロセスのバイナリへのパス</pre>
-</div>
+	<div class="text1">
+		ps -efで実行中のプロセスとして表示されるプロセスのバイナリへのパスを調べておく。
+		<pre>% size 調べたいプロセスのバイナリへのパス</pre>
+	</div>
 
 <h4><div class="headline2" id="linux_2_3">実行時にリンクされるライブラリを調べる</div></h4>
-<div class="text1">
-lddを使うと実行時にリンクされるライブラリ（動的ライブラリ）を表示できる。
-<pre>% ldd 調べたいバイナリへのパス</pre>
-</div>
+	<div class="text1">
+		lddを使うと実行時にリンクされるライブラリ（動的ライブラリ）を表示できる。
+		<pre>% ldd 調べたいバイナリへのパス</pre>
+	</div>
 
 
 <!-- emacs関連 -->
 <h3><div class="headline1" id="emacs_1">emacs関連</div></h3>
 <h4><div class="headline2" id="emacs_1_1">emacsでカーソル位置を保存する</div></h4>
-<div class="text1">
-emacsの設定ファイル（.emacs）に追記する
-<ul class="list1">
-<li>24.5まで
-<pre>
-(require 'saveplace)
-(setq-default save-place t)
-</pre></li>
-<li>25.0以降
-<pre>
-(require 'saveplace)
-(save-place-mode 1) 
-</pre></li>
-</ul>
-</div>
+	<div class="text1">
+		emacsの設定ファイル（.emacs）に追記する
+		<ul class="list1">
+			<li>24.5まで
+				<pre>
+				(require 'saveplace)
+				(setq-default save-place t)
+				</pre></li>
+			<li>25.0以降
+				<pre>
+				(require 'saveplace)
+				(save-place-mode 1) 
+				</pre></li>
+		</ul>
+	</div>
 
 <h4><div class="headline2" id="emacs_1_2">emacsで長い行を折り返す</div></h4>
-<div class="text1">
-長い行を折り返して表示
-<pre>Function : toggle-truncate-lines</pre><br />
-長い行を折り返す（改行が入る）
-<pre>Function : auto-fill-mode</pre>
-</div>
+	<div class="text1">
+		長い行を折り返して表示
+		<pre>Function : toggle-truncate-lines</pre><br />
+		長い行を折り返す（改行が入る）
+		<pre>Function : auto-fill-mode</pre>
+	</div>
 
 <h4><div class="headline2" id="emacs_1_3">emacsで矩形選択</div></h4>
-<div class="text1">
-矩形選択モードに切り替える
-<pre>Function : rectangle-mark-mode</pre><br />
-ショートカット
-<pre>C-x SPC</pre>
-</div>
+	<div class="text1">
+		矩形選択モードに切り替える
+		<pre>Function : rectangle-mark-mode</pre><br />
+		ショートカット
+		<pre>C-x SPC</pre>
+	</div>
 
 <h4><div class="headline2" id="emacs_1_4">emacsで末尾のエスケープを揃える</div></h4>
-<div class="text1">
-regionを指定してから以下
-<pre>Function : sh-backslash-region</pre>
-</div>
+	<div class="text1">
+		regionを指定してから以下
+		<pre>Function : sh-backslash-region</pre>
+	</div>
 
 
 <!-- vi関連 -->
 <h3><div class="headline1" id="vi_1">vi関連</div></h3>
 <h4><div class="headline2" id="vi_1_1">viの基本的な操作</div></h4>
-<div class="text1">
-起動する場合、端末を開き
-<pre>% vi</pre>
-コマンド入力モードの基本的な操作一覧
-<ul class="list1">
-<li>viの終了
-<pre>
-:q &nbsp; 保存しないで終了
-:q! &nbsp; 強制終了
-ZZ &nbsp; 保存して終了
-</pre>
-（挿入モードになっている場合、ESCでコマンド入力モードに切り替える）</li><br />
-<li>カーソルの移動（隣接する場所）
-<pre>
-h, j, k, l &nbsp; 左、下、上、右
-</pre>
-＊隣接するhjklキーに人差指から小指までを置いて操作
-</li><br />
-<li>カーソルの移動（離れた場所）
-<pre>
-0 &nbsp; 行頭に移動
-$ &nbsp; 行末に移動
-[[ &nbsp; 文頭に移動
-]] &nbsp; 文末に移動
-50G &nbsp; 50行目に移動
-:50 &nbsp; 50行目に移動
-10| &nbsp; 現在の行の10文字目に移動
-E &nbsp; 単語の末尾に移動
-B &nbsp; 単語の先頭に移動
-fT &nbsp; 現在の行のカーソルより後ろにある文字Tに移動
-FT &nbsp; 現在の行のカーソルより前にある文字Tに移動
-</pre>
-</li>
-<li>挿入
-<pre>
-i &nbsp; カーソルのある位置に挿入
-I &nbsp; 文頭に挿入（カーソルが行の途中にある場合に便利）
-a &nbsp; カーソルの後ろに挿入（行末にカーソルがあり、後ろに追加する場合に必要）
-A &nbsp; 文末に挿入（カーソルが行の途中にある場合に便利）
-o &nbsp; カーソルの下に新しい行を挿入し、その行を編集
-</pre>
-</li>
-<li>やり直し（アンドゥ）
-<pre>
-u &nbsp; 直前の動作を取り消
-</pre>
-</li>
-<li>削除
-<pre>
-x &nbsp; 1文字削除
-3x &nbsp; 3文字削除
-dd &nbsp; 1行削除（d1dの省略型） 
-d5d &nbsp; 5行削除
-dw &nbsp; 1単語削除（d1wの省略型）
-d$ &nbsp; 行末まで削除
-d]] &nbsp; 文末まで削除
-:10,20d &nbsp; 10から20行目までを削除
-</pre>
-</li>
-<li>コピー
-<pre>
-yy &nbsp; 1行コピー（y1yの省略型）
-y3y &nbsp; 3行コピー
-yw &nbsp; 1単語コピー（y1wの省略型）
-y$ &nbsp; 行末までコピー
-y]] &nbsp; 文末までコピー
-:10,20y &nbsp; 10から20行目までをコピー
-</pre>
-</li>
-<li>貼り付け
-<pre>
-p &nbsp; 直前のコピー、削除でバッファに入った内容を貼り付け
-</pre>
-</li>
-<li>行の連結
-<pre>
-J &nbsp; 現在カーソルがある行に次の行を連結する
-</pre>
-＊一度改行したら、この方法でしか戻せない
-</li><br />
-<li>検索
-<pre>
-:/word &nbsp; 文字列wordを順方向に検索
-:?word &nbsp; 文字列wordを逆方向に検索
-</pre>
-</li>
-<li>置換
-<pre>
-r &nbsp; カーソルの文字をrの次にタイプする文字に置き換え（挿入モードに移ることなく文章を編集できる）
-:%s/word1/word2/g &nbsp; 文章中のword1を全てword2に
-:%s/word1/word2/ &nbsp; 行の先頭にあるword1をword2に
-:%s/word1/word2/c &nbsp; 置換の前に確認する場合
-:10,50s/word1/word2/g &nbsp; 10から50行目のword1を全てword2に
-</pre>
-</li>
-<li>ファイル操作
-<pre>
-:10,30w newfile &nbsp; 10-30行目をnewfileに書き込み
-:.,$w &lt;&lt; file &nbsp; 現在の行から文末までをfileに追加書き込み
-</pre>
-</li>
-</ul>
-</div>
+	<div class="text1">
+		起動する場合、端末を開き
+		<pre>% vi</pre>
+		コマンド入力モードの基本的な操作一覧
+		<ul class="list1">
+			<li>viの終了
+				<pre>
+				:q &nbsp; 保存しないで終了
+				:q! &nbsp; 強制終了
+				ZZ &nbsp; 保存して終了
+				</pre>
+				（挿入モードになっている場合、ESCでコマンド入力モードに切り替える）</li><br />
+			<li>カーソルの移動（隣接する場所）
+				<pre>
+				h, j, k, l &nbsp; 左、下、上、右
+				</pre>
+				＊隣接するhjklキーに人差指から小指までを置いて操作
+			</li><br />
+			<li>カーソルの移動（離れた場所）
+				<pre>
+				0 &nbsp; 行頭に移動
+				$ &nbsp; 行末に移動
+				[[ &nbsp; 文頭に移動
+				]] &nbsp; 文末に移動
+				50G &nbsp; 50行目に移動
+				:50 &nbsp; 50行目に移動
+				10| &nbsp; 現在の行の10文字目に移動
+				E &nbsp; 単語の末尾に移動
+				B &nbsp; 単語の先頭に移動
+				fT &nbsp; 現在の行のカーソルより後ろにある文字Tに移動
+				FT &nbsp; 現在の行のカーソルより前にある文字Tに移動
+				</pre>
+			</li>
+			<li>挿入
+				<pre>
+				i &nbsp; カーソルのある位置に挿入
+				I &nbsp; 文頭に挿入（カーソルが行の途中にある場合に便利）
+				a &nbsp; カーソルの後ろに挿入（行末にカーソルがあり、後ろに追加する場合に必要）
+				A &nbsp; 文末に挿入（カーソルが行の途中にある場合に便利）
+				o &nbsp; カーソルの下に新しい行を挿入し、その行を編集
+				</pre>
+			</li>
+			<li>やり直し（アンドゥ）
+				<pre>
+				u &nbsp; 直前の動作を取り消
+				</pre>
+			</li>
+			<li>削除
+				<pre>
+				x &nbsp; 1文字削除
+				3x &nbsp; 3文字削除
+				dd &nbsp; 1行削除（d1dの省略型） 
+				d5d &nbsp; 5行削除
+				dw &nbsp; 1単語削除（d1wの省略型）
+				d$ &nbsp; 行末まで削除
+				d]] &nbsp; 文末まで削除
+				:10,20d &nbsp; 10から20行目までを削除
+				</pre>
+			</li>
+			<li>コピー
+				<pre>
+				yy &nbsp; 1行コピー（y1yの省略型）
+				y3y &nbsp; 3行コピー
+				yw &nbsp; 1単語コピー（y1wの省略型）
+				y$ &nbsp; 行末までコピー
+				y]] &nbsp; 文末までコピー
+				:10,20y &nbsp; 10から20行目までをコピー
+				</pre>
+			</li>
+			<li>貼り付け
+				<pre>
+				p &nbsp; 直前のコピー、削除でバッファに入った内容を貼り付け
+				</pre>
+			</li>
+			<li>行の連結
+				<pre>
+				J &nbsp; 現在カーソルがある行に次の行を連結する
+				</pre>
+				＊一度改行したら、この方法でしか戻せない
+			</li><br />
+			<li>検索
+				<pre>
+				:/word &nbsp; 文字列wordを順方向に検索
+				:?word &nbsp; 文字列wordを逆方向に検索
+				</pre>
+			</li>
+			<li>置換
+				<pre>
+				r &nbsp; カーソルの文字をrの次にタイプする文字に置き換え（挿入モードに移ることなく文章を編集できる）
+				:%s/word1/word2/g &nbsp; 文章中のword1を全てword2に
+				:%s/word1/word2/ &nbsp; 行の先頭にあるword1をword2に
+				:%s/word1/word2/c &nbsp; 置換の前に確認する場合
+				:10,50s/word1/word2/g &nbsp; 10から50行目のword1を全てword2に
+				</pre>
+			</li>
+			<li>ファイル操作
+				<pre>
+				:10,30w newfile &nbsp; 10-30行目をnewfileに書き込み
+				:.,$w &lt;&lt; file &nbsp; 現在の行から文末までをfileに追加書き込み
+				</pre>
+			</li>
+		</ul>
+	</div>
 
 <h4><div class="headline2" id="vi_1_2">viの設定変更</div></h4>
-<div class="text1">
-コマンド入力モードで操作する。ホームディレクトリの.exrcに記載すると、毎回反映される。
-<ul class="list1">
-<li>括弧の対応を表示する
-<pre>set showmatch</pre>
-</li>
-<li>大文字／小文字を区別しない
-<pre>set ignorecase</pre>
-</li>
-<li>自動インデント機能を有効にする
-<pre>set autoindent</pre>
-</li>
-<li>カーソルがある行・列を表示する
-<pre>set ruler</pre>
-</li>
-<li>挿入モードの時に画面の下に表示が出るようにする
-<pre>set showmode</pre>
-</li>
-<li>ソースコードの文法を解釈して表示する
-<pre>syntax on</pre>
-</li>
-<li>バックアップファイルを作らない
-<pre>set nobackup</pre>
-</li>
-</ul>
-</div>
+	<div class="text1">
+		コマンド入力モードで操作する。ホームディレクトリの.exrcに記載すると、毎回反映される。
+		<ul class="list1">
+			<li>括弧の対応を表示する
+				<pre>set showmatch</pre>
+			</li>
+			<li>大文字／小文字を区別しない
+				<pre>set ignorecase</pre>
+			</li>
+			<li>自動インデント機能を有効にする
+				<pre>set autoindent</pre>
+			</li>
+			<li>カーソルがある行・列を表示する
+				<pre>set ruler</pre>
+			</li>
+			<li>挿入モードの時に画面の下に表示が出るようにする
+				<pre>set showmode</pre>
+			</li>
+			<li>ソースコードの文法を解釈して表示する
+				<pre>syntax on</pre>
+			</li>
+			<li>バックアップファイルを作らない
+				<pre>set nobackup</pre>
+			</li>
+		</ul>
+	</div>
 
 
 <!-- awk関連 -->
 <h3><div class="headline1" id="awk_1">awk関連</div></h3>
 <h4><div class="headline2" id="awk_1_1">列を取り出す</div></h4>
-<div class="text1">
-printを使う
-<ul class="list1">
-<li>ファイルから1列目、2列目を取り出す
-<pre>awk '{print $1, $2}' ファイル名</pre>
-</li>
-<li>1列目が10の場合のみを取り出す
-<pre>awk '($1==10){print $1, $2}' ファイル名</pre>
-等しい: ==、等しくない: !=<br />
-より大きい: &gt;、以上: &gt;=、より小さい: &lt;、以下: &lt;=
-</li><br />
-<li>1列目が10、2列目が5以上の場合のみを取り出す
-<pre>awk '($1==10 &amp;&amp; $2 &gt;= 5){print $1, $2}' ファイル名</pre>
-</li>
-<li>1列目が0以下か、1列目が10以上の場合のみを取り出す
-<pre>awk '($1 &lt;=0 || $1 &gt;= 10){print $1, $2}' ファイル名</pre>
-かつ(AND): &amp;&amp;、または(OR): || 
-</li><br />
-</ul>
-</div>
+	<div class="text1">
+		printを使う
+		<ul class="list1">
+			<li>ファイルから1列目、2列目を取り出す
+				<pre>awk '{print $1, $2}' ファイル名</pre>
+			</li>
+			<li>1列目が10の場合のみを取り出す
+				<pre>awk '($1==10){print $1, $2}' ファイル名</pre>
+				等しい: ==、等しくない: !=<br />
+				より大きい: &gt;、以上: &gt;=、より小さい: &lt;、以下: &lt;=
+			</li><br />
+			<li>1列目が10、2列目が5以上の場合のみを取り出す
+				<pre>awk '($1==10 &amp;&amp; $2 &gt;= 5){print $1, $2}' ファイル名</pre>
+			</li>
+			<li>1列目が0以下か、1列目が10以上の場合のみを取り出す
+				<pre>awk '($1 &lt;=0 || $1 &gt;= 10){print $1, $2}' ファイル名</pre>
+				かつ(AND): &amp;&amp;、または(OR): || 
+			</li><br />
+		</ul>
+	</div>
 
 <h4><div class="headline2" id="awk_1_2">演算を行う</div></h4>
-<div class="text1">
-入力した値を100倍する
-<pre>echo 15 | awk '{print $1*100}'
-出力：1500
-</pre>
-tan(1)を求める
-<pre> awk 'BEGIN {print sin(1) / cos(1)}'
-出力：1.55741
-</pre>
-指数関数（eを出力）
-<pre> awk 'BEGIN {print exp(1)}'
-出力：2.71828
-</pre>
-ファイル１列目の積算値を求める
-<pre>awk 'BEGIN{}{sum=sum+$1}END{print sum}' ファイル名
-</pre>
-ファイル１列目の平均値を求める
-<pre>awk 'BEGIN{}{n++ ; sum=sum+$1}END{print sum/n}' ファイル名
-</pre>
-</div>
+	<div class="text1">
+		入力した値を100倍する
+		<pre>echo 15 | awk '{print $1*100}'
+		出力：1500
+		</pre>
+		tan(1)を求める
+		<pre> awk 'BEGIN {print sin(1) / cos(1)}'
+		出力：1.55741
+		</pre>
+		指数関数（eを出力）
+		<pre> awk 'BEGIN {print exp(1)}'
+		出力：2.71828
+		</pre>
+		ファイル１列目の積算値を求める
+		<pre>awk 'BEGIN{}{sum=sum+$1}END{print sum}' ファイル名</pre>
+		ファイル１列目の平均値を求める
+		<pre>awk 'BEGIN{}{n++ ; sum=sum+$1}END{print sum/n}' ファイル名
+		</pre>
+	</div>
 
 <h4><div class="headline2" id="awk_1_3">書式を指定する</div></h4>
-<div class="text1">
-printfを用いる
-<ul class="list1">
-<li>整数を出力する（小数点以下切り捨て）
-<pre>
-echo 5.5 | awk '{printf &quot;%d¥n&quot;, $1}'
-出力：
-5
-</pre>
-</li>
-<li>符号を付けて整数を出力する
-<pre>
-echo 5 | awk '{printf &quot;%+d¥n&quot;, $1}'
-出力：
-+5
-echo -5 | awk '{printf &quot;%+d¥n&quot;, $1}'
-出力：
--5
-</pre>
-</li>
-<li>6桁の整数を出力する（右詰めで左側に空白）
-<pre>
-echo 5 | awk '{printf &quot;%6d¥n&quot;, $1}'
-出力：
-&nbsp; &nbsp; 5
-</pre>
-</li>
-<li>6桁の整数を出力する（右詰めで0埋め）
-<pre>
-echo 5 | awk '{printf &quot;%06d¥n&quot;, $1}'
-出力：
-000005
-</pre>
-</li><br />
-<li>小数点第２位まで出力する
-<pre>
-echo 5.3 | awk '{printf &quot;%.2f¥n&quot;, $1}'
-出力：
-5.30
-</pre>
-</li>
-<li>符号を付けて出力する
-<pre>
-echo 5.3 | awk '{printf &quot;%+.2f¥n&quot;, $1}'
-出力：
-+5.30
-echo -5.3 | awk '{printf &quot;%+.2f¥n&quot;, $1}'
-出力：
--5.30
-</pre>
-</li>
-<li>小数点以下3桁、9文字分で表示する（右詰めで左側に空白）
-<pre>
-echo 5.3 | awk '{printf &quot;%9.3f¥n&quot;, $1}'
-出力：
-&nbsp; &nbsp; 5.300
-</pre>
-</li>
-<li>左詰めにする場合
-<pre>
-echo 5.3 | awk '{printf &quot;%-9.3f¥n&quot;, $1}'
-出力：
-5.300 &nbsp; &nbsp;
-</pre>
-</li><br />
-</ul>
-</div>
+	<div class="text1">
+		printfを用いる
+		<ul class="list1">
+			<li>整数を出力する（小数点以下切り捨て）
+				<pre>
+				echo 5.5 | awk '{printf &quot;%d¥n&quot;, $1}
+				出力：
+				5
+				</pre>
+			</li>
+			<li>符号を付けて整数を出力する
+				<pre>
+				echo 5 | awk '{printf &quot;%+d¥n&quot;, $1}'
+				出力：
+				+5
+				echo -5 | awk '{printf &quot;%+d¥n&quot;, $1}'
+				出力：
+				-5
+				</pre>
+			</li>
+			<li>6桁の整数を出力する（右詰めで左側に空白）
+				<pre>
+				echo 5 | awk '{printf &quot;%6d¥n&quot;, $1}'
+				出力：
+				&nbsp; &nbsp; 5
+				</pre>
+			</li>
+			<li>6桁の整数を出力する（右詰めで0埋め）
+				<pre>
+				echo 5 | awk '{printf &quot;%06d¥n&quot;, $1}'
+				出力：
+				000005
+				</pre>
+			</li><br />
+			<li>小数点第２位まで出力する
+				<pre>
+				echo 5.3 | awk '{printf &quot;%.2f¥n&quot;, $1}'
+				出力：
+				5.30
+				</pre>
+			</li>
+			<li>符号を付けて出力する
+				<pre>
+				echo 5.3 | awk '{printf &quot;%+.2f¥n&quot;, $1}'
+				出力：
+				+5.30
+				echo -5.3 | awk '{printf &quot;%+.2f¥n&quot;, $1}'
+				出力：
+				-5.30
+				</pre>
+			</li>
+			<li>小数点以下3桁、9文字分で表示する（右詰めで左側に空白）
+				<pre>
+				echo 5.3 | awk '{printf &quot;%9.3f¥n&quot;, $1}'
+				出力：
+				&nbsp; &nbsp; 5.300
+				</pre>
+			</li>
+			<li>左詰めにする場合
+				<pre>
+				echo 5.3 | awk '{printf &quot;%-9.3f¥n&quot;, $1}'
+				出力：
+				5.300 &nbsp; &nbsp;
+				</pre>
+			</li><br />
+		</ul>
+	</div>
 
 <h4><div class="headline2" id="awk_1_4">区切り文字を指定する</div></h4>
-<div class="text1">
-デフォルトの区切り文字は空白かタブだが、オプション-Fを用いると変更可能
-<ul class="list1">
-<li>区切り文字をカンマ（,）とする
-<pre>awk -F ',' '{print $1, $2}' ファイル名</pre>
-</li>
-<li>区切り文字をハイフン（-）とする
-<pre>awk -F '-' '{print $1, $2}' ファイル名</pre>
-</li>
-</ul>
-</div>
+	<div class="text1">
+		デフォルトの区切り文字は空白かタブだが、オプション-Fを用いると変更可能
+		<ul class="list1">
+			<li>区切り文字をカンマ（,）とする
+				<pre>awk -F ',' '{print $1, $2}' ファイル名</pre>
+			</li>
+			<li>区切り文字をハイフン（-）とする
+				<pre>awk -F '-' '{print $1, $2}' ファイル名</pre>
+			</li>
+		</ul>
+	</div>
 
 
 
@@ -1482,7 +1468,7 @@ basenameコマンドを使うことで、パス名からファイル名を取得
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/03/18</p>
+<p>最終更新日：2025/03/20</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
