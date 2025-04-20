@@ -595,66 +595,66 @@
 	</div>
 
 <h4><div class="headline2" id="network_1_2">ネットワークデバイスを表示する</div></h4>
-<div class="text1">
-<pre>% ip link</pre>
-＊Linuxの場合
-</div>
+	<div class="text1">
+		<pre>% ip link</pre>
+		＊Linuxの場合
+	</div>
 
 <h4><div class="headline2" id="network_1_3">ルーティングテーブルの内容を表示する</div></h4>
-<div class="text1">
-<ul class="list1">
-<li>ipコマンド（Linux）
-<pre>% ip route（または% ip r）</pre>
-＊IPv6のテーブルを表示したい場合はip -6 route
-</li><br />
-<li>routeコマンド（Linux）
-<pre>% route</pre>
-＊IPv6のテーブルを表示したい場合はroute -6
-</li><br />
-<li>netstatコマンド（Linux/macOS）
-<pre>% netstat -rn</pre>
-＊Linuxでは非推奨でip routeを使う<br />
-</li><br />
-<li>メインテーブルを表示
-<pre>% ip route show table main</pre>
-</li>
-<li>ローカルテーブルを表示
-<pre>% ip route show table local</pre>
-</li>
-</ul>
-</div>
+	<div class="text1">
+		<ul class="list1">
+			<li>ipコマンド（Linux）
+				<pre>% ip route（または% ip r）</pre>
+				＊IPv6のテーブルを表示したい場合はip -6 route
+			</li><br />
+			<li>routeコマンド（Linux）
+				<pre>% route</pre>
+				＊IPv6のテーブルを表示したい場合はroute -6
+			</li><br />
+			<li>netstatコマンド（Linux/macOS）
+				<pre>% netstat -rn</pre>
+				＊Linuxでは非推奨でip routeを使う<br />
+			</li><br />
+			<li>メインテーブルを表示
+				<pre>% ip route show table main</pre>
+			</li>
+			<li>ローカルテーブルを表示
+				<pre>% ip route show table local</pre>
+			</li>
+		</ul>
+	</div>
 
 <h4><div class="headline2" id="network_1_4">通信の状態を調べる</div></h4>
-<div class="text1">
-<ul class="list1">
-<li>到達確認（Linux/macOS/Windows）
-<pre>% ping IPアドレス</pre>
-＊双方向にパケットが到達することを確認<br />
-＊デフォルトゲートウェイ、DNSサーバ等のIPアドレスを入力し到達確認<br />
-＊IPアドレスの代わりにDNSアドレスも利用可能だが、DNSサーバが正常に応答している時のみ使用したほうが良い<br />
-＊ファイアウォールや相手側の設定で、pingに応答しないようにしていることがある
-</li><br />
-<li>DNSサーバの応答確認（Linux/macOS）
-<pre>% nslookup IPアドレスまたはDNSアドレス</pre>
-＊IPアドレスからDNSアドレス、DNSアドレスからIPアドレスが返ってくることを確認<br />
-</li><br />
-</ul>
-</div>
+	<div class="text1">
+		<ul class="list1">
+			<li>到達確認（Linux/macOS/Windows）
+				<pre>% ping IPアドレス</pre>
+				＊双方向にパケットが到達することを確認<br />
+				＊デフォルトゲートウェイ、DNSサーバ等のIPアドレスを入力し到達確認<br />
+				＊IPアドレスの代わりにDNSアドレスも利用可能だが、DNSサーバが正常に応答している時のみ使用したほうが良い<br />
+				＊ファイアウォールや相手側の設定で、pingに応答しないようにしていることがある
+			</li><br />
+			<li>DNSサーバの応答確認（Linux/macOS）
+				<pre>% nslookup IPアドレスまたはDNSアドレス</pre>
+				＊IPアドレスからDNSアドレス、DNSアドレスからIPアドレスが返ってくることを確認<br />
+			</li><br />
+		</ul>
+	</div>
 
 <h4><div class="headline2" id="network_1_5">LISTENポートをチェックする</div></h4>
-<div class="text1">
-TCPのLISTENポートをチェックする
-<pre>% ss -napt</pre>
-UDPのLISTENポートをチェックする
-<pre>% ss -napu</pre>
-他の使い方は<a href="https://atmarkit.itmedia.co.jp/ait/articles/1710/06/news014.html">【 ss 】コマンド</a>参照
-</div>
+	<div class="text1">
+		TCPのLISTENポートをチェックする
+		<pre>% ss -napt</pre>
+		UDPのLISTENポートをチェックする
+		<pre>% ss -napu</pre>
+		他の使い方は<a href="https://atmarkit.itmedia.co.jp/ait/articles/1710/06/news014.html">【 ss 】コマンド</a>参照
+	</div>
 
 <h4><div class="headline2" id="network_1_6">ARPテーブルを表示する</div></h4>
-<div class="text1">
-ARP（Address Resolution Protocol）テーブルにある現在のエントリを一覧表示
-<pre>% ip neigh</pre>
-</div>
+	<div class="text1">
+		ARP（Address Resolution Protocol）テーブルにある現在のエントリを一覧表示
+		<pre>% ip neigh</pre>
+	</div>
 
 
 <!-- ユーザ管理 -->
@@ -1468,7 +1468,7 @@ basenameコマンドを使うことで、パス名からファイル名を取得
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/03/20</p>
+<p>最終更新日：2025/04/20</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
