@@ -722,81 +722,81 @@
 	</div>
 
 <h4><div class="headline2" id="system_1_3">ログ通知</div></h4>
-<div class="text1">
-<ul class="list1">
-<li>Logwatchをインストールする
-<ul class="list2">
-<li>RedHat系8以降
-<pre># dnf -y install logwatch</pre>
-</li>
-<li>Ubuntu
-<pre># apt install logwatch</pre>
-</li>
-<li>OpenSUSE
-<pre># zypper -n install logwatch</pre>
-または
-<pre># yast</pre>
-パッケージでlogwatchを検索する
-</li><br />
-</ul>
-</li>
-<li>Logwatch用の一時ディレクトリの作成
-<pre># mkdir /var/cache/logwatch</pre>
-</li><br />
-<li>メールでの通知を行う設定<br />
-まずは、デフォルトのlogwatch.conf設定ファイルを /etc/logwatch/conf/logwatch.confにコピー<br />
-<pre># cp /usr/share/logwatch/default.conf/logwatch.conf /etc/logwatch/conf/</pre>
-コピーしたlogwatch.confを編集し、標準出力の代わりにメールを送信するように変更する
-<pre>
-# Output = stdout
-Output = mail
-</pre>
-</li><br />
-<li>外部メールへの転送も行う場合には、postfixをインストールしておく
-<ul class="list2">
-<li>RedHat系8以降
-<pre># dnf -y install postfix</pre>
-</li>
-<li>Ubuntu
-<pre># apt install postfix</pre>
-</li>
-<li>OpenSUSE
-<pre># zypper -n install postfix</pre>
-または
-<pre># yast</pre>
-パッケージでpostfixを検索する
-</li><br />
-</ul>
-</li>
-<li>ログメールを送信するホスト名の設定（必要な場合）<br />
-メール転送の際にDNSサーバに問い合わせを行っており、存在しないホスト名では送信が拒否されてしまう。その場合は、/etc/postfix/main.cfでmyhostnameを設定する
-<pre>myhostname = 存在するホスト名.所属するドメイン名</pre>
-IPアドレスのみでホスト名がない場合には、次のように設定すると回避できる
-<pre>myhostname = localhost</pre>
-</li><br />
-<li>通知先のメールアドレスを設定する（外部メールへの転送も行う場合）<br />
-/etc/aliasesに下記を追加
-<pre>root: メールアドレス</pre>
-＊rootに来たメールを指定したメールアドレスに転送する<br />
-<br />
-エイリアスの変更を反映する
-<pre># newaliases</pre>
-</li><br />
-<li>動作確認を行う
-<pre># logwatch</pre>
-指定したメールアドレスにlogwatchメールが届けば成功
-</li><br />
-</ul>
-</div>
+	<div class="text1">
+		<ul class="list1">
+			<li>Logwatchをインストールする
+				<ul class="list2">
+					<li>RedHat系8以降
+						<pre># dnf -y install logwatch</pre>
+					</li>
+					<li>Ubuntu
+						<pre># apt install logwatch</pre>
+					</li>
+					<li>OpenSUSE
+						<pre># zypper -n install logwatch</pre>
+						または
+						<pre># yast</pre>
+						パッケージでlogwatchを検索する
+					</li><br />
+				</ul>
+			</li>
+			<li>Logwatch用の一時ディレクトリの作成
+				<pre># mkdir /var/cache/logwatch</pre>
+			</li><br />
+			<li>メールでの通知を行う設定<br />
+				まずは、デフォルトのlogwatch.conf設定ファイルを /etc/logwatch/conf/logwatch.confにコピー<br />
+				<pre># cp /usr/share/logwatch/default.conf/logwatch.conf /etc/logwatch/conf/</pre>
+				コピーしたlogwatch.confを編集し、標準出力の代わりにメールを送信するように変更する
+				<pre>
+				# Output = stdout
+				Output = mail
+				</pre>
+			</li><br />
+			<li>外部メールへの転送も行う場合には、postfixをインストールしておく
+				<ul class="list2">
+					<li>RedHat系8以降
+						<pre># dnf -y install postfix</pre>
+					</li>
+					<li>Ubuntu
+						<pre># apt install postfix</pre>
+					</li>
+					<li>OpenSUSE
+						<pre># zypper -n install postfix</pre>
+						または
+						<pre># yast</pre>
+						パッケージでpostfixを検索する
+					</li><br />
+				</ul>
+			</li>
+			<li>ログメールを送信するホスト名の設定（必要な場合）<br />
+				メール転送の際にDNSサーバに問い合わせを行っており、存在しないホスト名では送信が拒否されてしまう。その場合は、/etc/postfix/main.cfでmyhostnameを設定する
+				<pre>myhostname = 存在するホスト名.所属するドメイン名</pre>
+				IPアドレスのみでホスト名がない場合には、次のように設定すると回避できる
+				<pre>myhostname = localhost</pre>
+			</li><br />
+			<li>通知先のメールアドレスを設定する（外部メールへの転送も行う場合）<br />
+				/etc/aliasesに下記を追加
+				<pre>root: メールアドレス</pre>
+				＊rootに来たメールを指定したメールアドレスに転送する<br />
+				<br />
+				エイリアスの変更を反映する
+				<pre># newaliases</pre>
+			</li><br />
+			<li>動作確認を行う
+				<pre># logwatch</pre>
+				指定したメールアドレスにlogwatchメールが届けば成功
+			</li><br />
+		</ul>
+	</div>
 
 <h4><div class="headline2" id="system_1_4">サービス一覧を表示する</div></h4>
-<div class="text1">
-systemctlコマンドを用いる
-<pre>% systemctl -t service</pre>
-＊/etc/systemd/system/か/usr/lib/systemd/system/を参照している<br />
-全サービスの一覧
-<pre>% systemctl list-unit-files -t service</pre>
-</div>
+	<div class="text1">
+		systemctlコマンドを用いる
+		<pre>% systemctl -t service</pre>
+		＊/etc/systemd/system/か/usr/lib/systemd/system/を参照している<br />
+		全サービスの一覧
+		<pre>% systemctl list-unit-files -t service</pre>
+	</div>
 
 <h4><div class="headline2" id="system_1_5">サービスの管理</div></h4>
 <div class="text1">
@@ -1468,7 +1468,7 @@ basenameコマンドを使うことで、パス名からファイル名を取得
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/04/20</p>
+<p>最終更新日：2025/04/22</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
