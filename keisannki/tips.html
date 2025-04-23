@@ -799,56 +799,56 @@
 	</div>
 
 <h4><div class="headline2" id="system_1_5">サービスの管理</div></h4>
-<div class="text1">
-systemctlコマンドを次のように使用する
-<ul class="list1">
-<li>サービス起動
-<pre># systemctl start サービス名</pre>
-</li>
-<li>サービス停止
-<pre># systemctl stop サービス名</pre>
-</li>
-<li>サービス再起動
-<pre># systemctl restart サービス名</pre>
-</li>
-<li>サービスリロード
-<pre># systemctl reload サービス名</pre>
-</li>
-<li>サービスのステータス表示
-<pre>% systemctl status サービス名</pre>
-</li>
-<li>サービス自動起動有効
-<pre># systemctl enable サービス名</pre>
-</li>
-<li>サービス自動起動無効
-<pre># systemctl disable サービス名</pre>
-</li>
-<li>サービス起動と自動起動有効を同時に
-<pre># systemctl enable -now サービス名</pre>
-</li>
-<li>サービス自動起動設定確認
-<pre>% systemctl is-enabled サービス名</pre>
-</li>
-<li>設定ファイルの再読込
-<pre># systemctl daemon-reload サービス名</pre>
-</li>
-</ul>
-</div>
+	<div class="text1">
+		systemctlコマンドを次のように使用する
+		<ul class="list1">
+			<li>サービス起動
+				<pre># systemctl start サービス名</pre>
+			</li>
+			<li>サービス停止
+				<pre># systemctl stop サービス名</pre>
+			</li>
+			<li>サービス再起動
+				<pre># systemctl restart サービス名</pre>
+			</li>
+			<li>サービスリロード
+				<pre># systemctl reload サービス名</pre>
+			</li>
+			<li>サービスのステータス表示
+				<pre>% systemctl status サービス名</pre>
+			</li>
+			<li>サービス自動起動有効
+				<pre># systemctl enable サービス名</pre>
+			</li>
+			<li>サービス自動起動無効
+				<pre># systemctl disable サービス名</pre>
+			</li>
+			<li>サービス起動と自動起動有効を同時に
+				<pre># systemctl enable -now サービス名</pre>
+			</li>
+			<li>サービス自動起動設定確認
+				<pre>% systemctl is-enabled サービス名</pre>
+			</li>
+			<li>設定ファイルの再読込
+				<pre># systemctl daemon-reload サービス名</pre>
+			</li>
+		</ul>
+	</div>
 
 <h4><div class="headline2" id="system_1_6">サービスログの確認</div></h4>
-<div class="text1">
-journalctlコマンドを用いる（/var/log/journal/を参照している）
-<pre># journalctl -f -u サービス名</pre>
-＊/usr/lib/systemd/system/を参照している<br />
-</div>
+	<div class="text1">
+		journalctlコマンドを用いる（/var/log/journal/を参照している）
+		<pre># journalctl -f -u サービス名</pre>
+		＊/usr/lib/systemd/system/を参照している<br />
+	</div>
 
 <h4><div class="headline2" id="system_1_7">ランレベルの確認</div></h4>
-<div class="text1">
-systemctlコマンドを用いる（/usr/lib/systemd/system/*targetを参照している）
-<pre>% systemctl get-default</pre>
-＊multi-user.target: 従来のrunlevel 3（テキストログイン）
-＊graphical.target: 従来のrunlevel 5（グラフィカルログイン）
-</div>
+	<div class="text1">
+		systemctlコマンドを用いる（/usr/lib/systemd/system/*targetを参照している）
+		<pre>% systemctl get-default</pre>
+		＊multi-user.target: 従来のrunlevel 3（テキストログイン）
+		＊graphical.target: 従来のrunlevel 5（グラフィカルログイン）
+	</div>
 
 <h4><div class="headline2" id="system_1_8">ランレベルの変更</div></h4>
 <div class="text1">
@@ -961,40 +961,41 @@ mkpart</pre>
 </div>
 
 <h4><div class="headline2" id="system_1_11">パッケージ管理</div></h4>
-<div class="text1">
-
-</div>
+	<div class="text1">
+		ubuntuの場合apt、Red Hat系ではdnf、OpenSuSEdではzypper
+	</div>
 
 <!-- OSアップデート -->
 <h3><div class="headline1" id="os_1">OSアップデート</div></h3>
-<h4><div class="headline2" id="os_1_1">OpenSUSEのOSアップデート</div></h4>
-<div class="text1">
-OpenSUSEの安定版Leapは年に一度、マイナーバージョンのアップデートが行われる。自動では適用されない。リリースから1年半程度でマイナーバージョンのサポート期限が切れるので、その前にアップデートを行う。アップデートの前に必ずバックアップを作成する。バージョンを確認するため、下記をインストール。
-<pre># zypper install lsb-release
-% lsb_release -d
-出力：Description:	openSUSE Leap 15.5
-</pre>
-パッケージの確認（repo-update 、repo-backports-update、repo-sle-update）
-<pre># zypper repos -u</pre>
+	<h4><div class="headline2" id="os_1_1">OpenSUSEのOSアップデート</div></h4>
+	<div class="text1">
+		OpenSUSEの安定版Leapは年に一度、マイナーバージョンのアップデートが行われる。自動では適用されない。リリースから1年半程度でマイナーバージョンのサポート期限が切れるので、その前にアップデートを行う。アップデートの前に必ずバックアップを作成する。バージョンを確認するため、下記をインストール。
+		<pre>
+		# zypper install lsb-release
+		% lsb_release -d
+		出力：Description:	openSUSE Leap 15.5</pre>
+		パッケージの確認（repo-update 、repo-backports-update、repo-sle-update）
+		<pre># zypper repos -u</pre>
 Leap 15.5から15.6にアップデートする場合、下記のように15.6のパッケージに設定（既に使われている名前と重複しているとのエラーが出ることがあるが、ここでは無視して良い）。必ず次のマイナーバージョンにアップデートし、1つ飛ばしなどは行わない。
-<pre># zypper addrepo --check --refresh --name 'repo-update' http://download.opensuse.org/update/leap/15.6/oss/ repo-update
-# zypper addrepo --check --refresh --name 'repo-backports-update' http://download.opensuse.org/update/leap/15.6/backports/ repo-backports-update
-# zypper addrepo --check --refresh --name 'repo-sle-update' http://download.opensuse.org/update/leap/15.6/sle/ repo-sle-update
-</pre>
-アップデートの前にパッケージを最新のものに更新しておく
-<pre># zypper refresh
-# zypper update</pre>
-全てのリポジトリを強制的に15.6にする
-<pre># zypper --releasever=15.6 refresh</pre>
-最後にすべての有効なリポジトリを利用して、ディストリビューションのアップグレードを行う
-<pre># zypper --releasever=15.6 dup --download-in-advance</pre>
-パッケージ数やマシンの性能にもよるが、かなり時間がかかる。全てのアップグレードが終了したらシステムの再起動を行う
-<pre># shutdown -r now</pre>
-再起動後、バージョンを確認する
-<pre>% lsb_release -d
-出力：Description:	openSUSE Leap 15.6
-</pre>
-</div>
+		<pre>
+		# zypper addrepo --check --refresh --name 'repo-update' http://download.opensuse.org/update/leap/15.6/oss/ repo-update
+		# zypper addrepo --check --refresh --name 'repo-backports-update' http://download.opensuse.org/update/leap/15.6/backports/ repo-backports-update
+		# zypper addrepo --check --refresh --name 'repo-sle-update' http://download.opensuse.org/update/leap/15.6/sle/ repo-sle-update</pre>
+		アップデートの前にパッケージを最新のものに更新しておく
+		<pre>
+		# zypper refresh
+		# zypper update</pre>
+		全てのリポジトリを強制的に15.6にする
+		<pre># zypper --releasever=15.6 refresh</pre>
+		最後にすべての有効なリポジトリを利用して、ディストリビューションのアップグレードを行う
+		<pre># zypper --releasever=15.6 dup --download-in-advance</pre>
+		パッケージ数やマシンの性能にもよるが、かなり時間がかかる。全てのアップグレードが終了したらシステムの再起動を行う
+		<pre># shutdown -r now</pre>
+		再起動後、バージョンを確認する
+		<pre>
+		% lsb_release -d
+		出力：Description:	openSUSE Leap 15.6</pre>
+	</div>
 
 
 <!-- SSH関連 -->
@@ -1468,7 +1469,7 @@ basenameコマンドを使うことで、パス名からファイル名を取得
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/04/22</p>
+<p>最終更新日：2025/04/23</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
