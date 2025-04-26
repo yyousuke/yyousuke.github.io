@@ -498,66 +498,28 @@
 		printfを用いる
 		<ul class="list1">
 			<li>整数を出力する（小数点以下切り捨て）
-				<pre>
-				echo 5.5 | awk '{printf &quot;%d¥n&quot;, $1}
-				出力：
-				5
-				</pre>
+				<pre>echo 5.5 | awk '{printf &quot;%d¥n&quot;, $1}<br />出力：<br />5</pre>
 			</li>
 			<li>符号を付けて整数を出力する
-				<pre>
-				echo 5 | awk '{printf &quot;%+d¥n&quot;, $1}'
-				出力：
-				+5
-				echo -5 | awk '{printf &quot;%+d¥n&quot;, $1}'
-				出力：
-				-5
-				</pre>
+				<pre>echo 5 | awk '{printf &quot;%+d¥n&quot;, $1}'<br />出力：<br />+5<br />echo -5 | awk '{printf &quot;%+d¥n&quot;, $1}'<br />出力：<br />-5<br /></pre>
 			</li>
 			<li>6桁の整数を出力する（右詰めで左側に空白）
-				<pre>
-				echo 5 | awk '{printf &quot;%6d¥n&quot;, $1}'
-				出力：
-				&nbsp; &nbsp; 5
-				</pre>
+				<pre>echo 5 | awk '{printf &quot;%6d¥n&quot;, $1}'<br />出力：<br />&nbsp; &nbsp; 5</pre>
 			</li>
 			<li>6桁の整数を出力する（右詰めで0埋め）
-				<pre>
-				echo 5 | awk '{printf &quot;%06d¥n&quot;, $1}'
-				出力：
-				000005
-				</pre>
+				<pre>echo 5 | awk '{printf &quot;%06d¥n&quot;, $1}'<br />出力：<br />000005</pre>
 			</li><br />
 			<li>小数点第２位まで出力する
-				<pre>
-				echo 5.3 | awk '{printf &quot;%.2f¥n&quot;, $1}'
-				出力：
-				5.30
-				</pre>
+				<pre>echo 5.3 | awk '{printf &quot;%.2f¥n&quot;, $1}'<br />出力：<br />5.30</pre>
 			</li>
 			<li>符号を付けて出力する
-				<pre>
-				echo 5.3 | awk '{printf &quot;%+.2f¥n&quot;, $1}'
-				出力：
-				+5.30
-				echo -5.3 | awk '{printf &quot;%+.2f¥n&quot;, $1}'
-				出力：
-				-5.30
-				</pre>
+				<pre>echo 5.3 | awk '{printf &quot;%+.2f¥n&quot;, $1}'<br />出力：<br />+5.30<br />echo -5.3 | awk '{printf &quot;%+.2f¥n&quot;, $1}'<br />出力：<br />-5.30</pre>
 			</li>
 			<li>小数点以下3桁、9文字分で表示する（右詰めで左側に空白）
-				<pre>
-				echo 5.3 | awk '{printf &quot;%9.3f¥n&quot;, $1}'
-				出力：
-				&nbsp; &nbsp; 5.300
-				</pre>
+				<pre>echo 5.3 | awk '{printf &quot;%9.3f¥n&quot;, $1}'<br />出力：<br />&nbsp; &nbsp; 5.300</pre>
 			</li>
 			<li>左詰めにする場合
-				<pre>
-				echo 5.3 | awk '{printf &quot;%-9.3f¥n&quot;, $1}'
-				出力：
-				5.300 &nbsp; &nbsp;
-				</pre>
+				<pre>echo 5.3 | awk '{printf &quot;%-9.3f¥n&quot;, $1}'<br />出力：<br />5.300 &nbsp; &nbsp;</pre>
 			</li><br />
 		</ul>
 	</div>
@@ -851,64 +813,62 @@
 	</div>
 
 <h4><div class="headline2" id="system_1_8">ランレベルの変更</div></h4>
-<div class="text1">
-systemctlコマンドを用いる
-<pre># systemctl set-default graphical.target</pre>
-＊グラフィカルログインに変更する（/etc/systemd/system/default.targetのシンボリックリンクを変更する）<br />
-<br />
-手動での変更方法
-<ul class="list1">
-<li>システム停止（従来のランレベル0）
-<pre># systemctl isolate poweroff.target</pre>
-</li>
-<li>シングルユーザーモード（従来のランレベル1）
-<pre># systemctl isolate rescue.target</pre>
-</li>
-<li>テキストログイン（従来のランレベル3）
-<pre># systemctl isolate rmulti-user.target</pre>
-</li>
-<li>グラフィカルログイン（従来のランレベル5）
-<pre># systemctl isolate graphical.target</pre>
-</li>
-<li>OSの再起動（従来のランレベル6）
-<pre># systemctl isolate reboot.target</pre>
-</li>
-<li>緊急モード
-<pre># systemctl isolate emergency.target</pre>
-</li>
-</ul>
-</div>
+	<div class="text1">
+		systemctlコマンドを用いる
+		<pre># systemctl set-default graphical.target</pre>
+		＊グラフィカルログインに変更する（/etc/systemd/system/default.targetのシンボリックリンクを変更する）<br />
+		<br />
+		手動での変更方法
+		<ul class="list1">
+			<li>システム停止（従来のランレベル0）
+				<pre># systemctl isolate poweroff.target</pre>
+			</li>
+			<li>シングルユーザーモード（従来のランレベル1）
+				<pre># systemctl isolate rescue.target</pre>
+			</li>
+			<li>テキストログイン（従来のランレベル3）
+				<pre># systemctl isolate rmulti-user.target</pre>
+			</li>
+			<li>グラフィカルログイン（従来のランレベル5）
+				<pre># systemctl isolate graphical.target</pre>
+			</li>
+			<li>OSの再起動（従来のランレベル6）
+				<pre># systemctl isolate reboot.target</pre>
+			</li>
+			<li>緊急モード
+				<pre># systemctl isolate emergency.target</pre>
+			</li>
+		</ul>
+	</div>
 
 <h4><div class="headline2" id="system_1_9">ディスク管理</div></h4>
-<div class="text1">
-ディスクを準備する際
-<ol class="list1">
-<li> デバイス名の確認
-<pre>% ls -l /dev/disk/sd*
-% df</pre>
-現在マウントされていない新しいデバイスを探す
-</li><br />
-<li> パーティションの作成
-<pre>% parted</pre>
-pでパーティションテーブルを表示する。qで終了<br />
-新しいパーティションテーブルを作成するには
-<pre>mklabel gpt
-mkpart</pre>
-</li><br />
-</ol>
-ディスクをマウントする際は下記の手順
-<ol class="list1">
-<li> ディスクパーティションのUUID確認
-<pre>% blkid</pre>
-ディスクパーティション毎のUUIDが表示される
-</li><br />
-<li>/etc/fstabへの追加
-<pre>UUID="表示されたUUID" &nbsp; &nbsp; /mnt/data01 &nbsp; &nbsp; xfs &nbsp; &nbsp; defaults &nbsp; &nbsp; 1 &nbsp; 2</pre>
-＊/mnt/data01の部分はマウントポイント<br />
-＊xfsの部分にはフォーマットしたファイルシステムを記載
-</li><br />
-</ol>
-</div>
+	<div class="text1">
+		ディスクを準備する際
+		<ol class="list1">
+			<li> デバイス名の確認
+				<pre>% ls -l /dev/disk/sd*<br />% df</pre>
+				現在マウントされていない新しいデバイスを探す
+			</li><br />
+			<li> パーティションの作成
+				<pre>% parted</pre>
+				pでパーティションテーブルを表示する。qで終了<br />
+				新しいパーティションテーブルを作成するには
+				<pre>mklabel gpt<br />mkpart</pre>
+			</li><br />
+		</ol>
+		ディスクをマウントする際は下記の手順
+		<ol class="list1">
+			<li> ディスクパーティションのUUID確認
+				<pre>% blkid</pre>
+				ディスクパーティション毎のUUIDが表示される
+			</li><br />
+			<li>/etc/fstabへの追加
+				<pre>UUID="表示されたUUID" &nbsp; &nbsp; /mnt/data01 &nbsp; &nbsp; xfs &nbsp; &nbsp; defaults &nbsp; &nbsp; 1 &nbsp; 2</pre>
+				＊/mnt/data01の部分はマウントポイント<br />
+				＊xfsの部分にはフォーマットしたファイルシステムを記載
+			</li><br />
+		</ol>
+	</div>
 
 <h4><div class="headline2" id="system_1_10">ファイアウォール</div></h4>
 <div class="text1">
