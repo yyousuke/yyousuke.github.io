@@ -961,54 +961,50 @@ Leap 15.5から15.6にアップデートする場合、下記のように15.6の
 <!-- SSH関連 -->
 <h3><div class="headline1" id="ssh_1">SSH関連</div></h3>
 <h4><div class="headline2" id="ssh_1_1">ホスト公開鍵の更新</div></h4>
-<div class="text1">
-SSHホストが更新された際、ホスト公開鍵が以前のものと異なるため警告が出てログインできなくなる。
-<pre>% ssh-keygen -R ホスト名</pre>
-でリセット可能<br />
- $HOME/.ssh/known_hostsを編集して該当するホストの行を削除しても同じ
-</div>
+	<div class="text1">
+		SSHホストが更新された際、ホスト公開鍵が以前のものと異なるため警告が出てログインできなくなる。
+		<pre>% ssh-keygen -R ホスト名</pre>
+		でリセット可能<br />
+		$HOME/.ssh/known_hostsを編集して該当するホストの行を削除しても同じ
+	</div>
 
 <h4><div class="headline2" id="ssh_1_2">SSH秘密鍵と公開鍵の新規生成</div></h4>
-<div class="text1">
-<pre>% ssh-keygen</pre>
-＊デフォルトは暗号化形式rsa、ビット数は2048bit<br />
-詳細なオプションは<a href="https://atmarkit.itmedia.co.jp/ait/articles/1908/02/news015.html">コマンド――SSHの公開鍵と秘密鍵を作成する</a>参照<br />
-＊公開鍵は見せても良いが、秘密鍵は所有者のみが管理する<br /><br />
-楕円曲線を利用したアルゴリズムで鍵を作成する
-<pre>% ssh-keygen -t ed25519</pre>
-</div>
+	<div class="text1">
+		<pre>% ssh-keygen</pre>
+		＊デフォルトは暗号化形式rsa、ビット数は2048bit<br />
+		詳細なオプションは<a href="https://atmarkit.itmedia.co.jp/ait/articles/1908/02/news015.html">コマンド――SSHの公開鍵と秘密鍵を作成する</a>参照<br />
+		＊公開鍵は見せても良いが、秘密鍵は所有者のみが管理する<br /><br />
+		楕円曲線を利用したアルゴリズムで鍵を作成する
+		<pre>% ssh-keygen -t ed25519</pre>
+	</div>
 
 <h4><div class="headline2" id="ssh_1_3">ユーザー名を指定してログイン</div></h4>
-<div class="text1">
-<pre>% ssh hostname -l ユーザー名</pre>
-</div>
+	<div class="text1">
+		<pre>% ssh hostname -l ユーザー名</pre>
+	</div>
 
 <h4><div class="headline2" id="ssh_1_4">秘密鍵を指定してログイン</div></h4>
-<div class="text1">
-<pre>% ssh hostname -i ~/.ssh/秘密鍵のファイル名 </pre>
-＊秘密鍵のパスフレーズを入力する
-</div>
+	<div class="text1">
+		<pre>% ssh hostname -i ~/.ssh/秘密鍵のファイル名 </pre>
+		＊秘密鍵のパスフレーズを入力する
+	</div>
 
 <h4><div class="headline2" id="ssh_1_5">X11転送を有効にする</div></h4>
-<div class="text1">
-sshコマンドに-Xオプションを与える（ForwardX11有効）
-<pre>% ssh -X hostname</pre>
-＊接続先ホストのsshd設定（/etc/ssh/sshd_config等）でForwardX11が無効にされている場合は利用できない<br />
-emacsなど一部のアプリケーションはForwardX11Trustedも有効にしていないと動作しない。その場合には-Yオプションを付ける
-<pre>% ssh -Y hostname</pre>
-</div>
+	<div class="text1">
+		sshコマンドに-Xオプションを与える（ForwardX11有効）
+		<pre>% ssh -X hostname</pre>
+		＊接続先ホストのsshd設定（/etc/ssh/sshd_config等）でForwardX11が無効にされている場合は利用できない<br />
+		emacsなど一部のアプリケーションはForwardX11Trustedも有効にしていないと動作しない。その場合には-Yオプションを付ける
+		<pre>% ssh -Y hostname</pre>
+	</div>
 
 <h4><div class="headline2" id="ssh_1_6">configファイルを使う</div></h4>
-<div class="text1">
-&sim;/.ssh/configに記述する
-<pre>Host 接続先ホスト名の略称等
-&nbsp; &nbsp; Hostname IPアドレスまたはドメイン名
-&nbsp; &nbsp; user ログインユーザ名
-&nbsp; &nbsp; IdentityFile ~/.ssh/秘密鍵のファイル名
-</pre>
-次のコマンドで秘密鍵を指定したログインが可能
-<pre>% ssh 接続先ホスト名の略称等</pre>
-</div>
+	<div class="text1">
+		&sim;/.ssh/configに記述する
+		<pre>Host 接続先ホスト名の略称等<br />&nbsp; &nbsp; Hostname IPアドレスまたはドメイン名<br />&nbsp; &nbsp; user ログインユーザ名<br />&nbsp; &nbsp; IdentityFile<br />&sim;/.ssh/秘密鍵のファイル名</pre>
+		次のコマンドで秘密鍵を指定したログインが可能
+		<pre>% ssh 接続先ホスト名の略称等</pre>
+	</div>
 
 <h4><div class="headline2" id="ssh_1_7">カスケード接続</div></h4>
 <div class="text1">
@@ -1429,7 +1425,7 @@ findコマンドでは、条件に一致するファイル/ディレクトリの
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/04/27</p>
+<p>最終更新日：2025/04/28</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
