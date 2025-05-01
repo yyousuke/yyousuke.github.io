@@ -1269,78 +1269,77 @@ convertコマンドで拡大・縮小が可能
 <!-- その他コマンド -->
 <h3><div class="headline1" id="com_1">その他コマンド</div></h3>
 <h4><div class="headline2" id="com_1_1">grepで該当行の前後２行を表示する</div></h4>
-<div class="text1">
-<pre>% grep -A 2 -B 2 検索文字列</pre>
-</div>
+	<div class="text1">
+		<pre>% grep -A 2 -B 2 検索文字列</pre>
+	</div>
 
 <h4><div class="headline2" id="com_1_2">diffを+-記号表示にする</div></h4>
-<div class="text1">
-<pre>% diff -U1 ファイル名1 ファイル名2</pre>
-</div>
+	<div class="text1">
+		<pre>% diff -U1 ファイル名1 ファイル名2</pre>
+	</div>
 
 <h4><div class="headline2" id="com_1_3">nkfでUTF-8とLF形式にする</div></h4>
-<div class="text1">
-nkf（Network Kanji Filter）では文字コードの変換や改行コードの変換を行うことができる。次のように文字コードをUTF-8、改行コードをLF（¥n）に変換し、元のファイルを上書きする
-<pre>% nkf -w -Lu --overwrite ファイル名</pre>
-</div>
+	<div class="text1">
+		nkf（Network Kanji Filter）では文字コードの変換や改行コードの変換を行うことができる。次のように文字コードをUTF-8、改行コードをLF（¥n）に変換し、元のファイルを上書きする
+		<pre>% nkf -w -Lu --overwrite ファイル名</pre>
+	</div>
 
 <h4><div class="headline2" id="com_1_4">teeでmakeログを作成しながら画面表示</div></h4>
-<div class="text1">
-teeコマンドでは、パイプで渡された内容をファイルに書き出しながら画面にも表示することができる。makeの際にログファイルを残しながら表示するのに便利
-<pre>% make | tee ファイル名</pre>
-</div>
+	<div class="text1">
+		teeコマンドでは、パイプで渡された内容をファイルに書き出しながら画面にも表示することができる。makeの際にログファイルを残しながら表示するのに便利
+		<pre>% make | tee ファイル名</pre>
+	</div>
 
 <h4><div class="headline2" id="com_1_5">apgでパスワード自動生成</div></h4>
-<div class="text1">
-apg（Automated Password Generator）コマンドでは、複雑なパスワードを自動生成することができる
-<pre>% apg</pre>
-デフォルトでは6種類の候補を表示する（-a0オプションがデフォルトで、発音できそうなものが選ばれる）。<br />
-<pre>% apg -a1</pre>
-ランダムなパスワードを表示する。
-</div>
+	<div class="text1">
+		apg（Automated Password Generator）コマンドでは、複雑なパスワードを自動生成することができる
+		<pre>% apg</pre>
+		デフォルトでは6種類の候補を表示する（-a0オプションがデフォルトで、発音できそうなものが選ばれる）。<br />
+		<pre>% apg -a1</pre>
+		ランダムなパスワードを表示する。
+	</div>
 
 <h4><div class="headline2" id="com_1_6">nohupでログアウト後も処理を継続</div></h4>
-<div class="text1">
-nohupコマンドを使うと、ログアウト後も処理を継続できる。次のようにバックグランドでコマンドを実行する。プロセスが終了するかkillされるか、システムがシャットダウンされるまで継続する
-<pre>% nohup コマンド &amp;</pre>
-</div>
+	<div class="text1">
+		nohupコマンドを使うと、ログアウト後も処理を継続できる。次のようにバックグランドでコマンドを実行する。プロセスが終了するかkillされるか、システムがシャットダウンされるまで継続する
+		<pre>% nohup コマンド &amp;</pre>
+	</div>
 
 <h4><div class="headline2" id="com_1_7">findでファイル処理</div></h4>
-<div class="text1">
-findコマンドでは、条件に一致するファイル/ディレクトリの検索やそれらに対しコマンドを実行することなどが可能で、応用できる範囲は広い
-<ul class="list1">
-<li>テキストファイル（*.txt）を検索する
-<pre>% find . -name '*.txt' </pre>
-</li>
-<li>検索したファイルに読み込み許可を与える
-<pre>% find . -name '*.txt' -exec chmod +r {} ¥;</pre>
-</li>
-<li>指定ディレクトリ以下のディレクトリのパーミッションを755にする（所有者以外に読み込みと実行を許可）
-<pre>% find ディレクトリのパス -type d -exec chmod 755 {} ¥;</pre>
-</li>
-<li>指定ディレクトリ以下のファイルに読み込み許可を与える
-<pre>% find ディレクトリのパス -type f -exec chmod +r {} ¥;</pre>
-</li>
-<li>1時間以内に変更されたファイルを表示する
-<pre>% find ディレクトリのパス -mtime -1h</pre>
-＊1週間なら1w、1日なら1d、30分なら30m、10秒なら10sとなる
-</li><br />
-<li>1日以内にアクセスされたファイルを表示する
-<pre>% find ディレクトリのパス -atime -1d</pre>
-</li><br />
-<li>7日間更新されなかったファイルを表示する
-<pre>% find ディレクトリのパス -mtime +7d</pre>
-</li>
-<li>ユーザ1の7日間更新されなかったファイルを表示する
-<pre>% find ディレクトリのパス ¥( -user ユーザ1 -mtime +7d ¥)</pre>
-</li>
-<li>30日更新されなかったファイルを削除する
-<pre>% find ディレクトリのパス -mtime +30d -exec rm {} ¥;</pre>
-</li>
-<br />
-<br />
-</ul>
-</div>
+	<div class="text1">
+		findコマンドでは、条件に一致するファイル/ディレクトリの検索やそれらに対しコマンドを実行することなどが可能で、応用できる範囲は広い
+		<ul class="list1">
+			<li>テキストファイル（*.txt）を検索する
+				<pre>% find . -name '*.txt' </pre>
+			</li>
+			<li>検索したファイルに読み込み許可を与える
+				<pre>% find . -name '*.txt' -exec chmod +r {} ¥;</pre>
+			</li>
+			<li>指定ディレクトリ以下のディレクトリのパーミッションを755にする（所有者以外に読み込みと実行を許可）
+				<pre>% find ディレクトリのパス -type d -exec chmod 755 {} ¥;</pre>
+			</li>
+			<li>指定ディレクトリ以下のファイルに読み込み許可を与える
+				<pre>% find ディレクトリのパス -type f -exec chmod +r {} ¥;</pre>
+			</li>
+			<li>1時間以内に変更されたファイルを表示する
+				<pre>% find ディレクトリのパス -mtime -1h</pre>
+				＊1週間なら1w、1日なら1d、30分なら30m、10秒なら10sとなる
+			</li><br />
+			<li>1日以内にアクセスされたファイルを表示する
+				<pre>% find ディレクトリのパス -atime -1d</pre>
+			</li><br />
+			<li>7日間更新されなかったファイルを表示する
+				<pre>% find ディレクトリのパス -mtime +7d</pre>
+			</li>
+			<li>ユーザ1の7日間更新されなかったファイルを表示する
+				<pre>% find ディレクトリのパス ¥( -user ユーザ1 -mtime +7d ¥)</pre>
+			</li>
+			<li>30日更新されなかったファイルを削除する
+				<pre>% find ディレクトリのパス -mtime +30d -exec rm {} ¥;</pre>
+			</li>
+			<br />
+		</ul>
+	</div>
 
 <h4><div class="headline2" id="com_1_8">sedで文字列の置換</div></h4>
 	<div class="text1">
@@ -1398,7 +1397,7 @@ findコマンドでは、条件に一致するファイル/ディレクトリの
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/04/30</p>
+<p>最終更新日：2025/05/01</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
