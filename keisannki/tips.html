@@ -1058,59 +1058,28 @@ Leap 15.5から15.6にアップデートする場合、下記のように15.6の
 </div>
 
 <h4><div class="headline2" id="bash_1_2">配列の値の変更、配列への追加</div></h4>
-<div class="text1">
-作成した配列の要素を置き換える場合
-<pre>
-% array=(var1 var2 var3)
-% array[2]=hoge
-% echo ${array[@]}
-var1 var2 hoge
-</pre>
-要素を追加する場合
-<pre>
-% array=(var1 var2 var3)
-% array[3]=var4
-% echo ${array[@]}
-var1 var2 var3 var4
-</pre>
-＊要素数が3の時にarray[4]に追加した場合、array[3]に追加される
-</div>
+	<div class="text1">
+		作成した配列の要素を置き換える場合
+		<pre>% array=(var1 var2 var3)<br />% array[2]=hoge<br />% echo ${array[@]}<br />var1 var2 hoge</pre>
+		要素を追加する場合
+		<pre>% array=(var1 var2 var3)<br />% array[3]=var4<br />% echo ${array[@]}<br />var1 var2 var3 var4</pre>
+		＊要素数が3の時にarray[4]に追加した場合、array[3]に追加される
+	</div>
 
 <h4><div class="headline2" id="bash_1_3">配列の要素数を表示する</div></h4>
-<div class="text1">
-次のように配列の要素数を表示できる。
-<pre>
-% array=(var1 var2 var3)
-% echo ${#array[@]}
-</pre>
-</div>
+	<div class="text1">
+		次のように配列の要素数を表示できる。
+		<pre>
+		% array=(var1 var2 var3)<br />% echo ${#array[@]}</pre>
+	</div>
 
 <h4><div class="headline2" id="bash_1_4">配列の要素を順に利用する</div></h4>
-<div class="text1">
-次のようにforループを使い、要素を順に利用する（スクリプトに記載）。
-<pre>
-#!/bin/bash
-array=(var1 var2 var3)
-for arr in ${array[@]}
-do
-&nbsp; echo ${arr}
-done
-</pre>
-要素数が同じ複数配列の場合は、whileループを使う。
-<pre>
-#!/bin/bash
-array1=(var11 var12 var13)
-array2=(var21 var22 var23)
-n=0
-while test n -lt ${#array1[@]}
-do
-&nbsp; arr1=array1[$n]
-&nbsp; arr2=array2[$n]
-&nbsp; echo ${arr1} ${arr2}
-&nbsp; n=`expr ${n} + 1`
-done
-</pre>
-</div>
+	<div class="text1">
+		次のようにforループを使い、要素を順に利用する（スクリプトに記載）。
+		<pre>#!/bin/bash<br />array=(var1 var2 var3)<br />for arr in ${array[@]}<br />do<br />&nbsp; echo ${arr}<br />done</pre>
+		要素数が同じ複数配列の場合は、whileループを使う。
+		<pre>#!/bin/bash<br />array1=(var11 var12 var13)<br />array2=(var21 var22 var23)<br />n=0<br />while test n -lt ${#array1[@]}<br />do<br />&nbsp; arr1=array1[$n]<br />&nbsp; arr2=array2[$n]<br />&nbsp; echo ${arr1} ${arr2}<br />&nbsp; n=`expr ${n} + 1`<br />done</pre>
+	</div>
 
 <h4><div class="headline2" id="bash_1_5">コマンドの結果を配列に入力する</div></h4>
 <div class="text1">
@@ -1182,88 +1151,79 @@ test.txtに内容が入る
 </div>
 
 <h4><div class="headline2" id="bash_1_7">数字の桁</div></h4>
-<div class="text1">
-整数を5文字になるまで0埋めする
-<pre>
-n=3
-nn=$(printf &quot;%05d&quot; ${n})
-出力：00003
-</pre>
-小数点以下１位まで表示する
-<pre>
-n=3
-nn=$(printf &quot;%5.1f&quot; ${n})
-出力：3.0
-</pre>
-</div>
+	<div class="text1">
+		整数を5文字になるまで0埋めする
+		<pre>n=3<br />nn=$(printf &quot;%05d&quot; ${n})3<br />出力：000033</pre>小数点以下１位まで表示する
+		<pre>n=3<br />nn=$(printf &quot;%5.1f&quot; ${n})<br />出力：3.0</pre>
+	</div>
 
 
 <!-- ファイル関連 -->
 <h3><div class="headline1" id="file_1">ファイル/ディレクトリ関連</div></h3>
 <h4><div class="headline2" id="file_1_1">空のファイル作成、タイムスタンプ更新</div></h4>
-<div class="text1">
-test01という名前のファイルを作成する。既に存在する場合には、タイムスタンプを更新する
-<pre>% touch test01</pre>
-存在しているファイルの中身を消して、同じ名前のファイルを生成する場合、
-<pre>% cp /dev/null test01</pre>
-</div>
+	<div class="text1">
+		test01という名前のファイルを作成する。既に存在する場合には、タイムスタンプを更新する
+		<pre>% touch test01</pre>
+		存在しているファイルの中身を消して、同じ名前のファイルを生成する場合、
+		<pre>% cp /dev/null test01</pre>
+	</div>
 
 <h4><div class="headline2" id="file_1_2">ディレクトリ作成</div></h4>
-<div class="text1">
-mkdirコマンドを用いる
-<pre>% mkdir dir01</pre>
-既存のディレクトリをコピーする
-<pre>% cp -r dirpath newdir</pre>
-</div>
+	<div class="text1">
+		mkdirコマンドを用いる
+		<pre>% mkdir dir01</pre>
+		既存のディレクトリをコピーする
+		<pre>% cp -r dirpath newdir</pre>
+	</div>
 
 <h4><div class="headline2" id="file_1_3">ファイル/ディレクトリのパーミッション</div></h4>
-<div class="text1">
-パーミッションを変更する
-<pre>% chmod 755 dir01</pre>
-全員にディレクトリを読み込み可能とする（所有者は書き込みも可能）
-<pre>% chmod 644 file01</pre>
-全員にファイルを読み込み可能とする（所有者は書き込みも可能）
-</div>
+	<div class="text1">
+		パーミッションを変更する
+		<pre>% chmod 755 dir01</pre>
+		全員にディレクトリを読み込み可能とする（所有者は書き込みも可能）
+		<pre>% chmod 644 file01</pre>
+		全員にファイルを読み込み可能とする（所有者は書き込みも可能）
+	</div>
 
 <h4><div class="headline2" id="file_1_4">setuidとsetgid</div></h4>
-<div class="text1">
-setuidを設定すると、ファイルの所有者に基づいたアクセス権が、setgidを設定するとユーザーにはそのグループに与えられたアクセス権に基づくアクセス権が与えられる。
-</div>
+	<div class="text1">
+		setuidを設定すると、ファイルの所有者に基づいたアクセス権が、setgidを設定するとユーザーにはそのグループに与えられたアクセス権に基づくアクセス権が与えられる。
+	</div>
 
 <h4><div class="headline2" id="file_1_5">ACLの設定</div></h4>
-<div class="text1">
-ACLの情報を取得する
-<pre>% getfacl パス</pre>
-</div>
+	<div class="text1">
+		ACLの情報を取得する
+		<pre>% getfacl パス</pre>
+	</div>
 
 <h4><div class="headline2" id="file_1_6">ファイルの分割と分割ファイルの結合</div></h4>
-<div class="text1">
-splitコマンドを使うと分割可能
-<pre>% tar zcf - --files-from=ファイル名 | split --verbose --bytes=1G - "split-"</pre>
-指定したファイルをtarで圧縮（gzip）した後、1GiBに分割（split-??のファイル名）<br />
-復元する場合は、catコマンドで単純に結合する（分割時に改行などは入らない）
-<pre>% cat split-* | tar zxvf -</pre>
-分割前に圧縮していたので、tarで展開している
-</div>
+	<div class="text1">
+		splitコマンドを使うと分割可能
+		<pre>% tar zcf - --files-from=ファイル名 | split --verbose --bytes=1G - "split-"</pre>
+		指定したファイルをtarで圧縮（gzip）した後、1GiBに分割（split-??のファイル名）<br />
+		復元する場合は、catコマンドで単純に結合する（分割時に改行などは入らない）
+		<pre>% cat split-* | tar zxvf -</pre>
+		分割前に圧縮していたので、tarで展開している
+	</div>
 
 
 <!-- 画像関連 -->
 <h3><div class="headline1" id="fig_1">画像関連</div></h3>
 <h4><div class="headline2" id="fig_1_1">convertによるファイル形式変換</div></h4>
-<div class="text1">
-convertコマンドを用いると、別の画像ファイルの形式に変換できる
-<pre>% convert test01.eps test01.pdf</pre>
-＊epsファイルをpdfファイルに変換する場合<br />
-</div>
+	<div class="text1">
+		convertコマンドを用いると、別の画像ファイルの形式に変換できる
+		<pre>% convert test01.eps test01.pdf</pre>
+		＊epsファイルをpdfファイルに変換する場合<br />
+	</div>
 
 <h4><div class="headline2" id="fig_1_2">convertによるファイルサイズ変更</div></h4>
-<div class="text1">
-convertコマンドで拡大・縮小が可能
-<pre>% convert -resize 50% test01.jpg test01.jpg</pre>
-別の方法として、ピクセルサイズでの指定
-<pre>% convert -resize 1024x768 test01.jpg  test02.jpg</pre>
-1024x768のサイズに変換する
-</div>
+	<div class="text1">
+		convertコマンドで拡大・縮小が可能
+		<pre>% convert -resize 50% test01.jpg test01.jpg</pre>
+		別の方法として、ピクセルサイズでの指定
+		<pre>% convert -resize 1024x768 test01.jpg  test02.jpg</pre>
+		1024x768のサイズに変換する
+	</div>
 
 
 <!-- その他コマンド -->
@@ -1397,7 +1357,7 @@ convertコマンドで拡大・縮小が可能
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/05/01</p>
+<p>最終更新日：2025/05/02</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
