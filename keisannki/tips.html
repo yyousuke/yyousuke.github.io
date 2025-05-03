@@ -1082,73 +1082,55 @@ Leap 15.5から15.6にアップデートする場合、下記のように15.6の
 	</div>
 
 <h4><div class="headline2" id="bash_1_5">コマンドの結果を配列に入力する</div></h4>
-<div class="text1">
-次のようにバックスラッシュで囲む。
-<pre>
-% array=`command options`
-</pre>
-次のように記述することも可能。
-<pre>
-% array=$(command options)
-</pre>
-パイプでつなげた結果を使うことも可能。
-<pre>
-% array=$(command1 options| command2 options)
-</pre>
-標準エラー出力も標準出力に。
-<pre>
-% array=$(command1 options| command2 options 2&gt;&amp;1)
-</pre>
-</div>
+	<div class="text1">
+		次のようにバックスラッシュで囲む。
+		<pre>
+		% array=`command options`
+		</pre>
+		次のように記述することも可能。
+		<pre>
+		% array=$(command options)
+		</pre>
+		パイプでつなげた結果を使うことも可能。
+		<pre>
+		% array=$(command1 options| command2 options)
+		</pre>
+		標準エラー出力も標準出力に。
+		<pre>
+		% array=$(command1 options| command2 options 2&gt;&amp;1)
+		</pre>
+	</div>
 
 <h4><div class="headline2" id="bash_1_6">リダイレクト</div></h4>
-<div class="text1">
-コマンドへの入力やコマンドの出力等を扱う時に利用する。
-<ul class="list1">
-<li>例：lsコマンドの出力をファイルに書き出す
-<pre>% ls &gt; file </pre>
-</li>
-<li>例：複数ディレクトリに対するlsコマンドの出力をファイルに書き出す
-<pre>
-% ls ディレクトリ1 &gt; file 
-% ls ディレクトリ2 &gt;&gt; file 
-</pre>
-</li>
-<li>例：コマンドの標準出力／標準エラー出力を同一ファイルに書き出す（その１）
-<pre>% コマンド &amp;&gt; file </pre>
-</li>
-<li>例：コマンドの標準出力／標準エラー出力を同一ファイルに書き出す（その２）
-<pre>% コマンド &gt; file 2&gt;&amp;1</pre>
-</li>
-<li>例：コマンドの標準出力／標準エラー出力を捨てる
-<pre>
-% コマンド &gt;&amp; /dev/null
-% コマンド &amp;&gt; /dev/null
-% コマンド &gt; /dev/null 2&gt;&amp;1
-% コマンド 1&gt; /dev/null 2&gt; /dev/null
-</pre>
-全て同じなので、使いやすいものを使う</li><br />
-<li>例：コマンドへの入力
-<pre>% コマンド &lt; オプションなど</pre>
-</li>
-<li>例：指定範囲までをcatコマンドに入力する
-<pre>
-% cat &lt;&lt;EOF
-line1
-line2
-EOF
-</pre></li>
-<li>例：指定範囲までをファイルに入力する
-<pre>
-% cat &gt; test.txt&lt;&lt;EOF
-line1
-line2
-EOF
-</pre>
-test.txtに内容が入る
-</li><br />
-</ul>
-</div>
+	<div class="text1">
+		コマンドへの入力やコマンドの出力等を扱う時に利用する。
+		<ul class="list1">
+			<li>例：lsコマンドの出力をファイルに書き出す
+				<pre>% ls &gt; file </pre>
+			</li>
+			<li>例：複数ディレクトリに対するlsコマンドの出力をファイルに書き出す
+				<pre>% ls ディレクトリ1 &gt; file <br />% ls ディレクトリ2 &gt;&gt; file </pre>
+			</li>
+			<li>例：コマンドの標準出力／標準エラー出力を同一ファイルに書き出す（その１）
+				<pre>% コマンド &amp;&gt; file </pre>
+			</li>
+			<li>例：コマンドの標準出力／標準エラー出力を同一ファイルに書き出す（その２）
+				<pre>% コマンド &gt; file 2&gt;&amp;1</pre>
+			</li>
+			<li>例：コマンドの標準出力／標準エラー出力を捨てる
+				<pre>% コマンド &gt;&amp; /dev/null<br />% コマンド &amp;&gt; /dev/null<br />% コマンド &gt; /dev/null 2&gt;&amp;1<br />% コマンド 1&gt; /dev/null 2&gt; /dev/null</pre>
+				全て同じなので、使いやすいものを使う</li><br />
+			<li>例：コマンドへの入力
+				<pre>% コマンド &lt; オプションなど</pre>
+			</li>
+			<li>例：指定範囲までをcatコマンドに入力する
+				<pre>% cat &lt;&lt;EOFline1<br />line2<br />EOF</pre></li>
+			<li>例：指定範囲までをファイルに入力する
+				<pre>% cat &gt; test.txt&lt;&lt;EOF<br />line1<br />line2<br />EOF</pre>
+				test.txtに内容が入る
+			</li><br />
+		</ul>
+	</div>
 
 <h4><div class="headline2" id="bash_1_7">数字の桁</div></h4>
 	<div class="text1">
@@ -1357,7 +1339,7 @@ test.txtに内容が入る
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/05/02</p>
+<p>最終更新日：2025/05/03</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
