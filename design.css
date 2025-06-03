@@ -92,30 +92,31 @@ h4{
 .headline1 {
 	float:left;
 	height:21px;
-	width:650px;
-	border-left:solid 0.4em #0000ff;
+	width:100%;
+	border-left:solid 0.3em #0000ff;
 	padding-top:0.2em;
-	padding-bottom:0.5em;
+	padding-bottom:0.6em;
 	padding-left:0.5em;
 	margin-left:0.5em;
 	margin-top:1em;
-	margin-bottom:1em;
-	border-bottom-style:solid;
-	border-bottom-color:#cccccc;
-	border-bottom-width:0.1em;
+	margin-bottom:-0.1em;
+	background-color:#eeffff;
+	border-top-style:solid;
+	border-top-color:#cccccc;
+	border-top-width:0.1em;
 }
 
 .headline2 {
 	float:left;
 	height:21px;
-	width:650px;
+	width:100%;
 	border-left:solid 0.4em #0000ff;
 	padding-left:0.5em;
 	padding-top:0.2em;
-	padding-bottom:0.2em;
+	padding-bottom:0.3em;
 	margin-left:1em;
 	margin-top:0.8em;
-	margin-bottom:0.8em;
+	margin-bottom:-0.1em;
 }
 
 .text0 {
@@ -216,7 +217,6 @@ h1{
 h2{
 	font-size:21px;
 	}
-
 h3{
 	font-size:16px;
 	}
@@ -229,7 +229,7 @@ h4{
 	height:18px;
 	width:95%;
 	padding-top:0.0em;
-	padding-bottom:0.0em;
+	padding-bottom:0.6em;
 	padding-left:0.5em;
 	margin-left:0.0em;
 	margin-top:0.5em;
