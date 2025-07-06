@@ -1048,6 +1048,12 @@ Leap 15.5から15.6にアップデートする場合、下記のように15.6の
 		<pre>% ssh -p 22222 接続先ホスト名の略称等</pre>
 	</div>
 
+<h4><div class="headline2" id="ssh_1_10">sshdでパスワード試行回数を制限する</div></h4>
+	<div class="text1">
+		PAM（Pluggable Authentication Modules）のpam_faillock モジュールを使用。<br />
+		/etc/security/faillock.confを編集
+		<pre>deny = 10 &nbsp;&nbsp; # 認証失敗を10回でロック<br />fail_interval = 900 &nbsp;&nbsp; # 失敗回数のカウント対象時間（秒）<br />unlock_time = 600 &nbsp;&nbsp;  # ロック解除までの時間（秒）</pre>
+	</div>
 
 <!-- bash関連 -->
  <h3><div class="headline1" id="bash_1">bash関連</div></h3>
