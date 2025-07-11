@@ -1056,10 +1056,14 @@
 		        <pre>deny = 10 &nbsp;&nbsp; # 認証失敗を10回でロック<br />fail_interval = 900 &nbsp;&nbsp; # 失敗回数のカウント対象時間（秒）<br />unlock_time = 600 &nbsp;&nbsp;  # ロック解除までの時間（秒）</pre>
 		    </li><br />
 		    <li>PAM設定ファイル（/etc/pam.d/common-auth）の編集
-		        <pre>auth required pam_faillock.so preauth<br />auth [success=1 default=ignore] pam_unix.so nullok<br />auth [default=die] pam_faillock.so authfail</pre>
+		        <pre>auth required pam_faillock.so preauth<br />auth [success=1 default=ignore] pam_unix.so nullok<br />auth [default=die] pam_faillock.so authfail<br />auth sufficient pam_faillock.so authsucc</pre>
+		    </li><br />
+		    <li>PAM設定ファイル（/etc/pam.d/ommon-account）の編集
+		        <pre>auth required pam_faillock.so<br />account [success=1 new_authtok_reqd=done default=ignore] pam_unix.so<br />account requisite pam_deny.so<br />account required pam_permit.so</pre>
 		    </li><br />
 		    <li>/etc/ssh/sshd_configの編集
 		        <pre>UsePAM yes</pre>
+		        ＊デフォルトで有効になっていることを確認
 		    </li><br />
 	</div>
 
@@ -1354,7 +1358,7 @@
 </article>
 </body>
 <footer>
-<p>最終更新日：2025/07/10</p>
+<p>最終更新日：2025/07/11</p>
 <p>Copyright (C) 2018-2025, Yousuke Yamashita, CC BY 4.0</p>
 </footer>
 </html>
