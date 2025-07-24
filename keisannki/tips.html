@@ -1061,7 +1061,7 @@
 		    <li>PAM設定ファイル（/etc/pam.d/common-auth）の編集
 		        <pre>auth required pam_faillock.so preauth<br />auth [success=1 default=ignore] pam_unix.so nullok<br />auth [default=die] pam_faillock.so authfail<br />auth sufficient pam_faillock.so authsucc</pre>
 		    </li><br />
-		    <li>PAM設定ファイル（/etc/pam.d/ommon-account）の編集
+		    <li>PAM設定ファイル（/etc/pam.d/common-account）の編集
 		        <pre>auth required pam_faillock.so<br />account [success=1 new_authtok_reqd=done default=ignore] pam_unix.so<br />account requisite pam_deny.so<br />account required pam_permit.so</pre>
 		    </li><br />
 		    <li>/etc/ssh/sshd_configの編集
