@@ -40,7 +40,7 @@
 <br />
 
 <!-- 現在の設定の確認 -->
-<h2><div class="headline1" id="setting">現在の設定の確認</div></h3>
+<h2><div class="headline1" id="setting">現在の設定の確認</div></h2>
 <div class="text1">
 	&nbsp; Tru64にインストールされているemacsを確認したところ、/usr/local/bin/emacs-19.34のみがうまく起動したので、これを改良して日本語入力をしようと試みました。<br />
 	&nbsp; まず、Wnnがインストールされているかを調べ、次に日本語入力を行うクライアントwnnとwnnサーバ(jserver)が機能しているかを調べました。wnn はWnn4/ディレクトリが存在するのでVersion4がインストールされていることは分かりました。<br />
@@ -55,7 +55,7 @@
 
 
 <!-- jserverの起動 -->
-<h2><div class="headline1" id="jserver">jserverの起動</div></h3>
+<h2><div class="headline1" id="jserver">jserverの起動</div></h2>
 <div class="text1">
 	&nbsp; jserverは起動していなかったので
 	<pre># /usr/i18n/bin/Wnn4/jserver</pre>
@@ -65,7 +65,7 @@
 
 
 <!-- wnnの設定 -->
-<h2><div class="headline1" id="wnn">wnnの設定</div></h3>
+<h2><div class="headline1" id="wnn">wnnの設定</div></h2>
 <div class="text1">
 	&nbsp; jserverが起動したらemacsを設定ファイルなしで起動し、wnnが使えるか調べました。/usr/local/bin/mule -&gt; /usr/local/bin/emacs-19.34 とリンクされているので、次のように確認します。
 	<pre>% mule –q</pre>
@@ -79,7 +79,7 @@
 
 
 <!-- emacsの使用法 -->
-<h2><div class="headline1" id="jpeg">emacsの使用法</div></h3>
+<h2><div class="headline1" id="jpeg">emacsの使用法</div></h2>
 <div class="text1">
 	&nbsp; 今回はたまごでwnnを使用するという方針で設定を行いましたが、このためには各自のホームディレクトリに.emacsと.eggrcを置き、.emacsの(load "wnn-egg")でwnnと「たまご」を呼び出すように指定する必要があります。<br />
 </div>
