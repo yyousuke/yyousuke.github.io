@@ -404,42 +404,27 @@
 <!-- 4-3 -->
 <h4><div class="headline2" id="4-3">Q4-3　UNIX上でのtarやzipの扱い方を教えてください</div></h4>
 <div class="text1">
-A4-3　tar形式のファイルをUNIX上で解凍するには、<br />
-<pre>
-% tar xvf ファイル名</pre>
-と打ちます。<br />
-tarを作成するには<br />
-<pre>
-% tar cvf 作成するファイル名 tarに入れたいファイルやディレクトリ</pre>
-とします。<br /><br />
-＊ gnuのtarコマンドであれば、gzipやbunzip2のフィルターに対応しているので、<br />
-<pre>
-% tar xzvf hoge.tar.gz <br />
-% tar xjvf hoge.tar.bz2 </pre>
-でgzipやbunzip2で圧縮されたtarファイルを直接解凍可能です。<br />
-<br />
-圧縮の場合も<br />
-<pre>
-% tar czvf hogehoge.tar.gz  tarに入れたいファイルやディレクトリ <br />
-% tar cjvf hogehoge.tar.bz2 tarに入れたいファイルやディレクトリ </pre>
-で作成可能です。<br /><br />
-&nbsp; zip形式のファイルを扱うには、zipとunzipコマンドがあります。zipを解凍するには、<br />
-<pre>
-% unzip hoge.zip </pre>
-<br />
-&nbsp; zipで圧縮するには、<br />
-<pre>
-% zip -r hogehoge.zip zipに入れたいファイルやディレクトリ</pre>
-です。<br />
-<br /><br />
-* ちなみに、Vine-5.xではlha形式にも対応しており、<br />
-<pre>
-# apt-get insall lha</pre>
-でlhaをダウンロード可能。<br />
-使用法は<br />
-<pre>
-lha a 圧縮先　圧縮元<br />
-lha e 解凍元</pre>
+	<p>A4-3　tar形式のファイルをUNIX上で解凍するには、</p>
+	<pre>% tar xvf ファイル名</pre>
+	<p>と打ちます。</p>
+	<p>tarを作成するには</p>
+	<pre>% tar cvf 作成するファイル名 tarに入れたいファイルやディレクトリ</pre>
+	<p>とします。</p><br />
+	<p>＊ gnuのtarコマンドであれば、gzipやbunzip2のフィルターに対応しているので、</p>
+	<pre>% tar xzvf hoge.tar.gz <br />% tar xjvf hoge.tar.bz2 </pre>
+	<p>でgzipやbunzip2で圧縮されたtarファイルを直接解凍可能です。</p><br />
+	<p>圧縮の場合も</p>
+	<pre>% tar czvf hogehoge.tar.gz  tarに入れたいファイルやディレクトリ <br />% tar cjvf hogehoge.tar.bz2 tarに入れたいファイルやディレクトリ </pre>
+	<p>で作成可能です。</p><br />
+	<p>&nbsp; zip形式のファイルを扱うには、zipとunzipコマンドがあります。zipを解凍するには、</p>
+	<pre>% unzip hoge.zip </pre><br />
+	<p>&nbsp; zipで圧縮するには、</p>
+	<pre>% zip -r hogehoge.zip zipに入れたいファイルやディレクトリ</pre><p>です。</p><br /><br />
+	<p>* ちなみに、Vine-5.xではlha形式にも対応しており、</p>
+	<pre># apt-get insall lha</pre>
+	<p>でlhaをダウンロード可能。</p>
+	<p>使用法は</p>
+	<pre>lha a 圧縮先　圧縮元<br />lha e 解凍元</pre>
 </div>
 <br /><br />
 <br /><br />
