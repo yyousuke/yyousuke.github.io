@@ -104,8 +104,8 @@
 		<p>A1-1　manコマンドを使用するとSolarisではデフォルトでmoreコマンドを使って表示するように設定されています。lessコマンドに変えるには環境変数PAGERを変更します。</p><br />
 		<pre>% setenv PAGER less (csh,tcshの場合)<br />% export PAGER=less (bashの場合)</pre>
 	</div>
-	<br /><br />
-	<br /><br />
+<br /><br />
+<br /><br />
 
 <!-- 1-2 -->
 <h4><div class="headline2" id="1-2">Q1-2　Solarisでcrontabの編集ができない</div></h4>
@@ -117,57 +117,58 @@
 		<p>* edの基本的な操作について(viの最終行モードに似ています)</p>
 		<pre>p ; 表示 (ex. 1,5p ; 1行目から5行目を表示、10,$p ; 10行目から最後まで表示) <br />1 ; 1行目にカーソルを移動し表示 <br />$ ; 最終行にカーソルを移動し表示 <br />. ; カーソルが現在置かれている行を表示 <br />5i ; 5行目の前に挿入 (.で挿入モードから抜ける) <br />.a ; 現在の行にテキストを追加 <br />4,5d ; 4,5行目を削除 <br />s/パターン1/パターン2/  ; 行の最初にあるパターン1をパターン2に置換 <br />s/パターン1/パターン2/g ; パターン1をパターン2に全て置換 <br />1,5s/パターン1/パターン2/g ; 1-5行目のパターン1を全てパターン2に置換 <br />w ; 変更をファイルに書き込む <br />q ; 終了(ファイルには書き込まない) </pre>
 	</div>
-	<br /><br />
-	<br /><br />
+<br /><br />
+<br /><br />
 
 <!-- 1-3 -->
 <h4><div class="headline2" id="1-3">Q1-3　システムの設定とは違うデフォルトプリンタを使いたいのですがどうすればいいでしょうか？</div></h4>
 	<div class="text1">
 		<p>A1-3  デフォルトプリンターは環境変数PRINTERで指定することができます。</p><br /><br />
 		<pre>% setenv PRINTER プリンタ名(csh, tcshの場合)<br />% export PRINTER=プリンタ名(bashの場合)</pre>
-		のようにして下さい。
+		<p>のようにして下さい。</p>
 	</div>
-	<br /><br />
-	<br /><br />
+<br /><br />
+<br /><br />
 
-	<a href="#contents">目次</a> 
-	<hr /><br />
+<a href="#contents">目次</a> 
+<hr /><br />
 
 
 <!-- 2、Fortran関連  -->
 <h3><div class="headline1" id="fortran">２、Fortran関連</div></h3>
 <!-- 2-1 -->
 <h4><div class="headline2" id="2-1">Q2-1　Tru64 UNIXとSolarisでgradsの時刻表示が異なる</div></h4>
-	<p>Tru64 UNIX のf77(f90)でコンパイルしたプログラムで作成したバイナリデータをgradsで見ると4レコードに1つしか図を作成できません。Solarisではうまくいくのですが。</p><br />
 	<div class="text1">
+		<p>Tru64 UNIX のf77(f90)でコンパイルしたプログラムで作成したバイナリデータをgradsで見ると4レコードに1つしか図を作成できません。Solarisではうまくいくのですが。</p><br />
 		<p>A2-1　Tru64 UNIXのFortran CompilerはデフォルトでRECLの単位を4byteとみなすように設定されています。Solarisのf77やgnuのg77など他のコンパイラではRECLの単位は1byteですのでそれに合わせたプログラムを使うと、データの書き出しの際にレコード長が書き出したい配列の4倍になり、レコードの最初の1/4のみにしかデータが書き込まれないことになります。<br />　これを防ぐための方法としてRECLの単位を4byteとしてプログラムを書き換えることも可能ですが、プログラムを書き換えることなく利用したい場合には-assume byterecl というオプションが使えます。このオプションによりRECLの単位を1byteに変えることができます。例えば</p>
 		<pre>% f77 -assume byterecl ファイル名</pre>
 		<p>のように使用します。big endianを扱いたいときには</p>
 		<pre>% f77 -assume byterecl -convert big_endian ファイル名</pre>
 		<p>となります。</p>
 	</div>
-	<br /><br />
-	<br /><br />
+<br /><br />
+<br /><br />
 
 <!-- 2-2 -->
 <h4><div class="headline2" id="2-2">Q2-2　Solarisで問題なく使えたプログラムをTru64でコンパイルして実行した場合のエラー</div></h4>
-	<p>Solarisで問題なく使えたプログラムをTru64でコンパイルして実行するとread文の所で<br /><span style="COLOR:red">sequential-access I/O to unit open for direct access</span><br />というエラーが出て実行できない。</p><br />
 	<div class="text1">
+		<p>Solarisで問題なく使えたプログラムをTru64でコンパイルして実行するとread文の所で<br /><span style="COLOR:red">sequential-access I/O to unit open for direct access</span><br />というエラーが出て実行できない。</p><br />
 		<p>A2-2　Tru64 UNIXのコンパイラでは</p>
 		<pre>real A(100)<br />open(10, form='unformatted', access='direct', recl=100)<br />read(10) A</pre><br /><br />
-		のようなプログラムがあった場合、Aをdirect accessではなくsequential accessで読み込もうとします。Solarisやgnuのコンパイラではopen文で指定されていればdirect accessで読み込んでくれるのでこのような問題が起きたのだと思われます。解決策としては<br />
+		<p>のようなプログラムがあった場合、Aをdirect accessではなくsequential accessで読み込もうとします。Solarisやgnuのコンパイラではopen文で指定されていればdirect accessで読み込んでくれるのでこのような問題が起きたのだと思われます。解決策としては</p>
 		<pre>read(10) A </pre>
-		の部分を<br />
+		<p>の部分を</p>
 		<pre>read(10,rec=1) A </pre>
-		のように書き換えればdirect accessとして認識してくれるため問題なく実行できるかと思います。<br />
+		<p>のように書き換えればdirect accessとして認識してくれるため問題なく実行できるかと思います。</p>
 	</div>
-	<br /><br />
-	<br /><br />
+<br /><br />
+<br /><br />
 
 <!-- 2-3 -->
 <h4><div class="headline2" id="2-3">Q2-3　自分のマシンのendianと違うendianのデータを扱いたい</div></h4>
-	<p>自分のマシンのendianと違うendianのデータを扱いたいのですが、コンパイルオプションがあれば教えてください。</p><br />
-	<div class="text1"><p>A2-3 下にOSとCPU、コンパイラと対応するオプションについて挙げておきますので参考にして下さい。<br />intel(Pentium, Celeron, Core 2 Duo, Core i7/i5/i3, Itenum, Xeon)、AMD(Athlon, Opteron)、DEC(alpha)などはlittle endian、Sun(Sun Ultra SPARC)、昔のMacのPowerPC、SR11000、SX6、SX8などのスパコンのCPUはbig endianです。</p><br />
+	<div class="text1">
+		<p>自分のマシンのendianと違うendianのデータを扱いたいのですが、コンパイルオプションがあれば教えてください。</p><br />
+		<p>A2-3 下にOSとCPU、コンパイラと対応するオプションについて挙げておきますので参考にして下さい。<br />intel(Pentium, Celeron, Core 2 Duo, Core i7/i5/i3, Itenum, Xeon)、AMD(Athlon, Opteron)、DEC(alpha)などはlittle endian、Sun(Sun Ultra SPARC)、昔のMacのPowerPC、SR11000、SX6、SX8などのスパコンのCPUはbig endianです。</p><br />
 		<table border="1">
 			<tbody>
 				<tr><td>OS</td><td>CPU</td><td>endian</td><td>コンパイラ</td><td>オプション</td></tr>
@@ -185,57 +186,57 @@
 		<p>* GCMの出力の場合、little endianのマシンで計算しても、出力はbig endianになるようにプログラムされています。</p>
 		<p>* GCMで出力されたデータのendianを変換したい場合には、GTOOLのgtwdir -r4r を使うことができます。詳細はマニュアルや<a href="./gtool.pdf" title="gtool(gtool3)の使用法">GTOOLの使用法</a>をご参照下さい。</p>
 	</div>
-	<br /><br />
-	<br /><br /> 
+<br /><br />
+<br /><br /> 
 
 <!-- 2-4 -->
 <h4><div class="headline2" id="2-4">Q2-4　ifortバージョン8.1のコンパイルエラー</div></h4>
-	<p>ifort（バージョン8.1）をインストールしたがコンパイルしようとすると<br /><font color="red">ifort: error: could not find directory in which g++ resides</font><br />とのエラーが出て使えない。</p><br />
 	<div class="text1">
+		<p>ifort（バージョン8.1）をインストールしたがコンパイルしようとすると<br /><span style="COLOR:red">ifort: error: could not find directory in which g++ resides</span><br />とのエラーが出て使えない。</p><br />
 		<p>Q2-4　環境変数GXX_ROOTを設定することで正常にコンパイルできるようになります。</p><br /><br />
 		<pre>% gcc --print-search-dirs </pre>
-		でインストールされたディレクトリを探し、<br />
+		<p>でインストールされたディレクトリを探し、</p>
 		<pre>% export GXX_ROOT=/usr/lib/gcc-lib/i386-vine-linux/3.3.2/ (bash)<br />% setenv GXX_ROOT /usr/lib/gcc-lib/i386-vine-linux/3.3.2/ (tcsh)</pre>
-		のように環境変数を設定します。
+		<p>のように環境変数を設定します。</p>
 	</div>
-	<br /><br />
-	<br /><br />
+<br /><br />
+<br /><br />
 
 <!-- 2-5 -->
 <h4><div class="headline2" id="2-5">Q2-5　ifortバージョン11.0以降のコンパイルエラー</div></h4>
-	<p>ifort（バージョン11.0以降）でコンパイル時に<br />
-		<span style="COLOR:red">relocation truncated to fit: R_X86_64_32S against `.bss</span><br />というエラーが出た</p><br />
 	<div class="text1">
-		<p>Q2-5　ifort 11.0以降ではコンパイル時にプログラムが確保するメモリの大きさをチェックするらしく、巨大な配列を使っているなど、ある程度以上のメモリ領域（正確な閾値は不明）を確保しようするとエラーになってしまいます。この場合には、ifortに<br />
+		<p>ifort（バージョン11.0以降）でコンパイル時に<br /><span style="COLOR:red">relocation truncated to fit: R_X86_64_32S against `.bss</span><br />というエラーが出た</p><br />
+		<p>Q2-5　ifort 11.0以降ではコンパイル時にプログラムが確保するメモリの大きさをチェックするらしく、巨大な配列を使っているなど、ある程度以上のメモリ領域（正確な閾値は不明）を確保しようするとエラーになってしまいます。この場合には、ifortに</p>
 		<pre>-shared-intel -mcmodel=large</pre>
-		のオプションを付けてコンパイルすることでエラーを回避可能です。</p>
+		<p>のオプションを付けてコンパイルすることでエラーを回避可能です。</p>
 	</div>
-	<br /><br />
-	<br /><br />
+<br /><br />
+<br /><br />
 
 <!-- 2-6 -->
 <h4><div class="headline2" id="2-6">Q2-6　netcdfライブラリ4.1のリンクエラー</div></h4>
-	<p>netcdfライブラリを4.1.2や4.1.3に変えたら、リンクに失敗するようになった。<br />というエラーが出た</p><br />
 	<div class="text1">
+		<p>netcdfライブラリを4.1.2や4.1.3に変えたら、リンクに失敗するようになった。<br />というエラーが出た</p><br />
 		<p>Q2-6　netcdf-4.1.2以降では、FortranライブラリがCライブラリから分離されました。これに伴い、Fortranライブラリの名前がlibnetcdf.aではなく、libnetcdff.aとなりました。<br />4.1.1以前のバージョンでは、コンパイル時に</p>
 		<pre>コンパイラ名　-c aaa.f90 -I${NETCDF}/include<br />コンパイラ名　-c bbb.f90 -I${NETCDF}/include</pre>(${NETCDF}は、netcdfライブラリをインストールしたディレクトリ)<br />
-		リンク時に、
+		<p>リンク時に、</p>
 		<pre>コンパイラ名　bbb.o aaa.o -L${NETCDF}/lib64 -lnetcdf</pre> 
-		または、
+		<p>または、</p>
 		<pre>コンパイラ名　bbb.o aaa.o ${NETCDF}/lib64/libnetcdf.a</pre>
-		のようにしていたかと思います。<br />
+		<p>のようにしていたかと思います。</p>
 		<br />
-		4.1.2以降のバージョンをリンクする場合には、netcdfの部分をnetcdffとして
+		<p>4.1.2以降のバージョンをリンクする場合には、netcdfの部分をnetcdffとして</p>
 		<pre>コンパイラ名　bbb.o aaa.o -L${NETCDF}/lib64 -lnetcdff</pre> 
-		または、
-		<pre>コンパイラ名　bbb.o aaa.o ${NETCDF}/lib64/libnetcdff.a</pre>のようにリンクを行ってください。<br />
+		<p>または、</p>
+		<pre>コンパイラ名　bbb.o aaa.o ${NETCDF}/lib64/libnetcdff.a</pre>
+		<p>のようにリンクを行ってください。</p>
 	</div>
-	<br /><br />
-	<br /><br />
+<br /><br />
+<br /><br />
 
-	<br />
-	<a href="#contents">目次</a>
-	<hr /><br />
+<br />
+<a href="#contents">目次</a>
+<hr /><br />
 
 
 <!-- 3、ネットワーク関連  -->
@@ -451,7 +452,7 @@
 <div class="text1">
     <p>A4-6　添付ファイルが読めないケースの代表的なものとして、winmail.datが添付されていた場合と、メールと添付ファイルが一体化している場合の対処方法について記載します。</p><br />
     <ul>
-        <li>winmail.datが添付されている場合</li><br />
+        <li>winmail.datが添付されている場合<br />
         <p>&nbsp; WindowsのOutlookから送信されるメールには、winmail.datというファイルが添付されることがあります。中に何も入っていないファイルのこともあるのですが、Outlookで添付ファイルを付けた場合には、添付ファイルもwinmail.datに含まれてしまいます。この場合には、<a href="http://sourceforge.net/projects/tnef/">tnef</a>というソフトウェアを使ってファイルを取り出すことで対処可能です。</p>
         &nbsp; tnefをダウンロードし、<br />
         <pre>------------------------------<br />% ./confugure<br />% make<br /># make install<br />------------------------------</pre>
@@ -460,14 +461,15 @@
         <pre>------------------------------<br />% ./confugure --prefix=インストールしたい場所<br />% make<br />% make install<br />------------------------------</pre>
         <p>で自分のホームディレクトリなど、書き込み可能な場所にインストールしてください。（勝手にソフトウェアをインストールしてもいいか分からない場合は、システムの管理者に確認するようにしてください。）</p><br />
         <p>tnefの使用法:</p>
-        <pre>% tnef -tv winmail.dat （ファイル名リストを閲覧する場合）<br />% tnef winmail.dat （アーカイブされたファイルを取り出す場合）</pre><br /><br />
-        <li>メールと添付ファイルが一体化している場合 </li><br />
+        <pre>% tnef -tv winmail.dat （ファイル名リストを閲覧する場合）<br />% tnef winmail.dat （アーカイブされたファイルを取り出す場合）</pre></li><br /><br />
+        <li>メールと添付ファイルが一体化している場合 <br />
         <p>&nbsp; メールソフトが自動で添付部分を取り出せず、メール本文の後に添付ファイルがそのままくっついて一体化しているケースもあります。この場合、メール全体を一旦テキストファイルとして保存し、テキストエディタで</p>
         <pre>------------------------------<br />begin 666  ファイル名<br />記号の羅列<br />end<br />------------------------------</pre>
         <p>までの添付部分を切り出し保存します。</p>
         <p>&nbsp; 次にuudecodeを使って、切り出したテキストファイルを復号化します。</p>
         <pre>% uudecode 切り出したテキストファイル名</pre>
-        <p>です。</p>
+        <p>です。</p></li>
+	</ul>
 </div>
 <br /><br />
 <br /><br />
