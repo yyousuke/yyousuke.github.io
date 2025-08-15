@@ -48,154 +48,155 @@
 
 <h2 id="contents">目次</h2>
 <div class="contents">
-  <!-- スケジュール管理 -->
-  <ul class="list1"><li><a href="#linux_1">スケジュール管理</a>
-    <ul class="list2">
-      <li><a href="#linux_1_1">crontabに登録する</a></li>
-      <li><a href="#linux_1_2">ユーザを指定してcrontabに登録する</a></li>
-      <li><a href="#linux_1_3">crontabで月末に実行する</a></li>
-  </ul>
-  </li></ul>
-  <!-- デバッグ関連 -->
-  <ul class="list1"><li><a href="#linux_2">デバッグ関連</a>
-    <ul class="list2">
-      <li><a href="#linux_2_1">プロセス毎の詳細なメモリ使用量を調べる</a></li>
-      <li><a href="#linux_2_2">実行時に確保するメモリ領域毎のサイズを表示</a></li>
-      <li><a href="#linux_2_3">実行時にリンクされるライブラリを調べる</a></li>
-  </ul>
-  </li></ul>
-  <!-- emacs関連 -->
-  <ul class="list1"><li><a href="#emacs_1">emacs関連</a>
-    <ul class="list2">
-      <li><a href="#emacs_1_1">emacsでカーソル位置を保存する</a></li>
-      <li><a href="#emacs_1_2">emacsで長い行を折り返す</a></li>
-      <li><a href="#emacs_1_3">emacsで矩形選択</a></li>
-      <li><a href="#emacs_1_4">emacsで末尾のエスケープを揃える</a></li>
-  </ul>
-  </li></ul>
-  <!-- vi関連 -->
-  <ul class="list1"><li><a href="#vi_1">vi関連</a>
-    <ul class="list2">
-      <li><a href="#vi_1_1">viの基本的な操作</a></li>
-      <li><a href="#vi_1_2">viの設定変更</a></li>
-  </ul>
-  </li></ul>
-  <!-- awk関連 -->
-  <ul class="list1"><li><a href="#awk_1">awk関連</a>
-    <ul class="list2">
-      <li><a href="#awk_1_1">列を取り出す</a></li>
-      <li><a href="#awk_1_2">演算を行う</a></li>
-      <li><a href="#awk_1_3">書式を指定する</a></li>
-      <li><a href="#awk_1_4">区切り文字を指定する</a></li>
-  </ul>
-  </li></ul>  
-  <!-- ネットワーク関連 -->
-  <ul class="list1"><li><a href="#network_1">ネットワーク関連</a>
-    <ul class="list2">
-      <li><a href="#network_1_1">IPアドレスを確認する</a></li>
-      <li><a href="#network_1_2">ネットワークデバイスを表示する</a></li>
-      <li><a href="#network_1_3">ルーティングテーブルの内容を表示する</a></li>
-      <li><a href="#network_1_4">通信の状態を調べる</a></li>
-      <li><a href="#network_1_5">LISTENポートをチェックする</a></li>
-      <li><a href="#network_1_6">ARPテーブルを表示する</a></li>
-  </ul>
-  </li></ul>
-  <!-- ユーザ管理 -->
-  <ul class="list1"><li><a href="#user_1">ユーザ管理</a>
-    <ul class="list2">
-      <li><a href="#user_1_1">ユーザを追加する</a></li>
-      <li><a href="#user_1_2">ユーザを削除する</a></li>
-      <li><a href="#user_1_3">グループを追加する</a></li>
-      <li><a href="#user_1_4">ユーザをグループに追加する</a></li>
-      <li><a href="#user_1_5">ユーザをグループから削除する</a></li>
-      <li><a href="#user_1_6">ユーザの所属するグループを変更する</a></li>
-  </ul>
-  </li></ul>
-  <!-- システム管理 -->
-  <ul class="list1"><li><a href="#system_1">システム管理</a>
-    <ul class="list2">
-      <li><a href="#system_1_1">ディスク使用量</a></li>
-      <li><a href="#system_1_2">温度監視</a></li>
-      <li><a href="#system_1_3">ログ通知</a></li>
-      <li><a href="#system_1_4">サービス一覧を表示する</a></li>
-      <li><a href="#system_1_5">サービスの管理</a></li>
-      <li><a href="#system_1_6">サービスログの確認</a></li>
-      <li><a href="#system_1_7">ランレベルの確認</a></li>
-      <li><a href="#system_1_8">ランレベルの変更</a></li>
-      <li><a href="#system_1_9">ディスク管理</a></li>
-      <li><a href="#system_1_10">ファイアウォール</a></li>
-      <li><a href="#system_1_11">パッケージ管理</a></li>
-  </ul>
-  </li></ul>
-  <!-- OSアップデート -->
-  <ul class="list1"><li><a href="#os_1">OSアップデート</a>
-    <ul class="list2">
-      <li><a href="#os_1_1">OpenSUSEのOSアップデート</a></li>
-  </ul>
-  </li></ul>
-  <!-- SSH関連 -->
-  <ul class="list1"><li><a href="#ssh_1">SSH関連</a>
-    <ul class="list2">
-      <li><a href="#ssh_1_1">ホスト公開鍵の更新</a></li>
-      <li><a href="#ssh_1_2">SSH秘密鍵と公開鍵の新規生成</a></li>
-      <li><a href="#ssh_1_3">ユーザー名を指定してログイン</a></li>
-      <li><a href="#ssh_1_4">秘密鍵を指定してログイン</a></li>
-      <li><a href="#ssh_1_5">X11転送を有効にする</a></li>
-      <li><a href="#ssh_1_6">configファイルを使う</a></li>
-      <li><a href="#ssh_1_7">カスケード接続</a></li>
-      <li><a href="#ssh_1_8">ポートフォワード</a></li>
-      <li><a href="#ssh_1_9">sshdがLISTENするポートを指定する</a></li>
-      <li><a href="#ssh_1_10">sshdでパスワード試行回数を制限する</a></li>
-  </ul>
-  </li></ul>
-  <!-- bash関連 -->
-  <ul class="list1"><li><a href="#bash_1">bash関連</a>
-    <ul class="list2">
-      <li><a href="#bash_1_1">配列の作成</a></li>
-      <li><a href="#bash_1_2">配列の値の変更、配列への追加</a></li>
-      <li><a href="#bash_1_3">配列の要素数を表示する</a></li>
-      <li><a href="#bash_1_4">配列の要素を順に利用する</a></li>
-      <li><a href="#bash_1_5">コマンドの結果を配列に入力する</a></li>
-      <li><a href="#bash_1_6">リダイレクト</a></li>
-      <li><a href="#bash_1_7">数字の桁</a></li>
-  </ul>
-  </li></ul>
-  <!-- ファイル関連 -->
-  <ul class="list1"><li><a href="#file_1">ファイル/ディレクトリ関連</a>
-    <ul class="list2">
-      <li><a href="#file_1_1">空のファイル作成、タイムスタンプ更新</a></li>
-      <li><a href="#file_1_2">ディレクトリ作成</a></li>
-      <li><a href="#file_1_3">ファイル/ディレクトリのパーミッション</a></li>
-      <li><a href="#file_1_4">setuidとsetgid</a></li>
-      <li><a href="#file_1_5">ACLの設定</a></li>
-      <li><a href="#file_1_6">ファイルの分割と分割ファイルの結合</a></li>
-  </ul>
-  </li></ul>
-  <!-- 画像関連 -->
-  <ul class="list1"><li><a href="#fig_1">画像関連</a>
-    <ul class="list2">
-      <li><a href="#fig_1_1">convertによるファイル形式変換</a></li>
-  </ul>
-  </li></ul>
-  <!-- その他コマンド -->
-  <ul class="list1"><li><a href="#com_1">その他コマンド</a>
-    <ul class="list2">
-      <li><a href="#com_1_1">grepで該当行の前後２行を表示する</a></li>
-      <li><a href="#com_1_2">diffを+-記号表示にする</a></li>
-      <li><a href="#com_1_3">nkfでUTF-8とLF形式にする</a></li>
-      <li><a href="#com_1_4">teeでmakeログを作成しながら画面表示</a></li>
-      <li><a href="#com_1_5">apgでパスワード自動生成</a></li>
-      <li><a href="#com_1_6">nohupでログアウト後も処理を継続</a></li>
-      <li><a href="#com_1_7">findでファイル処理</a></li>
-      <li><a href="#com_1_8">sedで文字列の置換</a></li>
-      <li><a href="#com_1_9">trで大文字と小文字の置換</a></li>
-      <li><a href="#com_1_10">パス名からファイル名を取得</a></li>      
-      <li><a href="#com_1_11">コマンドマニュアルの表示</a></li>   
-  </ul>
-  </li></ul>
+	<!-- スケジュール管理 -->
+	<ul class="list1"><li><a href="#linux_1">スケジュール管理</a>
+		<ul class="list2">
+			<li><a href="#linux_1_1">crontabに登録する</a></li>
+			<li><a href="#linux_1_2">ユーザを指定してcrontabに登録する</a></li>
+			<li><a href="#linux_1_3">crontabで月末に実行する</a></li>
+		</ul>
+		</li></ul>
+	<!-- デバッグ関連 -->
+	<ul class="list1"><li><a href="#linux_2">デバッグ関連</a>
+		<ul class="list2">
+			<li><a href="#linux_2_1">プロセス毎の詳細なメモリ使用量を調べる</a></li>
+			<li><a href="#linux_2_2">実行時に確保するメモリ領域毎のサイズを表示</a></li>
+			<li><a href="#linux_2_3">実行時にリンクされるライブラリを調べる</a></li>
+		</ul>
+		</li></ul>
+	<!-- emacs関連 -->
+	<ul class="list1"><li><a href="#emacs_1">emacs関連</a>
+		<ul class="list2">
+			<li><a href="#emacs_1_1">emacsでカーソル位置を保存する</a></li>
+			<li><a href="#emacs_1_2">emacsで長い行を折り返す</a></li>
+			<li><a href="#emacs_1_3">emacsで矩形選択</a></li>
+			<li><a href="#emacs_1_4">emacsで末尾のエスケープを揃える</a></li>
+		</ul>
+		</li></ul>
+	<!-- vi関連 -->
+	<ul class="list1"><li><a href="#vi_1">vi関連</a>
+		<ul class="list2">
+			<li><a href="#vi_1_1">viの基本的な操作</a></li>
+			<li><a href="#vi_1_2">viの設定変更</a></li>
+		</ul>
+		</li></ul>
+	<!-- awk関連 -->
+	<ul class="list1"><li><a href="#awk_1">awk関連</a>
+		<ul class="list2">
+			<li><a href="#awk_1_1">列を取り出す</a></li>
+			<li><a href="#awk_1_2">演算を行う</a></li>
+			<li><a href="#awk_1_3">書式を指定する</a></li>
+			<li><a href="#awk_1_4">区切り文字を指定する</a></li>
+		</ul>
+		</li></ul>  
+	<!-- ネットワーク関連 -->
+	<ul class="list1"><li><a href="#network_1">ネットワーク関連</a>
+		<ul class="list2">
+			<li><a href="#network_1_1">IPアドレスを確認する</a></li>
+			<li><a href="#network_1_2">ネットワークデバイスを表示する</a></li>
+			<li><a href="#network_1_3">ルーティングテーブルの内容を表示する</a></li>
+			<li><a href="#network_1_4">通信の状態を調べる</a></li>
+			<li><a href="#network_1_5">LISTENポートをチェックする</a></li>
+			<li><a href="#network_1_6">ARPテーブルを表示する</a></li>
+		</ul>
+		</li></ul>
+	<!-- ユーザ管理 -->
+	<ul class="list1"><li><a href="#user_1">ユーザ管理</a>
+		<ul class="list2">
+			<li><a href="#user_1_1">ユーザを追加する</a></li>
+			<li><a href="#user_1_2">ユーザを削除する</a></li>
+			<li><a href="#user_1_3">グループを追加する</a></li>
+			<li><a href="#user_1_4">ユーザをグループに追加する</a></li>
+			<li><a href="#user_1_5">ユーザをグループから削除する</a></li>
+			<li><a href="#user_1_6">ユーザの所属するグループを変更する</a></li>
+		</ul>
+		</li></ul>
+	<!-- システム管理 -->
+
+	<ul class="list1"><li><a href="#system_1">システム管理</a>
+		<ul class="list2">
+			<li><a href="#system_1_1">ディスク使用量</a></li>
+			<li><a href="#system_1_2">温度監視</a></li>
+			<li><a href="#system_1_3">ログ通知</a></li>
+			<li><a href="#system_1_4">サービス一覧を表示する</a></li>
+			<li><a href="#system_1_5">サービスの管理</a></li>
+			<li><a href="#system_1_6">サービスログの確認</a></li>
+			<li><a href="#system_1_7">ランレベルの確認</a></li>
+			<li><a href="#system_1_8">ランレベルの変更</a></li>
+			<li><a href="#system_1_9">ディスク管理</a></li>
+			<li><a href="#system_1_10">ファイアウォール</a></li>
+			<li><a href="#system_1_11">パッケージ管理</a></li>
+		</ul>
+		</li></ul>
+	<!-- OSアップデート -->
+	<ul class="list1"><li><a href="#os_1">OSアップデート</a>
+		<ul class="list2">
+			<li><a href="#os_1_1">OpenSUSEのOSアップデート</a></li>
+		</ul>
+		</li></ul>
+	<!-- SSH関連 -->
+	<ul class="list1"><li><a href="#ssh_1">SSH関連</a>
+		<ul class="list2">
+			<li><a href="#ssh_1_1">ホスト公開鍵の更新</a></li>
+			<li><a href="#ssh_1_2">SSH秘密鍵と公開鍵の新規生成</a></li>
+			<li><a href="#ssh_1_3">ユーザー名を指定してログイン</a></li>
+			<li><a href="#ssh_1_4">秘密鍵を指定してログイン</a></li>
+			<li><a href="#ssh_1_5">X11転送を有効にする</a></li>
+			<li><a href="#ssh_1_6">configファイルを使う</a></li>
+			<li><a href="#ssh_1_7">カスケード接続</a></li>
+			<li><a href="#ssh_1_8">ポートフォワード</a></li>
+			<li><a href="#ssh_1_9">sshdがLISTENするポートを指定する</a></li>
+			<li><a href="#ssh_1_10">sshdでパスワード試行回数を制限する</a></li>
+		</ul>
+		</li></ul>
+	<!-- bash関連 -->
+	<ul class="list1"><li><a href="#bash_1">bash関連</a>
+		<ul class="list2">
+			<li><a href="#bash_1_1">配列の作成</a></li>
+			<li><a href="#bash_1_2">配列の値の変更、配列への追加</a></li>
+			<li><a href="#bash_1_3">配列の要素数を表示する</a></li>
+			<li><a href="#bash_1_4">配列の要素を順に利用する</a></li>
+			<li><a href="#bash_1_5">コマンドの結果を配列に入力する</a></li>
+			<li><a href="#bash_1_6">リダイレクト</a></li>
+			<li><a href="#bash_1_7">数字の桁</a></li>
+		</ul>
+		</li></ul>
+	<!-- ファイル関連 -->
+	<ul class="list1"><li><a href="#file_1">ファイル/ディレクトリ関連</a>
+		<ul class="list2">
+			<li><a href="#file_1_1">空のファイル作成、タイムスタンプ更新</a></li>
+			<li><a href="#file_1_2">ディレクトリ作成</a></li>
+			<li><a href="#file_1_3">ファイル/ディレクトリのパーミッション</a></li>
+			<li><a href="#file_1_4">setuidとsetgid</a></li>
+			<li><a href="#file_1_5">ACLの設定</a></li>
+			<li><a href="#file_1_6">ファイルの分割と分割ファイルの結合</a></li>
+		</ul>
+		</li></ul>
+	<!-- 画像関連 -->
+	<ul class="list1"><li><a href="#fig_1">画像関連</a>
+		<ul class="list2">
+			<li><a href="#fig_1_1">convertによるファイル形式変換</a></li>
+		</ul>
+		</li></ul>
+	<!-- その他コマンド -->
+	<ul class="list1"><li><a href="#com_1">その他コマンド</a>
+		<ul class="list2">
+			<li><a href="#com_1_1">grepで該当行の前後２行を表示する</a></li>
+			<li><a href="#com_1_2">diffを+-記号表示にする</a></li>
+			<li><a href="#com_1_3">nkfでUTF-8とLF形式にする</a></li>
+			<li><a href="#com_1_4">teeでmakeログを作成しながら画面表示</a></li>
+			<li><a href="#com_1_5">apgでパスワード自動生成</a></li>
+			<li><a href="#com_1_6">nohupでログアウト後も処理を継続</a></li>
+			<li><a href="#com_1_7">findでファイル処理</a></li>
+			<li><a href="#com_1_8">sedで文字列の置換</a></li>
+			<li><a href="#com_1_9">trで大文字と小文字の置換</a></li>
+			<li><a href="#com_1_10">パス名からファイル名を取得</a></li>
+			<li><a href="#com_1_11">コマンドマニュアルの表示</a></li>
+		</ul>
+		</li></ul>
+	<small><a href="#top">[top]</a></small> <br />
 </div>
 
-<small><a href="#top">[top]</a></small> <br />
 <br />
 <hr width="105%" />
 <br />
@@ -1068,6 +1069,7 @@
 		        <pre>UsePAM yes</pre>
 		        ＊デフォルトで有効になっていることを確認
 		    </li><br />
+		</ol>
 	</div>
 
 <!-- bash関連 -->
@@ -1356,7 +1358,7 @@
 		<pre>% コマンド名 -h</pre>
 	</div>
 
-<small><a href="#top">[top]</a></small> <br />
+<div class="text1"><small><a href="#top">[top]</a></small></div>
 <hr />
 </article>
 </body>
