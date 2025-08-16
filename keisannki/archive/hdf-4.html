@@ -40,83 +40,58 @@
 <br />
 
 <!-- HDF4のダウンロード -->
-<h3><div class="headline2" id="download">1　HDF4のダウンロード</div></h3>
+<h2><div class="headline1" id="download">1　HDF4のダウンロード</div></h2>
 <div class="text1">
-&nbsp; <a href="http://www.hdfgroup.org/products/hdf4">HDFのページ</a>からHDF4のソースコードとSZIP、ZLIB、JPEGをダウンロードします。
+	&nbsp; <a href="http://www.hdfgroup.org/products/hdf4">HDFのページ</a>からHDF4のソースコードとSZIP、ZLIB、JPEGをダウンロードします。
 </div>
 <br /><br />
 
 
 <!-- SZIPのインストール -->
-<h3><div class="headline2" id="szip">2　SZIPのインストール</div></h3>
+<h2><div class="headline1" id="szip">2　SZIPのインストール</div></h2>
 <div class="text1">
-&nbsp; ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure で --prefix=インストール先　を変更してください。<br />
-<pre>
-% gunzip -c szip-2.1.tar.gz | tar xvf - 
-% cd szip-2.1 
-% ./configure --prefix=/usr/local
-% make <br />
-% make checkで
-All test passed.が出ることを確認し、
-# make install</pre>
+	&nbsp; ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure で --prefix=インストール先　を変更してください。<br />
+	<pre>% gunzip -c szip-2.1.tar.gz | tar xvf - <br />% cd szip-2.1<br />% ./configure --prefix=/usr/local<br />% make <br /><br />% make checkで<br />All test passed.が出ることを確認し、<br /># make install</pre>
 </div>
 <br /><br />
 
 
 <!-- ZLIBのインストール -->
-<h3><div class="headline2" id="zlib">3　ZLIBのインストール</div></h3>
+<h2><div class="headline1" id="zlib">3　ZLIBのインストール</div></h2>
 <div class="text1">
-&nbsp; ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure に --prefix=インストール先　のオプションを付けてください。<br />
-<pre>
-% gunzip -c zlib-1.2.3.tar.gz | tar xvf - 
-% cd zlib-1.2.3 
-% ./configure
-% make
-# make install</pre>
+	&nbsp; ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure に --prefix=インストール先　のオプションを付けてください。<br />
+	<pre>% gunzip -c zlib-1.2.3.tar.gz | tar xvf -<br />% cd zlib-1.2.3<br />% ./configure<br />% make<br /># make install</pre>
 </div>
 <br /><br />
 
 
 <!-- JPEGのインストール -->
-<h3><div class="headline2" id="jpeg">4　JPEGのインストール</div></h3>
+<h2><div class="headline1" id="jpeg">4　JPEGのインストール</div></h2>
 <div class="text1">
-&nbsp; ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure に --prefix=インストール先　のオプションを付けてください。<br />
-<pre>
-% gunzip -c jpegsrc.v6b.tar.gz | tar xvf -
-% cd jpeg-6b
-% ./configure
-% make
-# make install</pre>
+	&nbsp; ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure に --prefix=インストール先　のオプションを付けてください。<br />
+	<pre>% gunzip -c jpegsrc.v6b.tar.gz | tar xvf -<br />% cd jpeg-6b<br />% ./configure<br />% make<br /># make install</pre>
 </div>
 <br /><br />
 
 
 <!-- HDF4.2r3のインストール -->
-<h3><div class="headline2" id="hdf4">5　HDF4.2r3のインストール</div></h3>
+<h2><div class="headline1" id="hdf4">5　HDF4.2r3のインストール</div></h2>
 <div class="text1">
-&nbsp; ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure に --prefix=インストール先　のオプションを付けてください。<br />
-<pre>
-% gunzip -c HDF4.2r3.tar.gz | tar xvf -
-% cd HDF4.2r3<br />
-% setenv CPPFLAGS -I/usr/local/include
-% ./configure --prefix=/usr/local/HDF4.2r3 --with-zlib=/usr/local/lib --with-jpeg=/usr/local/lib \
---with-szlib=/usr/local/lib <br />
-% make<br />
-% make check でテストが成功したことを確認し、
-# make install</pre>
-＊ HDF4.2.5でも同じ方法でインストール可能です。
+	&nbsp; ここでは、/usr/local以下にインストールすることを想定しています。別の場所にインストールする場合、configure に --prefix=インストール先　のオプションを付けてください。<br />
+	<pre>% gunzip -c HDF4.2r3.tar.gz | tar xvf -<br />% cd HDF4.2r3<br /><br />% setenv CPPFLAGS -I/usr/local/include<br />% ./configure --prefix=/usr/local/HDF4.2r3 --with-zlib=/usr/local/lib --with-jpeg=/usr/local/lib \<br />--with-szlib=/usr/local/lib <br /><br />% make<br /><br />% make check でテストが成功したことを確認し、<br /># make install</pre>
+	＊ HDF4.2.5でも同じ方法でインストール可能です。
 </div>
 <br /><br />
 
 
 
 <br /><br />
-<small><a href="#top">[top]</a></small> <br />
+<div class="text1"><small><a href="#top">[top]</a></small></div>
 <hr />
 </article>
 </body>
 <footer>
-<p>最終更新日：2024/11/11</p>
-<p>Copyright (C) 2005-2024, Yousuke Yamashita</p>
+<p>最終更新日：2025/08/16</p>
+<p>Copyright (C) 2005-2025, Yousuke Yamashita</p>
 </footer>
 </html>
