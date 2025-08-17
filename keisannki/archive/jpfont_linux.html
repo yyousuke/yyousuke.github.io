@@ -60,216 +60,135 @@
 
 
 <h3><div class="headline1" id="scim">日本語入力メソッドの導入</div></h3>
-&nbsp; 日本語のインプットメソッドには、Vineで使っていたSCIM（Smart Common Input Method）を導入し、変換ソフトにはanthyを使う。SCIMなど日本語の入力メソッドは導入されていない環境のため、ソースコードからビルドした。<br />
+<div class="text1">
+	<p>&nbsp; 日本語のインプットメソッドには、Vineで使っていたSCIM（Smart Common Input Method）を導入し、変換ソフトにはanthyを使う。SCIMなど日本語の入力メソッドは導入されていない環境のため、ソースコードからビルドした。</p><br />
+</div>
 <h4><div class="headline2" id="scim_1">1.1 scim+anthy</div></h4>
 <div class="text1">
-<ol class="list1">
-<li>SCIM
-<ul class="list2">
-<li>Intltool-0.50.2<br />
-&nbsp; Vine LinuxのソースコードからIntltool-0.50.2.tar.gzを取り出す
-<pre>
-% ./configure --prefix=/home/ユーザ名/local
-% make
-% make install</pre></li><br />
-<li>gettext-0.18.1.1<br />
-&nbsp; Vine Linuxのソースコードからgettext-0.18.1.1.tar.gzを取り出す
-<pre>
-% ./configure --prefix=/home/ユーザ名/local
-% make
-% make install
-</pre></li><br />
-<li>scim-1.4.7
-&nbsp; Vine Linuxのソースコードからscim-1.4.7.tar.gzを取り出す
-<pre>
-% ./configure --prefix=/home/ユーザ名/local
-% make
-% make install</pre>
-make installでエラーが出るので(一般ユーザで書き込み権限のない/usr以下にコピーしようとするコマンドがあるのが原因)、次のようにコードを変更<br />
-<pre>
-extras/gtk2_immodule/Makefileで
-install-amの部分の$(MAKE)の行をコメントアウト</pre>
-/usr以下にコピーしようとしていたものを、書き込み権限のある~/local/lib/gtk-2.0/immodulesにコピーする
-<pre>
-% cp -p extras/gtk2_immodule/.libs/im-scim.so ~/local/lib/gtk-2.0/immodule
-% cp -p extras/gtk2_immodule/im-scim.la ~/local/lib/gtk-2.0/immodule
-</pre></li><br />
-</ul></li>
-<li>Anthy<br />
-&nbsp; Vine Linuxのソースコードからanthy-7900.tar.gzも取り出し、コンパイル、インストールを行う
-<pre>
-% ./configure --prefix=/home/ユーザ名/local
-% make
-% make install</pre>
-</li><br />
-<li>scim-anthy<br />
-&nbsp; scim-anthy-1.2.4.tar.gzも取り出し、コンパイル、インストールを行う
-<pre>
-% export SCIM_LIBS=/home/ユーザ名/local/lib
-% export SCIM_CFLAGS="-O -I/home/ユーザ名/local/include \
- -I/home/ユーザ名/local/include/scim-1.0 \
- -L/home/ユーザ名/local/lib" 
-% CPPFLAGS=-I/home/ユーザ名/local/include \
-LDFLAGS=-L/home/ユーザ名/local/lib \
-./configure --prefix=/home/ユーザ名/local
-% make
-% make install</pre></li>
-</ol>
+	<ol class="list1">
+		<li>SCIM
+			<ul class="list2">
+				<li>Intltool-0.50.2<br />
+					&nbsp; Vine LinuxのソースコードからIntltool-0.50.2.tar.gzを取り出す
+					<pre>% ./configure --prefix=/home/ユーザ名/local<br />% make<br />% make install</pre></li><br />
+				<li>gettext-0.18.1.1<br />
+					&nbsp; Vine Linuxのソースコードからgettext-0.18.1.1.tar.gzを取り出す
+					<pre>% ./configure --prefix=/home/ユーザ名/local<br />% make<br />% make install</pre>
+				</li><br />
+				<li>scim-1.4.7
+					&nbsp; Vine Linuxのソースコードからscim-1.4.7.tar.gzを取り出す
+					<pre>% ./configure --prefix=/home/ユーザ名/local<br />% make<br />% make install</pre>
+					make installでエラーが出るので(一般ユーザで書き込み権限のない/usr以下にコピーしようとするコマンドがあるのが原因)、次のようにコードを変更<br />
+					<pre>extras/gtk2_immodule/Makefileで<br />install-amの部分の$(MAKE)の行をコメントアウト</pre>
+					/usr以下にコピーしようとしていたものを、書き込み権限のある~/local/lib/gtk-2.0/immodulesにコピーする
+					<pre>% cp -p extras/gtk2_immodule/.libs/im-scim.so ~/local/lib/gtk-2.0/immodule<br />% cp -p extras/gtk2_immodule/im-scim.la ~/local/lib/gtk-2.0/immodule</pre>
+				</li><br />
+			</ul></li>
+		<li>Anthy<br />
+			&nbsp; Vine Linuxのソースコードからanthy-7900.tar.gzも取り出し、コンパイル、インストールを行う
+			<pre>% ./configure --prefix=/home/ユーザ名/local<br />% make<br />% make install</pre>
+		</li><br />
+		<li>scim-anthy<br />
+			&nbsp; scim-anthy-1.2.4.tar.gzも取り出し、コンパイル、インストールを行う
+			<pre>% export SCIM_LIBS=/home/ユーザ名/local/lib<br />% export SCIM_CFLAGS="-O -I/home/ユーザ名/local/include \<br />-I/home/ユーザ名/local/include/scim-1.0 \<br />-L/home/ユーザ名/local/lib"<br />% CPPFLAGS=-I/home/ユーザ名/local/include \<br />LDFLAGS=-L/home/ユーザ名/local/lib \<br />./configure --prefix=/home/ユーザ名/local<br />% make<br />% make install</pre></li>
+	</ol>
 </div>
 
 <h4><div class="headline2" id="scim_2">1.2 SCIMの設定</div></h4>
 <div class="text1">
-日本語入力の方法をSCIMとするため、ホームディレクトリにある.login（cshの場合）や.profile（bashの場合）に次のような記述を加える
-<ul class="list1">
-<li> .login
-<pre>
-setenv XMODIFIERS "@im=SCIM"
-setenv GTK_IM_MODULE "scim"
-setenv QT_IM_MODULE "scim"
-setenv XIM_PROGRAM "scim -d"
-setenv USE_XOPENIM t</pre></li><br />
-<li> .profile
-<pre>
-export XMODIFIERS="@im=SCIM"
-export GTK_IM_MODULE="scim"
-export QT_IM_MODULE="scim"
-export XIM_PROGRAM="scim -d"
-export USE_XOPENIM=t</pre></li><br />
+	日本語入力の方法をSCIMとするため、ホームディレクトリにある.login（cshの場合）や.profile（bashの場合）に次のような記述を加える
+	<ul class="list1">
+		<li> .login
+			<pre>setenv XMODIFIERS "@im=SCIM"<br />setenv GTK_IM_MODULE "scim"<br />setenv QT_IM_MODULE "scim"<br />setenv XIM_PROGRAM "scim -d"<br />setenv USE_XOPENIM t</pre></li><br />
+		<li> .profile
+			<pre>export XMODIFIERS="@im=SCIM"<br />export GTK_IM_MODULE="scim"<br />export QT_IM_MODULE="scim"<br />export XIM_PROGRAM="scim -d"<br />export USE_XOPENIM=t</pre></li><br />
+		<li>起動時の実行設定（Red Hat Enterprise Linux）<br />
+			kdeの起動時にSCIMが起動されるようにするため、~/.kde/Autostartにstartscimというファイルを作り、次のようにscimの起動設定を記述する
+			<pre>#!/bin/sh<br />/home/ユーザ名/local/bin/scim -d</pre>
+			さらに、スクリプトに実行権限を与える
+			<pre>% chmod 744 ~/.kde/Autostart/startscim</pre>
+		</li><br />
+		<li>起動時の実行設定（SUSE Linux）<br />
+			&nbsp; /home/ユーザ名/bin/startscimを作る
+			<pre>#!/bin/sh<br />LANG=ja_JP.UTF-8 ; export LANG<br />LANGUAGE=ja_JP.UTF-8 ; export LANGUAGE<br />LC_ALL=ja_JP.UTF-8 ; export LC_ALL<br />/home/ユーザ名/local/bin/scim -d</pre><br />
+			&nbsp; 作成したスクリプトに実行権限を与える
+			<pre>% chmod 744 /home/ユーザ名/bin/startscim</pre><br />
+			&nbsp; gnomeでstartscimを自動起動するため、<br />
+			[Tools]-[Desktop]-[Control Center]を開き、<br />
+			[Sessions]-[Startup Programs]を選び、startscimを登録する。
+		</li><br />
 
-<li>起動時の実行設定（Red Hat Enterprise Linux）<br />
-kdeの起動時にSCIMが起動されるようにするため、~/.kde/Autostartにstartscimというファイルを作り、次のようにscimの起動設定を記述する
-<pre>
-#!/bin/sh
-/home/ユーザ名/local/bin/scim -d</pre>
-さらに、スクリプトに実行権限を与える
-<pre>% chmod 744 ~/.kde/Autostart/startscim</pre></li><br />
+		<li>SCIM設定の変更<br />
+			&nbsp; SCIMの設定を変更する際は、次のコマンドを起動する
+			<pre>% scim-setup</pre>
+			Ctrl+Spaceが日本語入力への切替えになっていたので、Shift+Spaceも追加<br />
 
-<li>起動時の実行設定（SUSE Linux）<br />
-&nbsp; /home/ユーザ名/bin/startscimを作る
-<pre>
-#!/bin/sh
-LANG=ja_JP.UTF-8 ; export LANG
-LANGUAGE=ja_JP.UTF-8 ; export LANGUAGE
-LC_ALL=ja_JP.UTF-8 ; export LC_ALL
-/home/ユーザ名/local/bin/scim -d</pre><br />
-&nbsp; 作成したスクリプトに実行権限を与える
-<pre>% chmod 744 /home/ユーザ名/bin/startscim</pre><br />
-&nbsp; gnomeでstartscimを自動起動するため、<br />
-[Tools]-[Desktop]-[Control Center]を開き、<br />
-[Sessions]-[Startup Programs]を選び、startscimを登録する。
-</li><br />
-
-<li>SCIM設定の変更<br />
-&nbsp; SCIMの設定を変更する際は、次のコマンドを起動する
-<pre>% scim-setup</pre>
-Ctrl+Spaceが日本語入力への切替えになっていたので、Shift+Spaceも追加<br />
-
-＊firefoxでもShift+Spaceで日本語入力できるようになった。ただし、コマンドラインでfirefoxを起動する必要あり<br />
-＊デスクトップのアイコンで起動するとShift+Spaceで日本語モードにならないという問題あり<br /><br />
-＊もしscimが動いていない場合、端末を起動してから手動でscim -d と打つ必要がある
-</li>
-</ul>
+			＊firefoxでもShift+Spaceで日本語入力できるようになった。ただし、コマンドラインでfirefoxを起動する必要あり<br />
+			＊デスクトップのアイコンで起動するとShift+Spaceで日本語モードにならないという問題あり<br />
+			＊もしscimが動いていない場合、端末を起動してから手動でscim -d と打つ必要がある
+		</li>
+	</ul>
 </div>
 
 
 <h4><div class="headline2" id="scim_3">1.3 文字コードの変更</div></h4>
 <div class="text1">
-&nbsp; 日本語対応させるため、環境変数LANGをja_JP.UTF-8に設定した。 <br />
-&nbsp; Red Hat Enterprise Linuxでは、kpersonalizerを起動してキーボードをUSに、言語を日本語に設定した。これだけで、デスクトップが日本語化された。SUSE Linuxの場合は、環境変数LANG=Cであったので、日本語対応させるためja_JP.UTF-8に設定した。<br />
-&nbsp; ターミナル起動時に反映させるため、bashの場合は.profileに次のような記述を加える
-<pre>
-LANG=ja_JP.UTF-8 ; export LANG
-LANGUAGE=ja_JP.UTF-8 ; export LANGUAGE
-LC_ALL=ja_JP.UTF-8 ; export LC_ALL</pre>
-さらに、シェルをbashに変えるように次の記述も入れておく
-<pre>
-if [ -x /bin/bash ]; then
-&nbsp; /bin/bash
-&nbsp; export SHELL=/bin/bash
-fi</pre>
-<br />
-&nbsp; cshの場合には、 .loginに次の記述も入れる。
-<pre>
-setenv LANG ja_JP.UTF-8 
-setenv LANGUAGE ja_JP.UTF-8
-setenv LC_ALL ja_JP.UTF-8</pre>
+	&nbsp; 日本語対応させるため、環境変数LANGをja_JP.UTF-8に設定した。 <br />
+	&nbsp; Red Hat Enterprise Linuxでは、kpersonalizerを起動してキーボードをUSに、言語を日本語に設定した。これだけで、デスクトップが日本語化された。SUSE Linuxの場合は、環境変数LANG=Cであったので、日本語対応させるためja_JP.UTF-8に設定した。<br />
+	&nbsp; ターミナル起動時に反映させるため、bashの場合は.profileに次のような記述を加える
+	<pre>LANG=ja_JP.UTF-8 ; export LANG<br />LANGUAGE=ja_JP.UTF-8 ; export LANGUAGE<br />LC_ALL=ja_JP.UTF-8 ; export LC_ALL</pre>
+	さらに、シェルをbashに変えるように次の記述も入れておく
+	<pre>if [ -x /bin/bash ]; then<br />&nbsp; /bin/bash<br />&nbsp; export SHELL=/bin/bash<br />fi</pre><br />
+	&nbsp; cshの場合には、 .loginに次の記述も入れる。
+	<pre>setenv LANG ja_JP.UTF-8 <br />setenv LANGUAGE ja_JP.UTF-8<br />setenv LC_ALL ja_JP.UTF-8</pre>
 </div>
 
 
 <h3><div class="headline1" id="settings">各種設定</div></h3>
 <h4><div class="headline2" id="settings_1">2.1 emacsの設定</div></h4>
 <div class="text1">
-&nbsp; SCIM、anthy関係をインストールしたら、Cntl + \で日本語入力が可能になった。<br />
-UTF-8で読み書きできるように、.emacs.elを設定しておく
-<pre>
-(set-language-environment "Japanese")
-(set-default-coding-systems 'utf8)
-(set-buffer-file-coding-system 'utf8)
-(set-terminal-coding-system 'utf8)
-(set-keyboard-coding-system 'utf8)</pre><br />
-&nbsp; nを２回入力して「ん」にしたいので、次のように設定した
-<pre>
-(defvar quail-japanese-use-double-n t
-  "If non-nil, use type \"nn\" to insert 「ん」"</pre><br />
+	&nbsp; SCIM、anthy関係をインストールしたら、Cntl + \で日本語入力が可能になった。<br />
+	UTF-8で読み書きできるように、.emacs.elを設定しておく
+	<pre>(set-language-environment "Japanese")<br />(set-default-coding-systems 'utf8)<br />(set-buffer-file-coding-system 'utf8)<br />(set-terminal-coding-system 'utf8)<br />(set-keyboard-coding-system 'utf8)</pre><br />
+	&nbsp; nを２回入力して「ん」にしたいので、次のように設定した
+	<pre>(defvar quail-japanese-use-double-n t<br />  "If non-nil, use type \"nn\" to insert 「ん」"</pre><br />
 </div>
 
 <h4><div class="headline2" id="settings_2">2.2 メールソフトの導入</div></h4>
 <div class="text1">
- &nbsp; sylpheedをコンパイルしてインストール
-<pre> % ./configure --prefix=/home/ユーザ名/local
-% make
-% make install</pre><br />
-迷惑メールフィルタも欲しいので、bogofilterもコンパイルしてインストール<br />
-<a href="#scim_3">環境変数LANGを日本語に設定</a>していれば、起動時に日本語表示される。Shift+Spaceでメールで日本語入力できるようになる
+	&nbsp; sylpheedをコンパイルしてインストール
+	<pre> % ./configure --prefix=/home/ユーザ名/local<br />% make<br />% make install</pre><br />
+	迷惑メールフィルタも欲しいので、bogofilterもコンパイルしてインストール<br />
+	<a href="#scim_3">環境変数LANGを日本語に設定</a>していれば、起動時に日本語表示される。Shift+Spaceでメールで日本語入力できるようになる
 </div>
 
 <h4><div class="headline2" id="settings_3">2.3 エイリアスの設定</div></h4>
 <div class="text1">
-&nbsp; 端末からfirefoxとsylpheedを起動するので、バックグラウンドで起動するようにエイリアスをかける。ホームディレクトリにある.cshrc（cshの場合）や.bashrc（bashの場合）に次のような記述を加える
-<ul class="list1">
-<li>.cshrc
-<pre>
-----------------------------------------------------
-alias sylpheed '~/local/bin/sylpheed &'
-alias firefox 'firefox &'
-----------------------------------------------------</pre>
-</li><br />
-<li>.bashrc
-<pre>
-----------------------------------------------------
-alias sylpheed='~/local/bin/sylpheed &'
-alias firefox='firefox &'
-----------------------------------------------------</pre>
-</li><br />
-</ul>
-&nbsp; 文字コードの切り替えを簡単に行うため、.bashrcに次のような言語を切替えるエイリアスを作り、eucを実行して日本語EUC、utfを実行してUTF-8、sjisを実行して日本語Shift JIS、engを実行して英語に設定可能にした<br />
-<ul class="list1">
-<li> .bashrc<br />
-<pre>
-----------------------------------------------------
-alias euc='LANG=ja_JP.eucJP LANGUAGE=ja_JP.eucJP LC_ALL=ja_JP.eucJP'
-alias utf='LANG=ja_JP.UTF-8 LANGUAGE=ja_JP.UTF-8 LC_ALL=ja_JP.UTF-8'
-alias sjis='LANG=ja_JP.sjis LANGUAGE=ja_JP.sjis LC_ALL=ja_JP.sjis'
-alias eng='LANG=C LANGUAGE=C LC_ALL=C'
-----------------------------------------------------</pre></li><br />
-<li> .cshrc<br />
-<pre>
-----------------------------------------------------
-alias euc 'setenv LANG ja_JP.eucJP ; setenv LANGUAGE ja_JP.eucJP ; setenv LC_ALL ja_JP.eucJP'
-alias utf 'setenv LANG ja_JP.UTF-8 ; setenv LANGUAGE ja_JP.UTF-8 ; setenv LC_ALL ja_JP.UTF-8'
-alias sjis 'setenv LANG ja_JP.sjis ; setenv LANGUAGE ja_JP.sjis ; setenv LC_ALL ja_JP.sjis'
-alias eng 'setenv LANG C ; setenv LANGUAGE C ; setenv LC_ALL C'
-----------------------------------------------------</pre><br />
-</li></ul>
+	&nbsp; 端末からfirefoxとsylpheedを起動するので、バックグラウンドで起動するようにエイリアスをかける。ホームディレクトリにある.cshrc（cshの場合）や.bashrc（bashの場合）に次のような記述を加える
+	<ul class="list1">
+		<li>.cshrc
+			<pre>----------------------------------------------------<br />alias sylpheed '~/local/bin/sylpheed &amp;'<br />alias firefox 'firefox &amp;'<br />----------------------------------------------------</pre>
+		</li><br />
+		<li>.bashrc
+			<pre>----------------------------------------------------<br />alias sylpheed='~/local/bin/sylpheed &amp;'<br />alias firefox='firefox &amp;'<br />----------------------------------------------------</pre>
+		</li><br />
+	</ul>
+	&nbsp; 文字コードの切り替えを簡単に行うため、.bashrcに次のような言語を切替えるエイリアスを作り、eucを実行して日本語EUC、utfを実行してUTF-8、sjisを実行して日本語Shift JIS、engを実行して英語に設定可能にした<br />
+	<ul class="list1">
+		<li> .bashrc<br />
+			<pre>----------------------------------------------------<br />alias euc='LANG=ja_JP.eucJP LANGUAGE=ja_JP.eucJP LC_ALL=ja_JP.eucJP'<br />alias utf='LANG=ja_JP.UTF-8 LANGUAGE=ja_JP.UTF-8 LC_ALL=ja_JP.UTF-8'<br />alias sjis='LANG=ja_JP.sjis LANGUAGE=ja_JP.sjis LC_ALL=ja_JP.sjis'<br />alias eng='LANG=C LANGUAGE=C LC_ALL=C'<br />----------------------------------------------------</pre></li><br />
+		<li> .cshrc<br />
+			<pre>----------------------------------------------------<br />alias euc 'setenv LANG ja_JP.eucJP ; setenv LANGUAGE ja_JP.eucJP ; setenv LC_ALL ja_JP.eucJP'<br />alias utf 'setenv LANG ja_JP.UTF-8 ; setenv LANGUAGE ja_JP.UTF-8 ; setenv LC_ALL ja_JP.UTF-8'<br />alias sjis 'setenv LANG ja_JP.sjis ; setenv LANGUAGE ja_JP.sjis ; setenv LC_ALL ja_JP.sjis'<br />alias eng 'setenv LANG C ; setenv LANGUAGE C ; setenv LC_ALL C'<br />----------------------------------------------------</pre><br />
+		</li></ul>
 </div>
 
 <br /><br />
-<small><a href="#top">[top]</a></small> <br />
+<div class="text1"><small><a href="#top">[top]</a></small></div>
 <hr />
 </article>
 </body>
 <footer>
-<p>最終更新日：2024/11/11</p>
-<p>Copyright (C) 2010-2024, Yousuke Yamashita</p>
+<p>最終更新日：2025/08/17</p>
+<p>Copyright (C) 2010-2025, Yousuke Yamashita</p>
 </footer>
 </html>
