@@ -40,19 +40,19 @@
 
 <h2 id="contents">目次</h2>
 <div class="contents">
-  <ol class="list1">
-    <!-- 1、設定ファイル -->
-    <li><a href="#init">設定ファイル</a>
-    <ul class="list2">
-      <li><a href="#init1.1">1.1 シェル関連</a></li>
-      <li><a href="#init1.2">1.2 X関連</a></li>
-      <li><a href="#init1.3">1.3 emacs関連</a></li>
-      <li><a href="#init1.4">1.4 vi関連</a></li>
-      <li><a href="#init1.5">1.5 Mail関連</a></li>
-      <li><a href="#init1.6">1.6 その他の設定ファイル</a></li>
-      <li><a href="#init1.7">1.7 設定ファイルではない.ファイル</a></li>
-    </ul></li>
-  </ol>
+	<ol class="list1">
+		<!-- 1、設定ファイル -->
+		<li><a href="#init">設定ファイル</a>
+			<ul class="list2">
+				<li><a href="#init1.1">1.1 シェル関連</a></li>
+				<li><a href="#init1.2">1.2 X関連</a></li>
+				<li><a href="#init1.3">1.3 emacs関連</a></li>
+				<li><a href="#init1.4">1.4 vi関連</a></li>
+				<li><a href="#init1.5">1.5 Mail関連</a></li>
+				<li><a href="#init1.6">1.6 その他の設定ファイル</a></li>
+				<li><a href="#init1.7">1.7 設定ファイルではない.ファイル</a></li>
+			</ul></li>
+	</ol>
 </div>
 
 
@@ -64,26 +64,26 @@
 <!-- 1-1 -->
 <h4><div class="headline2" id="init1.1">1.1 シェル関連</div></h4>
 <div class="text1">
-<ul class="list1">
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.login</span> (csh, tcsh)<br />
-login shellを csh, tcsh にした場合、端末からloginした際に読み込まれる設定ファイル。login後にシェルを起動しても読み込まれない。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.tcshrc</span> (tcsh)<br />
-tcshを起動した際に読み込まれる設定ファイル。login後にシェルを起動した際にも毎回読み込まれる。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.cshrc</span>(csh,tcsh)<br />
-cshを起動した際に毎回読み込まれる設定ファイル。tcshの場合には .tcshrc がない場合にこのファイルが読み込まれる。 .tcshrc の中で .cshrc を読み込むように設定し、 .cshrc にはcsh, tcshに共通する設定を記述することも多い。 </li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.logout</span> (csh, tcsh)<br />
-login shellを csh, tcsh にした場合、端末からlogoutする際に実行される設定ファイル。ユーザのtmpファイルの削除や、画面のクリア、メッセージの表示などを設定することができる。 
-</li><br />
-<p>＊ 以下の設定ファイルはbashを使用するユーザ向けです。bashを使用しない場合には不要ですので読み飛ばしても構いません。 </p>
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.profile</span> (sh, bash)<br />
-login shellを sh, bash にした場合（rootのlogin shell を除けば、shにすることはほとんどないが）に端末からloginした際に読み込まれる設定ファイル。login後にシェルを起動しても読み込まれない。 </li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.bash_profile</span> (bash)<br />
-login shellを bash にした場合に端末からloginした際に読み込まれる設定ファイル。login後にシェルを起動しても読み込まれない。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.bash_logout</span> (bash)<br />
-login shellを bash にした場合、端末からlogoutする際に実行される設定ファイル。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.bashrc</span> (bash)<br />
-bashを起動した際に読み込まれる設定ファイル。login後にシェルを起動した際にも毎回読み込まれる。 </li><br />
-</ul>
+	<ul class="list1">
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.login</span> (csh, tcsh)<br />
+			<p>login shellを csh, tcsh にした場合、端末からloginした際に読み込まれる設定ファイル。login後にシェルを起動しても読み込まれない。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.tcshrc</span> (tcsh)<br />
+			<p>tcshを起動した際に読み込まれる設定ファイル。login後にシェルを起動した際にも毎回読み込まれる。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.cshrc</span>(csh,tcsh)<br />
+			<p>cshを起動した際に毎回読み込まれる設定ファイル。tcshの場合には .tcshrc がない場合にこのファイルが読み込まれる。 .tcshrc の中で .cshrc を読み込むように設定し、 .cshrc にはcsh, tcshに共通する設定を記述することも多い。 </p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.logout</span> (csh, tcsh)<br />
+			<p>login shellを csh, tcsh にした場合、端末からlogoutする際に実行される設定ファイル。ユーザのtmpファイルの削除や、画面のクリア、メッセージの表示などを設定することができる。</p>
+		</li><br />
+		<p>＊ 以下の設定ファイルはbashを使用するユーザ向けです。bashを使用しない場合には不要ですので読み飛ばしても構いません。 </p>
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.profile</span> (sh, bash)<br />
+			<p>login shellを sh, bash にした場合（rootのlogin shell を除けば、shにすることはほとんどないが）に端末からloginした際に読み込まれる設定ファイル。login後にシェルを起動しても読み込まれない。 </p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.bash_profile</span> (bash)<br />
+			<p>login shellを bash にした場合に端末からloginした際に読み込まれる設定ファイル。login後にシェルを起動しても読み込まれない。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.bash_logout</span> (bash)<br />
+			<p>login shellを bash にした場合、端末からlogoutする際に実行される設定ファイル。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.bashrc</span> (bash)<br />
+			<p>bashを起動した際に読み込まれる設定ファイル。login後にシェルを起動した際にも毎回読み込まれる。</p></li><br />
+	</ul>
 </div>
 <br /><br />
 <br /><br />
@@ -91,86 +91,70 @@ bashを起動した際に読み込まれる設定ファイル。login後にシ�
 <!-- 1-2 -->
 <h4><div class="headline2" id="init1.2">1.2 X関連</div></h4>
 <div class="text1">
-<ul class="list1">
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.xsession</span><br />
-端末のX画面やXDMCPで飛ばされたXの画面(AstexXなどのlogin画面)からloginした場合に読み込まれる設定ファイル。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.xinitrc</span><br />
-テキストモードから xinit や startx でXを立ち上げる場合に使用する。Xが立ち上がっている状態でのloginやXDMCPでloginする場合には不要。基本的には.xsession へのリンクとしてもよい。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.Xdefaults</span><br />
-Xクライアントのリソース（大きさ、色、フォント、ボタンの形状等）を記述するファイル。記述がなければシステムのデフォルト値が用いられる。共通設定は/usr/lib/X11/ja_JP.ujis/app-defaults/...にある（Linux）。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.xmodmap</span><br />
-キーコードと文字の対応を記述する。高橋研ではjp106キーボード用に設定しているので別のキーボード(Sunのワークステーション付属のものなど)を使わなければ不要。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.twmrc</span> (twm)<br />
-Window マネージャに twm を使用した場合、twm　が読み込む設定ファイル。使用するフォントやマウスのボタンと表示されるコマンドの指定、コマンドを選択した際のアクションの指定やXクライアントに枠を表示するかどうかなどを設定することができる。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.qvwmrc</span> (qvwm)<br />
-Window マネージャに qvwm を使用した場合、qvwm　が読み込む設定ファイル。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.gnome/</span> (gnome)<br />
-Window マネージャに gnome を使用した場合、gnome　が読み込む設定ファイルを置くディレクトリ。twmで記述した内容に加え、デスクトップに表示するアイコンの設定も行える。</li><br />
-</ul>
+	<ul class="list1">
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.xsession</span><br />
+			<p>端末のX画面やXDMCPで飛ばされたXの画面(AstexXなどのlogin画面)からloginした場合に読み込まれる設定ファイル。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.xinitrc</span><br />
+			<p>テキストモードから xinit や startx でXを立ち上げる場合に使用する。Xが立ち上がっている状態でのloginやXDMCPでloginする場合には不要。基本的には.xsession へのリンクとしてもよい。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.Xdefaults</span><br />
+			<p>Xクライアントのリソース（大きさ、色、フォント、ボタンの形状等）を記述するファイル。記述がなければシステムのデフォルト値が用いられる。共通設定は/usr/lib/X11/ja_JP.ujis/app-defaults/...にある（Linux）。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.xmodmap</span><br />
+			<p>キーコードと文字の対応を記述する。jp106キーボード用に設定しており、別のキーボード(Sunのワークステーション付属のものなど)を使わなければ不要。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.twmrc</span> (twm)<br />
+			<p>Window マネージャに twm を使用した場合、twm　が読み込む設定ファイル。使用するフォントやマウスのボタンと表示されるコマンドの指定、コマンドを選択した際のアクションの指定やXクライアントに枠を表示するかどうかなどを設定することができる。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.qvwmrc</span> (qvwm)<br />
+			<p>Window マネージャに qvwm を使用した場合、qvwm　が読み込む設定ファイル。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.gnome/</span> (gnome)<br />
+			<p>Window マネージャに gnome を使用した場合、gnome　が読み込む設定ファイルを置くディレクトリ。twmで記述した内容に加え、デスクトップに表示するアイコンの設定も行える。</p></li><br />
+	</ul>
 </div>
 <br /><br />
 <br /><br />
 
 <!-- 1-3 -->
 <h4><div class="headline2" id="init1.3">1.3 emacs関連</div></h4>
-<div class="text1">
-<ul class="list1">
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs</span><br />
-emacsの設定ファイル。設定は全てemacs lispで記述する。.emacs に全ての設定を記述するタイプと .emacs には他のファイルの読み込みの設定のみを記述して .emacs.el (Vine Linux)や .gnu-emacs(SuSE Linux)に主な設定を記述するタイプ、それらの中間で、主な設定を .emacs に記述し、他のファイルで色の設定や個人的なカスタマイズの設定を記述するタイプがある。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.gnu-emacs</span><br />
-SuSE Linuxで使われているGNU-Emacsの設定ファイル。SuSE Linuxでは、.emacsに主な設定を記述せず、このファイルに設定を記述して .emacs から読み込むように設定されている。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.gnu-emacs-custom</span><br />
-SuSE Linuxで使われているGNU-Emacsのカスタム設定ファイル。問題が起こった場合に解決が遅れるもととなるので、個人的な設定はここに記述した方がよい。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs.hilit</span><br />
-emacsのカラー設定ファイル(一般的でない可能性あり)。高橋研のTru64では .emacsから読み込むように設定しているが、色の設定を行わない場合や.emacsに色の設定も含めた場合にはこのファイルがなくてもよい。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs.el</span><br />
-Vine Linux で使われているemacsの設定ファイル。Vine Linuxでは.emacs の代わりにこのファイルにシステムの主な設定が記述される。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs.my.el</span><br />
-Vine Linux で使われているemacsの個人設定ファイル。.emacs, .emacs.el は自動的に更新されるため、ここに個人的な設定を記述する。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs-color.el</span><br />
-emacsのカラー設定ファイル。Vine Linuxで使用されていますが、個人的に .emacs-color.el, .emacs-faces.el, .emacs-fontset.el を他のシステムでも使用できるように設定しているので、設定ファイルを見る際には注意して下さい。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs-faces.el</span><br />
-emacsのフォントセットの設定とフォントの装飾、背景色の設定などを記述する(Vine Linux)。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs-fontset.el</span><br />
-emacsのフォント指定を行うファイル(Vine Linux)。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.canna</span> (canna)<br />
-cannaの設定ファイル。cannaを使用する場合、ユーザ辞書の指定はここで行います。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.eggrc</span> <br />
-tamagoの設定ファイル。tamagoでwnnを使用する場合、辞書の設定はここで行います。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.xemacs.el</span></li>
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.xemacs/init.el</span><br />
-xemacsの設定ファイル。Linuxの場合、.emacsでこれらのファイルか.emacs.elを読み込むか切替えるようにしている。.emacs に主な設定を記述するシステムでもこれらのファイルを使用することが多い。</li><br />
-</ul>
-</div>
+	<div class="text1">
+		<ul class="list1">
+			<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs</span><br />
+				<p>emacsの設定ファイル。設定は全てemacs lispで記述する。.emacs に全ての設定を記述するタイプと .emacs には他のファイルの読み込みの設定のみを記述して .emacs.el (Vine Linux)や .gnu-emacs(SuSE Linux)に主な設定を記述するタイプ、それらの中間で、主な設定を .emacs に記述し、他のファイルで色の設定や個人的なカスタマイズの設定を記述するタイプがある。</p></li><br />
+			<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.gnu-emacs</span><br />
+				<p>SuSE Linuxで使われているGNU-Emacsの設定ファイル。SuSE Linuxでは、.emacsに主な設定を記述せず、このファイルに設定を記述して .emacs から読み込むように設定されている。</p></li><br />
+			<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.gnu-emacs-custom</span><br />
+				<p>SuSE Linuxで使われているGNU-Emacsのカスタム設定ファイル。問題が起こった場合に解決が遅れるもととなるので、個人的な設定はここに記述した方がよい。</p></li><br />
+			<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs.hilit</span><br />
+				<p>emacsのカラー設定ファイル(一般的でない可能性あり)。高橋研のTru64では .emacsから読み込むように設定しているが、色の設定を行わない場合や.emacsに色の設定も含めた場合にはこのファイルがなくてもよい。</p></li><br />
+			<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs.el</span><br />
+				<p>Vine Linux で使われているemacsの設定ファイル。Vine Linuxでは.emacs の代わりにこのファイルにシステムの主な設定が記述される。</p></li><br />
+			<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs.my.el</span><br />
+				<p>Vine Linux で使われているemacsの個人設定ファイル。.emacs, .emacs.el は自動的に更新されるため、ここに個人的な設定を記述する。</p></li><br />
+			<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs-color.el</span><br />
+				<p>emacsのカラー設定ファイル。Vine Linuxで使用されていますが、個人的に .emacs-color.el, .emacs-faces.el, .emacs-fontset.el を他のシステムでも使用できるように設定しているので、設定ファイルを見る際には注意して下さい。</p></li><br />
+			<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs-faces.el</span><br />
+				<p>emacsのフォントセットの設定とフォントの装飾、背景色の設定などを記述する(Vine Linux)。</p></li><br />
+			<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs-fontset.el</span><br />
+				<p>emacsのフォント指定を行うファイル(Vine Linux)。</p></li><br />
+			<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.canna</span> (canna)<br />
+				<p>cannaの設定ファイル。cannaを使用する場合、ユーザ辞書の指定はここで行います。</p></li><br />
+			<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.eggrc</span> <br />
+				<p>tamagoの設定ファイル。tamagoでwnnを使用する場合、辞書の設定はここで行います。</p></li><br />
+			<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.xemacs.el</span></li>
+			<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.xemacs/init.el</span><br />
+				<p>xemacsの設定ファイル。Linuxの場合、.emacsでこれらのファイルか.emacs.elを読み込むか切替えるようにしている。.emacs に主な設定を記述するシステムでもこれらのファイルを使用することが多い。</p></li><br />
+		</ul>
+	</div>
 <br /><br />
 <br /><br />
 
 <!-- 1-4 -->
 <h4><div class="headline2" id="init1.4">1.4 vi関連</div></h4>
 <div class="text1">
-<ul class="list1">
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.exrc</span><br />
-viを起動する際に毎回読み込まれる設定ファイル。viの最終行モードで入力するコマンドを記述することができます。最終行モードの最初の:は必要ないので注意してください。<br />
-次に設定例を載せておきます。
-<pre>
----------------------------------------------
-" 括弧の対応を表示する"
-set showmatch
-set ignorecase
-" 自動インデント機能を有効にする"
-set autoindent
-" カーソルがある行・列を表示する(vimのみ)"
-set ruler
-" 編集モードの時に画面の下に表示が出るようにする。"
-set showmode
-" ソースコードの文法を解釈して表示するかどうか設定する(対応していないものも多いので注意)。"
-" syntax on"
-syntax off
-" バックアップファイルを作らない "
-set nobackup
----------------------------------------------</pre>
+	<ul class="list1">
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.exrc</span><br />
+			<p>viを起動する際に毎回読み込まれる設定ファイル。viの最終行モードで入力するコマンドを記述することができます。最終行モードの最初の:は必要ないので注意してください。<br />次に設定例を載せておきます。</p>
+			<pre>---------------------------------------------<br />" 括弧の対応を表示する"<br />set showmatch<br />set ignorecase<br />" 自動インデント機能を有効にする"<br />set autoindent<br />" カーソルがある行・列を表示する(vimのみ)"<br />
+set ruler<br />" 編集モードの時に画面の下に表示が出るようにする。"<br />set showmode<br />" ソースコードの文法を解釈して表示するかどうか設定する(対応していないものも多いので注意)。"<br />" syntax on"<br />syntax off<br />" バックアップファイルを作らない "<br />set nobackup<br />---------------------------------------------</pre>
 </li><br />
-</ul>
+	</ul>
 </div>
 <br /><br />
 <br /><br />
@@ -178,21 +162,15 @@ set nobackup
 <!-- 1-5 -->
 <h4><div class="headline2" id="init1.5">1.5 Mail関連</div></h4>
 <div class="text1">
-<ul class="list1">
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.forward</span><br />
-メール転送の設定ファイル。このファイルの中にアドレスを記述するとそのアドレスにメールが転送される。何箇所にも転送したい場合には2行目、3行目、・・・にもアドレスを記述する（確か転送先の数に制限があったと思うのですが忘れました）。自分の所にもメールを残したい場合には自分のアドレスを書く必要があるので注意して下さい。<br />
-くれぐれも.forward の設定がループにならないように（アドレスAからB、BからC、CからAへ転送など）して下さい。<br />
-user1@host1.hoge.ac.jp にメールを残し、user2@host2.hogehoge.ne.jpに転送したい場合には次のようにします。
-<pre>
----------------------------------------------
-user1@host1.hoge.ac.jp
-user2@host2.hogehoge.ne.jp
----------------------------------------------</pre>
-</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.mew.el</span><br />
-emacsでMewを使用するときの設定ファイル。emacsでMailを読むことのないユーザには不要。
-</li><br />
-</ul>
+	<ul class="list1">
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.forward</span><br />
+			<p>メール転送の設定ファイル。このファイルの中にアドレスを記述するとそのアドレスにメールが転送される。何箇所にも転送したい場合には2行目、3行目、・・・にもアドレスを記述する（確か転送先の数に制限があったと思うのですが忘れました）。自分の所にもメールを残したい場合には自分のアドレスを書く必要があるので注意して下さい。<br />くれぐれも.forward の設定がループにならないように（アドレスAからB、BからC、CからAへ転送など）して下さい。<br />user1@host1.hoge.ac.jp にメールを残し、user2@host2.hogehoge.ne.jpに転送したい場合には次のようにします。</p>
+			<pre>---------------------------------------------<br />user1@host1.hoge.ac.jp<br />user2@host2.hogehoge.ne.jp<br />---------------------------------------------</pre>
+		</li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.mew.el</span><br />
+			<p>emacsでMewを使用するときの設定ファイル。emacsでMailを読むことのないユーザには不要。</p>
+		</li><br />
+	</ul>
 </div>
 <br /><br />
 <br /><br />
@@ -200,20 +178,20 @@ emacsでMewを使用するときの設定ファイル。emacsでMailを読むこ
 <!-- 1-6 -->
 <h4><div class="headline2" id="init1.6">1.6 その他の設定ファイル</div></h4>
 <div class="text1">
-<ul class="list1">
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.rhosts</span><br />
-この中にユーザ名とホスト名を記述すると、そのホストの指定したユーザは rlogin, rshなどをパスワードなしで実行できるようになる。セキュリティ上問題があるので置かない方がよい。多くのマシンでrlogind, rshd は起動しないので、このファイルを置いても何も起こらない。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.shosts</span><br />
-上と同じだが、sshを使った場合にパスワードなしでloginできる。デフォルトで設定されているはずだが、sshdの設定ファイルで.shostsを無視するように設定した方がよい。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.dtprofile</span><br />
-Tru64やSolarisでCDE（共通デスクトップ環境）を使用する場合に読み込まれる設定ファイル。環境変数の設定など。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.gmtdefaults</span><br />
-GMTのプログラムを実行する際に読み込まれる設定ファイル。1) システムのデフォルト値、2) ホームディレクトリの .gmtdefaults、3) current ディレクトリの .gmtdefaults の順で読み込まれる。それまでの設定を上書きするので、後に読み込まれるファイルの設定が優先される。gmtset コマンドを実行すると自動的に作成されるので注意が必要。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.xscreensaver</span><br />
-スクリーンセーバーの設定ファイル。</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.dir_colors</span><br />
-lsで表示されるカラーを設定するファイル。Linuxでは /etc/DIR_COLORS にデフォルトの設定ファイルがある。環境変数LS_COLORSの方が優先される。</li><br />
-</ul>
+	<ul class="list1">
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.rhosts</span><br />
+			<p>この中にユーザ名とホスト名を記述すると、そのホストの指定したユーザは rlogin, rshなどをパスワードなしで実行できるようになる。セキュリティ上問題があるので置かない方がよい。多くのマシンでrlogind, rshd は起動しないので、このファイルを置いても何も起こらない。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.shosts</span><br />
+			<p>上と同じだが、sshを使った場合にパスワードなしでloginできる。デフォルトで設定されているはずだが、sshdの設定ファイルで.shostsを無視するように設定した方がよい。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.dtprofile</span><br />
+			<p>Tru64やSolarisでCDE（共通デスクトップ環境）を使用する場合に読み込まれる設定ファイル。環境変数の設定など。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.gmtdefaults</span><br />
+			<p>GMTのプログラムを実行する際に読み込まれる設定ファイル。1) システムのデフォルト値、2) ホームディレクトリの .gmtdefaults、3) current ディレクトリの .gmtdefaults の順で読み込まれる。それまでの設定を上書きするので、後に読み込まれるファイルの設定が優先される。gmtset コマンドを実行すると自動的に作成されるので注意が必要。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.xscreensaver</span><br />
+			<p>スクリーンセーバーの設定ファイル。</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.dir_colors</span><br />
+			<p>lsで表示されるカラーを設定するファイル。Linuxでは /etc/DIR_COLORS にデフォルトの設定ファイルがある。環境変数LS_COLORSの方が優先される。</p></li><br />
+	</ul>
 </div>
 <br /><br />
 <br /><br />
@@ -221,22 +199,22 @@ lsで表示されるカラーを設定するファイル。Linuxでは /etc/DIR_
 <!-- 1-7 -->
 <h4><div class="headline2" id="init1.7">1.7 設定ファイルではない.ファイル</div></h4>
 <div class="text1">
-<ul class="list1">
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.history</span><br />
-コマンド履歴を保存するファイル</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.bash_history</span><br />
-bashの場合にコマンド履歴を保存するファイル</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.gp_history</span><br />
-gnuplot のコマンド履歴を保存するファイル</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.gmtcommand</span><br />
-GMTのコマンドを実行した際にオプションを保存するファイル</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs.d/</span><br />
-emacsが自動的にセーブしたファイルを保存するディレクトリ</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.dt/</span><br />
-xsessionのログファイルを保存するディレクトリ</li><br />
-<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.ssh/</span><br />
-sshでloginする際のホストキーやssh-keygenで生成する秘密鍵・公開鍵を保存する。このディレクトリは他人から見られないようにパーミッションを700にする必要がある(なっていなければ鍵認証でloginできない)。</li><br />
-</ul>
+	<ul class="list1">
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.history</span><br />
+			<p>コマンド履歴を保存するファイル</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.bash_history</span><br />
+			<p>bashの場合にコマンド履歴を保存するファイル</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.gp_history</span><br />
+			<p>gnuplot のコマンド履歴を保存するファイル</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.gmtcommand</span><br />
+			<p>GMTのコマンドを実行した際にオプションを保存するファイル</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.emacs.d/</span><br />
+			<p>emacsが自動的にセーブしたファイルを保存するディレクトリ</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.dt/</span><br />
+			<p>xsessionのログファイルを保存するディレクトリ</p></li><br />
+		<li><span style="COLOR:#3333FF;TEXT-DECORATION:underline">.ssh/</span><br />
+			<p>sshでloginする際のホストキーやssh-keygenで生成する秘密鍵・公開鍵を保存する。このディレクトリは他人から見られないようにパーミッションを700にする必要がある(なっていなければ鍵認証でloginできない)。</p></li><br />
+	</ul>
 </div>
 <br /><br />
 <br /><br />
@@ -247,7 +225,7 @@ sshでloginする際のホストキーやssh-keygenで生成する秘密鍵・�
 </article>
 </body>
 <footer>
-<p>最終更新日：2022/11/11</p>
-<p>Copyright (C) 2005-2024, Yousuke Yamashita</p>
+<p>最終更新日：2025/08/19</p>
+<p>Copyright (C) 2005-2025, Yousuke Yamashita</p>
 </footer>
 </html>
