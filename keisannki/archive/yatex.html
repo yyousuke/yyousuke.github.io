@@ -40,45 +40,27 @@
 <br />
 
 <!-- yatexのインストール（自動で行う場合） -->
-<h3><div class="headline2" id="install_auto"> yatexのインストール（自動で行う場合）</div></h3>
+<h2><div class="headline1" id="install_auto"> yatexのインストール（自動で行う場合）</div></h2>
 <div class="text1">
-&nbsp; jLinuxのディストリビューションによっては、yatexをパッケージに含めている場合もあり、そこからダウンロードすることも可能です。たとえば、Vine Linuxの場合、
-<pre># apt-get install yatex</pre>
-でダウンロードとインストールが可能です。<br />
-<br />
-＊ インストールと設定がうまく行っていれば、.texの拡張子が付いたファイルを開くと自動的にyatexが立ち上がります。
+	&nbsp; jLinuxのディストリビューションによっては、yatexをパッケージに含めている場合もあり、そこからダウンロードすることも可能です。たとえば、Vine Linuxの場合、
+	<pre># apt-get install yatex</pre>
+	でダウンロードとインストールが可能です。<br /><br />
+	＊ インストールと設定がうまく行っていれば、.texの拡張子が付いたファイルを開くと自動的にyatexが立ち上がります。
 </div>
 <br /><br />
 
 
 <!-- yatexのインストール（手動で行う場合） -->
-<h3><div class="headline2" id="install"> yatexのインストール（手動で行う場合）</div></h3>
+<h2><div class="headline1" id="install"> yatexのインストール（手動で行う場合）</div></h2>
 <div class="text1">
-<ul class="list1">
-<li>ソースコードは、<a href="http://www.yatex.org/">YaTeXの公式ホームページ</a>からダウンロード可能です。</li><br />
-<li>アーカイブを展開し、~/lib/emacs/yatex のようなディレクトリに移動します。</li><br />
-<li>.emacsを編集<br />
-&nbsp; emacs-lispを展開したディレクトリからファイルが読み込まれるようにします。また、.texの拡張子のファイルを開いた場合に、自動的にyatexが起動するように設定します。以下の設定は、platexの場合です。
-<pre>
---------------------------------------------------------------------------
-;; yatex-mode 
-(setq load-path
-&nbsp; &nbsp; (append '("~/lib/emacs/yatex") load-path)) 
-(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t) 
-(setq dvi2-command "xdvi" 
-&nbsp; &nbsp; tex-command "platex" 
-&nbsp; &nbsp; dviprint-command-format "dvips %s | lpr" 
-&nbsp; &nbsp; YaTeX-kanji-code 3) 
-;; *.texの拡張子をもつファイルを開いた場合、自動的にyatexを起動 
-(setq auto-mode-alist 
-&nbsp; &nbsp; (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist)) 
-(setq dvi2-command "xdvi" 
-&nbsp; &nbsp; tex-command "platex" 
-&nbsp; &nbsp; dviprint-command-format "dvips %s | lpr" 
-&nbsp; &nbsp; YaTeX-kanji-code 3) 
---------------------------------------------------------------------------</pre>
-</li>
-</ul>
+	<ul class="list1">
+		<li>ソースコードは、<a href="http://www.yatex.org/">YaTeXの公式ホームページ</a>からダウンロード可能です。</li><br />
+		<li>アーカイブを展開し、~/lib/emacs/yatex のようなディレクトリに移動します。</li><br />
+		<li>.emacsを編集<br />
+			&nbsp; emacs-lispを展開したディレクトリからファイルが読み込まれるようにします。また、.texの拡張子のファイルを開いた場合に、自動的にyatexが起動するように設定します。以下の設定は、platexの場合です。
+			<pre>--------------------------------------------------------------------------<br />;; yatex-mode<br />(setq load-path<br />&nbsp; &nbsp; (append '("~/lib/emacs/yatex") load-path))<br />(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)<br /> (setq dvi2-command "xdvi"<br />&nbsp; &nbsp; tex-command "platex"<br />&nbsp; &nbsp; dviprint-command-format "dvips %s | lpr"<br />&nbsp; &nbsp; YaTeX-kanji-code 3)<br />;; *.texの拡張子をもつファイルを開いた場合、自動的にyatexを起動<br />(setq auto-mode-alist<br />&nbsp; &nbsp; (cons (cons "\\.tex$" 'yatex-mode) auto-mode-alist))<br />(setq dvi2-command "xdvi"<br />&nbsp; &nbsp; tex-command "platex"<br />&nbsp; &nbsp; dviprint-command-format "dvips %s | lpr"<br />&nbsp; &nbsp; YaTeX-kanji-code 3)<br />--------------------------------------------------------------------------</pre>
+		</li>
+	</ul>
 </div>
 <br /><br />
 
@@ -88,7 +70,7 @@
 </article>
 </body>
 <footer>
-<p>最終更新日：2024/11/11</p>
-<p>Copyright (C) 2011-2024, Yousuke Yamashita</p>
+<p>最終更新日：2025/08/21</p>
+<p>Copyright (C) 2011-2025, Yousuke Yamashita</p>
 </footer>
 </html>
