@@ -32,298 +32,175 @@
 <h1  id="top">アーカイブ：Opensshのインストール（Solaris）</h1>
 <br />
 <div id="text2">
-<p><span style="COLOR:red">2008年8月2日に更新した情報のアーカイブ</span>です。</p><br />
-<p>&nbsp; ここでは、Solaris 8, 9, 10にopensshを導入しXを飛ばせるようにした際の設定方法とインストール時のエラーに対する対処方法を紹介しています。X Forwardingに関する設定は、openssh-4.9以前と5.0以降で大きく変わりましたので、5.0以降の導入を考えている場合は<a href="#5.0">5.0以降のX Forwardingの設定</a>もご参照下さい。<br />
-&nbsp; なお、5.0以降で必要な設定に関しては赤字で表示しています。コマンド入力の説明では、%が一般ユーザの場合のプロンプト、#がrootの場合のプロンプトとして解説しています。</p>
+	<p><span style="COLOR:red">2008年8月2日に更新した情報のアーカイブ</span>です。</p><br />
+	<p>&nbsp; ここでは、Solaris 8, 9, 10にopensshを導入しXを飛ばせるようにした際の設定方法とインストール時のエラーに対する対処方法を紹介しています。X Forwardingに関する設定は、openssh-4.9以前と5.0以降で大きく変わりましたので、5.0以降の導入を考えている場合は<a href="#5.0">5.0以降のX Forwardingの設定</a>もご参照下さい。<br />&nbsp; なお、5.0以降で必要な設定に関しては赤字で表示しています。コマンド入力の説明では、%が一般ユーザの場合のプロンプト、#がrootの場合のプロンプトとして解説しています。</p>
 </div>
 <br />
 <br />
 
 <!-- パッケージのダウンロードとインストール -->
-<h3><div class="headline2" id="install">パッケージのダウンロードとインストール</div></h3>
+<h2><div class="headline1" id="install">パッケージのダウンロードとインストール</div></h2>
 <div class="text1">
-&nbsp; <a href="http://www.sunfreeware.com">Sunfreeware</a>のページから、opensshのgz形式のパッケージをダウンロードします。opensshを使用する際にopenssl, zlib, libgccも使用しますのでopensshのパッケージの所に張られているリンクからまとめてダウンロードします。<br /><br />
-&nbsp; ダウンロードしたパッケージを/tmpなどに移動し、<br />
-<pre>
-# gunzip *.gz
-# pkgadd -d ファイル名</pre>
-で解凍、インストールを行ないます。
+	&nbsp; <a href="http://www.sunfreeware.com">Sunfreeware</a>のページから、opensshのgz形式のパッケージをダウンロードします。opensshを使用する際にopenssl, zlib, libgccも使用しますのでopensshのパッケージの所に張られているリンクからまとめてダウンロードします。<br /><br />&nbsp; ダウンロードしたパッケージを/tmpなどに移動し、<br />
+	<pre># gunzip *.gz<br /># pkgadd -d ファイル名</pre>
+	で解凍、インストールを行ないます。
 </div>
 <br /><br />
 
 <!-- host_keyの作成 -->
 <h3><div class="headline2" id="host_key">host_keyの作成</div></h3>
 <div class="text1">
-&nbsp; ここでは、/usr/local/etcにhost_keyを生成することを前提として話を進めます。<br />
-<pre>
-# cd /usr/local/etc
-# ssh-keygen -t rsa1 -f ssh_host_key -N ""
-# ssh-keygen -t rsa -f ssh_host_rsa_key -N "" (version 1)
-# ssh-keygen -t dsa -f ssh_host_dsa_key -N "" (version 2)</pre>
+	&nbsp; ここでは、/usr/local/etcにhost_keyを生成することを前提として話を進めます。<br />
+	<pre># cd /usr/local/etc<br /># ssh-keygen -t rsa1 -f ssh_host_key -N ""<br /># ssh-keygen -t rsa -f ssh_host_rsa_key -N "" (version 1)<br /># ssh-keygen -t dsa -f ssh_host_dsa_key -N "" (version 2)</pre>
 </div>
 <br /><br />
 
 <!-- sshd_configの設定 -->
 <h3><div class="headline2" id="sshd_config">sshd_configの設定</div></h3>
 <div class="text1">
-<ul class="list1">
-<li>X Forwardingの設定<br />
-&nbsp; デフォルトではX Forwardingができないようになっていますので、grads, emacsなど、X11プロトコルを使用するアプリケーションを起動する場合、X Forwardingの設定が必要になります。<br />
-/usr/local/etc/sshd_configで<br />
-<pre>
------------------------------------------------------------------------
-#X11Forwarding no
------------------------------------------------------------------------</pre>
-という行を探し、<br />
-<pre>
------------------------------------------------------------------------
-#X11Forwarding no
-X11Forwarding yes
------------------------------------------------------------------------</pre>
-のように変更します。</li><br />
-<li><span style="COLOR:red"><a name="5.0">openssh-5.0以降のX Forwardingの設定</a><br />
-&nbsp; opensshの4.9から5.0へのバージョンアップの際に「IPv4とIPv6のアドレスファミリの bind が成功していない場合にもポートを listen していたのをやめて, X11転送のハイジャックを行えなくした.」2)というセキュリティ上の変更が行われました。この変更の影響で、5.0以降のsshdを用いた場合、上記の設定のみではX Forwardingに失敗します。4.9以前のバージョンでは、この項目を無視していただいて構いませんが、セキュリティ向上のため、最新版へのアップグレードをお薦めします。<br />
-5.0以降の場合、/usr/local/etc/sshd_configで以下の行を次のように変更します。<br />
-<pre>
------------------------------------------------------------------------
-AddressFamily inet # ipv4を使用
-X11Forwarding yes # X11転送を有効に
-GatewayPorts yes
------------------------------------------------------------------------</pre>
-</span></li><br />
-
-<li>セキュリティの設定(root loginの禁止)<br />
-&nbsp; デフォルトの設定ではsshでroot loginが可能です。rootパスワードを総当たりで調べるといったクラックを許す可能性がありますので、root loginを禁止しておいた方が無難です。<br />
-<pre>
------------------------------------------------------------------------
-#PermitRootLogin yes
-PermitRootLogin no
------------------------------------------------------------------------</pre>
-とします。<br />
-</li><br />
-
-<li>セキュリティの設定(ssh version 2のみを使用)<br />
-&nbsp; 最近では、ほとんどのsshアプリケーションがssh version 2に対応しています。ssh version 1は暗号化が弱いのでversion 2のみを有効にすることをお薦めします。<br />
-<pre>
------------------------------------------------------------------------
-#Protocol 1,2 # デフォルトではver.1,2とも有効に
-Protocol 2 # ver.2のみ有効に
------------------------------------------------------------------------</pre>
-</li><br />
-
-<li>login時の表示を2行から1行に<br />
-&nbsp; login時に同じ行が2回表示されて気になる場合には次の設定で1回のみ表示するように変えることができる。<br />
-<pre>
------------------------------------------------------------------------<br />
-#PrintMotd yes<br />
-PrintMotd no<br />
------------------------------------------------------------------------</pre>
-</li><br />
-</ul>
+	<ul class="list1">
+		<li>X Forwardingの設定<br />
+			&nbsp; デフォルトではX Forwardingができないようになっていますので、grads, emacsなど、X11プロトコルを使用するアプリケーションを起動する場合、X Forwardingの設定が必要になります。<br />
+			/usr/local/etc/sshd_configで<br />
+			<pre>-----------------------------------------------------------------------<br />#X11Forwarding no<br />-----------------------------------------------------------------------</pre>
+			という行を探し、<br />
+			<pre>-----------------------------------------------------------------------<br />#X11Forwarding no<br />X11Forwarding yes<br />-----------------------------------------------------------------------</pre>
+			のように変更します。</li><br />
+		<li><span style="COLOR:red"><a name="5.0">openssh-5.0以降のX Forwardingの設定</a><br />
+			&nbsp; opensshの4.9から5.0へのバージョンアップの際に「IPv4とIPv6のアドレスファミリの bind が成功していない場合にもポートを listen していたのをやめて, X11転送のハイジャックを行えなくした.」2)というセキュリティ上の変更が行われました。この変更の影響で、5.0以降のsshdを用いた場合、上記の設定のみではX Forwardingに失敗します。4.9以前のバージョンでは、この項目を無視していただいて構いませんが、セキュリティ向上のため、最新版へのアップグレードをお薦めします。<br />5.0以降の場合、/usr/local/etc/sshd_configで以下の行を次のように変更します。</span><br />
+			<pre>-----------------------------------------------------------------------<br />AddressFamily inet # ipv4を使用<br />X11Forwarding yes # X11転送を有効に<br />GatewayPorts yes<br />-----------------------------------------------------------------------</pre>
+		</li><br />
+		<li>セキュリティの設定(root loginの禁止)<br />
+			&nbsp; デフォルトの設定ではsshでroot loginが可能です。rootパスワードを総当たりで調べるといったクラックを許す可能性がありますので、root loginを禁止しておいた方が無難です。<br />
+			<pre>-----------------------------------------------------------------------<br />#PermitRootLogin yes<br />PermitRootLogin no<br />-----------------------------------------------------------------------</pre>
+			とします。<br />
+		</li><br />
+		<li>セキュリティの設定(ssh version 2のみを使用)<br />
+			&nbsp; 最近では、ほとんどのsshアプリケーションがssh version 2に対応しています。ssh version 1は暗号化が弱いのでversion 2のみを有効にすることをお薦めします。<br />
+			<pre>-----------------------------------------------------------------------<br />#Protocol 1,2 # デフォルトではver.1,2とも有効に<br />Protocol 2 # ver.2のみ有効に<br />-----------------------------------------------------------------------</pre>
+		</li><br />
+		<li>login時の表示を2行から1行に<br />
+			&nbsp; login時に同じ行が2回表示されて気になる場合には次の設定で1回のみ表示するように変えることができる。<br />
+			<pre>-----------------------------------------------------------------------<br />#PrintMotd yes<br />PrintMotd no<br />-----------------------------------------------------------------------</pre></li><br />
+	</ul>
 </div>
 <br /><br />
 
 <!-- アクセス設定 -->
 <h3><div class="headline2" id="access">アクセス設定</div></h3>
 <div class="text1">
-<ul class="list1">
-<li>/etc/hosts.allow, /etc/hosts.denyの設定<br />
-&nbsp; opensshは、外部から接続があった場合に/etc/hosts.allow, /etc/hosts.denyを参照してアクセスを許可するかどうか決定します(スタンドアローンで起動する場合。以下、スタンドアローンで起動することを前提に解説)。処理の順番はtcpdと同じで、hosts.allowに記されたhostへのサービスを先に許可し、それからhosts.denyに記されたhostへのサービスを拒否します。<br />
-例えば、192.168.0.*からのアクセスのみを受け付ける場合、次のように記述します。<br />
-<pre>
------------------------------------------------------------------------
-/etc/hosts.allow
-ALL: LOCAL #(自分自身からのアクセスは許可)
-sshd: 192.168.0.
-<br >
-/etc/hosts.deny
-ALL: ALL
------------------------------------------------------------------------</pre>
-</li><br />
+	<ul class="list1">
+		<li>/etc/hosts.allow, /etc/hosts.denyの設定<br />
+			&nbsp; opensshは、外部から接続があった場合に/etc/hosts.allow, /etc/hosts.denyを参照してアクセスを許可するかどうか決定します(スタンドアローンで起動する場合。以下、スタンドアローンで起動することを前提に解説)。処理の順番はtcpdと同じで、hosts.allowに記されたhostへのサービスを先に許可し、それからhosts.denyに記されたhostへのサービスを拒否します。<br />
+			例えば、192.168.0.*からのアクセスのみを受け付ける場合、次のように記述します。<br />
+			<pre>/etc/hosts.allow<br />-----------------------------------------------------------------------<br />ALL: LOCAL #(自分自身からのアクセスは許可)<br /><br />sshd: 192.168.0.<br />-----------------------------------------------------------------------</pre>
+			<pre>/etc/hosts.deny<br />-----------------------------------------------------------------------<br />ALL: ALL<br />-----------------------------------------------------------------------</pre>
+
+		</li><br />
 </ul>
 </div>
 
 <!-- sshdの再起動 -->
 <h3><div class="headline2" id="restart">sshdの再起動</div></h3>
 <div class="text1">
-&nbsp; 最後にsshdの再起動を行います。以下のようなスクリプトを作成し、/etc/init.d/sshdとして保存します。スクリプトに実行可能属性を与えるのをお忘れなく。<br />
-<pre>
------------------------------------------------------------------------
-#!/bin/sh 
-pid=`/usr/bin/ps -e | /usr/bin/grep sshd | /usr/bin/sed -e 's/^ *//' | cut -d ' ' -f1` 
-<br />
-case $1 in 
-'start')
-&nbsp; &nbsp; /usr/local/sbin/sshd 
-&nbsp; &nbsp; echo "sshd started ... 
-&nbsp; &nbsp; ;; 
-'stop') 
-&nbsp; &nbsp; if [ "${pid}" != "" ];  then 
-&nbsp; &nbsp; &nbsp; /usr/bin/kill ${pid} 
-&nbsp; &nbsp; fi 
-&nbsp; &nbsp; ;; 
-*) 
-&nbsp; &nbsp; echo "usage: /etc/init.d/sshd {start|stop}" 
-&nbsp; &nbsp; ;; 
-esac 
------------------------------------------------------------------------</pre>
-<br />
-<pre>
-# /etc/init.d/sshd stop 
-# /etc/init.d/sshd start 
-</pre>
-起動時に自動的にsshdが起動するようにしたい場合、<br />
-<pre>
-# cd /etc/rc2.d
-# ln -s /etc/init.d/sshd S98sshd</pre>
-のように起動スクリプトに登録します。
+	&nbsp; 最後にsshdの再起動を行います。以下のようなスクリプトを作成し、/etc/init.d/sshdとして保存します。スクリプトに実行可能属性を与えるのをお忘れなく。<br />
+	<pre>-----------------------------------------------------------------------<br />#!/bin/sh <br />pid=`/usr/bin/ps -e | /usr/bin/grep sshd | /usr/bin/sed -e 's/^ *//' | cut -d ' ' -f1`<br /><br /><br />case $1 in<br />'start')<br />&nbsp; &nbsp; /usr/local/sbin/sshd<br />&nbsp; &nbsp; echo "sshd started ...<br />&nbsp; &nbsp; ;;<br />'stop')<br />&nbsp; &nbsp; if [ "${pid}" != "" ];  then<br />&nbsp; &nbsp; &nbsp; /usr/bin/kill ${pid}<br />&nbsp; &nbsp; fi<br />&nbsp; &nbsp; ;;<br />*)<br />&nbsp; &nbsp; echo "usage: /etc/init.d/sshd {start|stop}"<br />&nbsp; &nbsp; ;;<br />esac<br />-----------------------------------------------------------------------</pre>
+	<br />
+	<pre># /etc/init.d/sshd stop<br /># /etc/init.d/sshd start </pre>
+	起動時に自動的にsshdが起動するようにしたい場合、<br />
+	<pre># cd /etc/rc2.d<br /># ln -s /etc/init.d/sshd S98sshd</pre>
+	のように起動スクリプトに登録します。
 </div>
 
 <!-- エラー -->
-<h3><div class="headline2" id="error">エラーが出た場合</div></h3>
+<h2><div class="headline1" id="error">エラーが出た場合</div></h2>
 <div class="text1">
-<ul class="list1">
-<li>Q1　host keyを読み込めないというエラーが出る。<br />
-<pre>
------------------------------------------------------------------------
-# /usr/local/sbin/sshd
-Could not load host key: /usr/local/etc/ssh_host_key
-Could not load host key: /usr/local/etc/ssh_host_rsa_key
-Could not load host key: /usr/local/etc/ssh_host_dsa_key
-Disabling protocol version 1. Could not load host key
-Disabling protocol version 2. Could not load host key
-sshd: no hostkeys available -- exiting.
------------------------------------------------------------------------</pre>
-</li><br />
-<li>A1　/usr/local/etc/以下にhost_keyがないことが原因です。<a href="#host_key">host_ketの作成</a>の部分を参考にkeyの生成を行なって下さい。</li><br />
-<br />
-<br />
-<li>Q2　/var/emptyがないというエラーが出る。<br />
-<pre>
------------------------------------------------------------------------
-# /usr/local/sbin/sshd
-Missing privilege separation directory: /var/empty
------------------------------------------------------------------------</pre>
-</li><br />
-<li>A2　インストール時に/var/emptyの作成が失敗したか、間違って消されてしまったことが原因と思われます。/varが書き込み可能(書き込み可能属性でマウントされているか。パーミッションに問題がないか。ディスクに空きはあるか。)であるか確認した上で/var/emptyを作成し、<pre>
------------------------------------------------------------------------
-# ls -dl /var/empty
-drwxr-xr-x   2 root     sys           512 Oct 17  2004 /var/empty/
------------------------------------------------------------------------</pre>
-のような所有者、グループ、パーミッションに設定して下さい。
-</li><br />
-<br />
-<br />
-<li>Q3　sshで接続できるが、gradsなどのwindowが飛んでこない<br />
-</li><br />
-<li>A4　原因としては、X Forwardingに関連したサーバー側の設定の問題、環境変数の設定、クライアント側の設定の問題が考えられます。<br />
-<ol class="list2">
-<li>サーバー側の設定<br />
-サーバ側でX Forwardingを許可しているかどうかを確認します。<br />
-/usr/local/etc/sshd_configの中で<br />
-<pre>
------------------------------------------------------------------------
-#AllowTcpForwarding yes (デフォルトのままでよい)
-#X11Forwarding no
-X11Forwarding yes (X11転送を有効にする)
------------------------------------------------------------------------</pre>
-のように、TcpForwarfingとX11Forwardingがyesに設定されていることを確認します。<br />
-<br />
-<span style="COLOR:red">* openssh-5.0以降では、上記の設定に加え、以下の設定も必要です。</span><br />
-<pre>
------------------------------------------------------------------------
-AddressFamily inet
-GatewayPorts yes
------------------------------------------------------------------------</pre>
-AddressFamilyがinet、GatewayPortsがyesになっていることを確認します。<br />
-</li><br />
+	<ul class="list1">
+		<li>Q1　host keyを読み込めないというエラーが出る。<br />
+			<pre>-----------------------------------------------------------------------<br /># /usr/local/sbin/sshd<br />Could not load host key: /usr/local/etc/ssh_host_key<br />Could not load host key: /usr/local/etc/ssh_host_rsa_key<br />Could not load host key: /usr/local/etc/ssh_host_dsa_key<br />Disabling protocol version 1. Could not load host key<br />Disabling protocol version 2. Could not load host key<br />sshd: no hostkeys available -- exiting.<br />-----------------------------------------------------------------------</pre>
+		</li><br />
+		<li>A1　/usr/local/etc/以下にhost_keyがないことが原因です。<a href="#host_key">host_ketの作成</a>の部分を参考にkeyの生成を行なって下さい。</li><br />
 
-<li>DISPLAY環境変数の確認<br />
-X Forwardingが行なわれている場合、sshサーバにloginした際には環境変数DISPLAYが自動的に<br /><br />
-&nbsp; DISPLAY=localhost:10.0 (11.0, 12.0などとなっていてもよい)<br /><br />
-のように設定され、gradsなどのアプリケーションからXサーバへの要求はsshサーバ側のポート6010(or 6011, 6012)番に出されます。ポート6010番に出された要求はポート22番(sshポート)に転送され、sshを通してsshクライアント側に送られます。sshクライアント側では、sshを通して送られた要求をポート6000番(クライアント側のXサーバが6000番にある場合)に転送し、ここでsshクライアント側のXサーバが受け取ってgradsなどのwindowを表示するという仕組みになっています。<br />
-<br />
-&nbsp; 環境変数DISPLAYはlogin後にシェルの中などで変更することも可能ですので、.cshrc, .bashrcなどで変更していると問題が起こってしまいます。<br />
-<pre>
-% env | grep DISPLAY</pre>
-でDISPLAY環境変数の値がおかしくないか確認して下さい。上記のコマンドを打って<b> localhost:10.0</b> のような値ではなく、<b> サーバ名:0.0</b> のような値になっていたら、.cshrc, .bashrcなどでDISPLAY環境変数を書き換えていないか確認します。もし、上記のコマンドを打っても何も表示されなければ、DISPLAY環境変数は設定されていません。(3)のクライアント側の設定を確認して下さい。</li><br />
+		<li>Q2　/var/emptyがないというエラーが出る。<br />
+			<pre>-----------------------------------------------------------------------<br /># /usr/local/sbin/sshd<br />Missing privilege separation directory: /var/empty<br />-----------------------------------------------------------------------</pre>
+		</li><br />
 
-<li>クライアント側の設定<br />
-クライアント側の設定でもX Forwardingを許可する必要があります。クライアントがSolarisなら/usr/local/etc/ssh_config (sshd_configではないので注意)、Linuxなら/etc/ssh/ssh_configを確認します。<br />
-ForwardX11 yesが有効になっていなければ、次の行を追加します。<br />
-<pre>
------------------------------------------------------------------------
-ForwardX11 yes
------------------------------------------------------------------------</pre>
-<br />
-<span style="COLOR:red">* サーバ側のsshdがopenssh-5.0以降の場合、次の設定も必要です。</span><br />
-<pre>
------------------------------------------------------------------------
-ForwardX11Trusted yes
------------------------------------------------------------------------</pre>
-</li><br />
-</ol><br />
-</li><br />
-<br />
-<br />
-<li>Q4　emacsが異常終了する。<br />
-sshで接続した後、emacsを起動してemacsのwindow に触れると<br />
-<pre>
------------------------------------------------------------------------
-X protocol error: BadWindow (invalid Window parameter) on protocol request 38
------------------------------------------------------------------------</pre>
-というエラーが出て消えてしまう。<br />
-</li><br />
-<br />
-<br />
-<li>A4　emacsがsshに対してデフォルトでは信頼されないX11クッキーを要求し、エラーを
-出してしまうことが原因と思われます。<br />
-　接続元のマシンがSolarisなら/usr/local/etc/ssh_config (sshd_configでないので注意)、Linuxなら/etc/ssh/ssh_configの最後に<br />
-<pre>
------------------------------------------------------------------------
-ForwardX11Trusted yes
------------------------------------------------------------------------</pre>
-を追加して下さい。<br />
-</li><br />
-<br />
-<br />
-</ul>
+		<li>A2　インストール時に/var/emptyの作成が失敗したか、間違って消されてしまったことが原因と思われます。/varが書き込み可能(書き込み可能属性でマウントされているか。パーミッションに問題がないか。ディスクに空きはあるか。)であるか確認した上で/var/emptyを作成し、
+			<pre>-----------------------------------------------------------------------# ls -dl /var/empty<br />drwxr-xr-x   2 root     sys           512 Oct 17  2004 /var/empty/<br />-----------------------------------------------------------------------</pre>
+			のような所有者、グループ、パーミッションに設定して下さい。
+		</li><br />
+
+		<li>Q3　sshで接続できるが、gradsなどのwindowが飛んでこない<br />
+		</li><br />
+
+		<li>A3　原因としては、X Forwardingに関連したサーバー側の設定の問題、環境変数の設定、クライアント側の設定の問題が考えられます。<br />
+			<ol class="list2">
+				<li>サーバー側の設定<br />
+					サーバ側でX Forwardingを許可しているかどうかを確認します。<br />
+					/usr/local/etc/sshd_configの中で<br />
+					<pre>-----------------------------------------------------------------------<br />#AllowTcpForwarding yes (デフォルトのままでよい)<br />#X11Forwarding no<br />X11Forwarding yes (X11転送を有効にする)<br />-----------------------------------------------------------------------</pre>
+					のように、TcpForwarfingとX11Forwardingがyesに設定されていることを確認します。<br /><br />
+					<span style="COLOR:red">* openssh-5.0以降では、上記の設定に加え、以下の設定も必要です。</span><br />
+					<pre>-----------------------------------------------------------------------<br />AddressFamily inet<br />GatewayPorts yes<br />-----------------------------------------------------------------------</pre>
+					AddressFamilyがinet、GatewayPortsがyesになっていることを確認します。<br />
+				</li><br />
+
+				<li>DISPLAY環境変数の確認<br />
+					X Forwardingが行なわれている場合、sshサーバにloginした際には環境変数DISPLAYが自動的に<br /><br />
+					&nbsp; DISPLAY=localhost:10.0 (11.0, 12.0などとなっていてもよい)<br /><br />
+					のように設定され、gradsなどのアプリケーションからXサーバへの要求はsshサーバ側のポート6010(or 6011, 6012)番に出されます。ポート6010番に出された要求はポート22番(sshポート)に転送され、sshを通してsshクライアント側に送られます。sshクライアント側では、sshを通して送られた要求をポート6000番(クライアント側のXサーバが6000番にある場合)に転送し、ここでsshクライアント側のXサーバが受け取ってgradsなどのwindowを表示するという仕組みになっています。<br /><br />
+					&nbsp; 環境変数DISPLAYはlogin後にシェルの中などで変更することも可能ですので、.cshrc, .bashrcなどで変更していると問題が起こってしまいます。<br />
+					<pre>% env | grep DISPLAY</pre>
+					でDISPLAY環境変数の値がおかしくないか確認して下さい。上記のコマンドを打って<b> localhost:10.0</b> のような値ではなく、<b> サーバ名:0.0</b> のような値になっていたら、.cshrc, .bashrcなどでDISPLAY環境変数を書き換えていないか確認します。もし、上記のコマンドを打っても何も表示されなければ、DISPLAY環境変数は設定されていません。(3)のクライアント側の設定を確認して下さい。
+				</li><br />
+
+				<li>クライアント側の設定<br />
+					クライアント側の設定でもX Forwardingを許可する必要があります。クライアントがSolarisなら/usr/local/etc/ssh_config (sshd_configではないので注意)、Linuxなら/etc/ssh/ssh_configを確認します。<br />
+					ForwardX11 yesが有効になっていなければ、次の行を追加します。<br />
+					<pre>-----------------------------------------------------------------------<br />ForwardX11 yes<br />-----------------------------------------------------------------------</pre>
+					<br />
+					<span style="COLOR:red">* サーバ側のsshdがopenssh-5.0以降の場合、次の設定も必要です。</span><br />
+					<pre>-----------------------------------------------------------------------<br />ForwardX11Trusted yes<br />-----------------------------------------------------------------------</pre>
+				</li>
+			</ol>
+		</li><br />
+
+		<li>Q4　emacsが異常終了する。<br />
+			sshで接続した後、emacsを起動してemacsのwindow に触れると<br />
+			<pre>-----------------------------------------------------------------------<br />X protocol error: BadWindow (invalid Window parameter) on protocol request 38<br />-----------------------------------------------------------------------</pre>
+			というエラーが出て消えてしまう。<br />
+		</li><br />
+
+		<li>A4　emacsがsshに対してデフォルトでは信頼されないX11クッキーを要求し、エラーを出してしまうことが原因と思われます。<br />
+			接続元のマシンがSolarisなら/usr/local/etc/ssh_config (sshd_configでないので注意)、Linuxなら/etc/ssh/ssh_configの最後に<br />
+			<pre>-----------------------------------------------------------------------<br />ForwardX11Trusted yes<br />-----------------------------------------------------------------------</pre>
+			を追加して下さい。<br />
+		</li><br />
+	</ul>
 </div>
 
-<h3><div class="headline2" id="key">公開鍵認証を行なうには</div></h3>
+<h2><div class="headline1" id="key">公開鍵認証を行なうには</div></h2>
 <div class="text1">
-&nbsp; sshでは、ユーザー名、パスワードを入力する代わりに、ユーザー名と秘密鍵、公開鍵のペアを照合することで、loginすることが可能です。以下では、dsa(ssh version 2の認証方式)を使用した公開鍵認証についてメモしています。<br />
-<ul class="list1">
-<li>sshd_configの設定<br />
-<pre>
------------------------------------------------------------------------
-#RSAAuthentication yes
-#PubkeyAuthentication yes
-#AuthorizedKeysFile     .ssh/authorized_keys
------------------------------------------------------------------------</pre>
-のように、デフォルトのままになっていれば、公開鍵認証が使用できます。 <br />
-</li><br />
-<li>公開鍵、秘密鍵の生成<br />
-&nbsp; OpensshがインストールされたUNIXマシンで、<br />
-<pre>
-% mkdir .ssh
-% chmod 700 .ssh
-% ssh-keygen -t dsa </pre>
-として、秘密鍵、公開鍵のペアを生成します。この操作で、.ssh以下にid_dsa(秘密鍵)、id_dsa.pub(公開鍵)ができていると思います。<br />
-</li><br />
-<li>クライアント、サーバ側の設定<br />
-&nbsp; クライアント側には、秘密鍵、サーバ側には公開鍵が必要です。それぞれのホームに.sshがない場合には、<br />
-<pre>
-% mkdir .ssh
-% chmod 700 .ssh </pre>
-で、鍵を置くディレクトリを作ります。<br />
-&nbsp; 鍵を保存するファイルは、クライアント側では、id_dsaのままにし、サーバ側では、id_dsa.pubをauthorized_keys2に変えます。<br />
-<pre>
-% mv id_dsa.pub .ssh/authorized_keys2
-% chmod 600 .ssh/authorized_keys2 </pre>
-<br />
-</li><br />
-</ul>
+	&nbsp; sshでは、ユーザー名、パスワードを入力する代わりに、ユーザー名と秘密鍵、公開鍵のペアを照合することで、loginすることが可能です。以下では、dsa(ssh version 2の認証方式)を使用した公開鍵認証についてメモしています。<br />
+	<ul class="list1">
+		<li>sshd_configの設定<br />
+			<pre>-----------------------------------------------------------------------<br />#RSAAuthentication yes<br />#PubkeyAuthentication yes<br />#AuthorizedKeysFile     .ssh/authorized_keys<br />-----------------------------------------------------------------------</pre>
+			のように、デフォルトのままになっていれば、公開鍵認証が使用できます。 <br />
+		</li><br />
+		<li>公開鍵、秘密鍵の生成<br />
+			&nbsp; OpensshがインストールされたUNIXマシンで、<br />
+			<pre>% mkdir .ssh<br />% chmod 700 .ssh<br />% ssh-keygen -t dsa </pre>
+			として、秘密鍵、公開鍵のペアを生成します。この操作で、.ssh以下にid_dsa(秘密鍵)、id_dsa.pub(公開鍵)ができていると思います。<br />
+			<span style="COLOR:red">＊この情報は2008年8月時点のものであり、現在では推奨されません。</span>
+		</li><br />
+		<li>クライアント、サーバ側の設定<br />
+			&nbsp; クライアント側には、秘密鍵、サーバ側には公開鍵が必要です。それぞれのホームに.sshがない場合には、<br />
+			<pre>% mkdir .ssh<br />% chmod 700 .ssh </pre>
+			で、鍵を置くディレクトリを作ります。<br />
+			&nbsp; 鍵を保存するファイルは、クライアント側では、id_dsaのままにし、サーバ側では、id_dsa.pubをauthorized_keys2に変えます。<br />
+			<pre>% mv id_dsa.pub .ssh/authorized_keys2<br />% chmod 600 .ssh/authorized_keys2 </pre><br />
+		</li><br />
+	</ul>
 </div>
 
 <h3><div class="headline2" id="ref">参考</div></h3>
@@ -340,7 +217,7 @@ ForwardX11Trusted yes
 </article>
 </body>
 <footer>
-<p>最終更新日：2024/11/11</p>
+<p>最終更新日：2025/08/22</p>
 <p>Copyright (C) 2008-2024, Yousuke Yamashita</p>
 </footer>
 </html>
